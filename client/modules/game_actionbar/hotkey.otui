@@ -1,0 +1,131 @@
+UIWindow
+  id: assignHotkeyWindow
+  size: 335 210
+  image-source: images/background
+  anchors.horizontalCenter: parent.horizontalCenter
+  anchors.verticalCenter: parent.verticalCenter
+
+  UIWidget
+    id: title
+    color: white
+    opacity: 0.7
+    !text: tr('ADD SHORTCUT')
+    font: verdana-11px-rounded
+    text-align: center
+    text-auto-resize: true
+    text-align: left
+    phantom: true
+    anchors.top: parent.top
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-top: 7
+  UIWidget
+    id: subTitle
+    color: white
+    font: verdana-11px-rounded
+    text-align: center
+    text-auto-resize: true
+    text-align: left
+    phantom: true
+    anchors.top: parent.top
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-top: 50
+
+  UIWidget
+    id: display
+    color: #ffd57c
+    !text: '<vazio>'
+    font: verdana-11px-rounded
+    text-align: center
+    text-auto-resize: true
+    text-align: left
+    phantom: true
+    anchors.top: prev.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-top: 5
+
+  UIWidget
+    id: desc
+    color: #9c9c9c
+    !text: tr('Please press the shortcut you want to add!')
+    font: verdana-11px-rounded
+    text-align: center
+    text-wrap: true
+    text-vertical-auto-resize: true
+    phantom: true
+    anchors.top: prev.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 5
+    margin-left: 20
+    margin-right: 20
+
+  UIWidget
+    id: errorLabel
+    color: #ffffff
+    !text: tr('This shortcut key can be used')
+    font: verdana-11px-rounded
+    text-align: center
+    text-wrap: true
+    text-vertical-auto-resize: true
+    phantom: true
+    anchors.top: prev.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 10
+    margin-left: 20
+    margin-right: 20
+
+  UIButton
+    id: buttonOk
+    size: 91 22
+    image-source: images/button_blue
+    image-border: 1
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    margin-left: 60
+    margin-bottom: 16
+    image-color: #cdcdcd
+    change-cursor-image: true
+    cursor: pointer
+    $hover:
+      image-color: #ffffff
+    $pressed:
+      image-color: #9b9b9b
+    Label
+      id: value
+      color: white
+      text-align: center
+      text-auto-resize: true
+      !text: tr('CONFIRMAR')
+      font: verdana-9px
+      anchors.centerIn: parent
+      margin-bottom: 2
+
+  UIButton
+    id: buttonClose
+    size: 91 22
+    image-source: images/button_red
+    image-border: 1
+    anchors.bottom: parent.bottom
+    anchors.left: buttonOk.right
+    margin-left: 12
+    margin-bottom: 16
+    image-color: #cdcdcd
+    change-cursor-image: true
+    cursor: pointer
+    @onClick: self:getParent():destroy()
+    $hover:
+      image-color: #ffffff
+    $pressed:
+      image-color: #9b9b9b
+    Label
+      id: value
+      color: white
+      text-align: center
+      text-auto-resize: true
+      !text: tr('CANCELAR')
+      font: verdana-9px
+      anchors.centerIn: parent
+      margin-bottom: 2

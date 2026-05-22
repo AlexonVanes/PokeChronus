@@ -1,0 +1,11 @@
+Module
+  name: game_daily_rewards
+  description: Sistema de recompensas diárias (21 dias)
+  author: PokeChronus Team
+  website: https://pokechronus.online
+  autoload: true
+  autoload-priority: 1000
+  scripts: [ game_daily_rewards ]
+  sandboxed: true
+  @onLoad: init()
+  @onUnload: terminate()

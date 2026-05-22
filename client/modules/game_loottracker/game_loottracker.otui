@@ -1,0 +1,66 @@
+LootItemEntry < Panel
+  height: 36
+  margin-top: 2
+  margin-left: 2
+  margin-right: 2
+  image-source: /images/ui/panel_flat
+  image-border: 4
+
+  Item
+    id: itemDisplay
+    anchors.top: parent.top
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    margin: 2
+    size: 32 32
+    virtual: true
+
+  Label
+    id: nameLabel
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.left: prev.right
+    anchors.right: parent.right
+    margin-left: 5
+    text-align: left
+    font: verdana-11px-monochrome
+    color: #FFAA00
+
+LootTrackerWindow < MiniWindow
+  id: lootTrackerWindow
+  !text: tr('Loot Tracker')
+  height: 400
+  icon: /images/topbuttons/analyzers
+  @onClose: modules.game_loottracker.onMiniWindowClose()
+  &save: true
+
+  MiniWindowContents
+    padding: 5
+
+    Button
+      id: resetButton
+      !text: tr('Clear Loot Log')
+      height: 20
+      anchors.top: parent.top
+      anchors.left: parent.left
+      anchors.right: parent.right
+      @onClick: modules.game_loottracker.resetSession()
+
+    VerticalScrollBar
+      id: lootScrollbar
+      anchors.top: resetButton.bottom
+      anchors.bottom: parent.bottom
+      anchors.right: parent.right
+      margin-top: 4
+      step: 14
+      pixels-scroll: true
+
+    ScrollablePanel
+      id: lootListPanel
+      anchors.top: lootScrollbar.top
+      anchors.bottom: lootScrollbar.bottom
+      anchors.left: parent.left
+      anchors.right: lootScrollbar.left
+      vertical-scrollbar: lootScrollbar
+      layout:
+        type: verticalBox
+        spacing: 2

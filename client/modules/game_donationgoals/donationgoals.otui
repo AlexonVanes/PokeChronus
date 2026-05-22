@@ -1,0 +1,144 @@
+MainWindow
+  id: Window
+  focusable: false
+  size: 680 450
+  image-source: images/background
+  text: Donate Goal
+  text-align: top
+  text-offset: 0 8
+  font: verdana-11px-rounded
+
+  UIWidget
+    id: rewardPreview
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 44
+    margin-left: 28
+    size: 206 328
+    image-source: images/window_secondary
+
+    UIWidget
+      id: rewardSlot
+      anchors.top: parent.top
+      anchors.horizontalCenter: parent.horizontalCenter
+      margin-top: 24
+      size: 130 130
+      image-source: images/circle
+
+      UIItem
+        id: rewardItem
+        anchors.centerIn: parent
+        size: 72 72
+        phantom: true
+
+    UILabel
+      id: rewardNameLabel
+      anchors.top: rewardSlot.bottom
+      anchors.horizontalCenter: parent.horizontalCenter
+      margin-top: 10
+      width: 166
+      text-align: center
+      text-wrap: true
+      color: #ffffff
+      font: verdana-11px-rounded
+      text: Bike Cronus
+
+    UIWidget
+      id: progressBack
+      anchors.left: parent.left
+      anchors.right: parent.right
+      anchors.bottom: parent.bottom
+      margin-left: 22
+      margin-right: 22
+      margin-bottom: 42
+      height: 17
+      image-source: images/barra_vazia
+
+    UIWidget
+      id: progressFull
+      anchors.left: progressBack.left
+      anchors.verticalCenter: progressBack.verticalCenter
+      size: 1 17
+      image-source: images/barra_cheia
+
+    UILabel
+      id: progressText
+      anchors.centerIn: progressBack
+      width: 110
+      height: 17
+      text-align: center
+      color: #ffffff
+      font: verdana-11px-rounded
+      text: 0 / 100
+
+  UIWidget
+    id: infoPanel
+    anchors.top: rewardPreview.top
+    anchors.left: rewardPreview.right
+    anchors.right: parent.right
+    margin-left: 14
+    margin-right: 28
+    height: 132
+    image-source: images/window_secondary
+
+    UILabel
+      id: requirementLabel
+      anchors.fill: parent
+      margin-top: 18
+      margin-left: 20
+      margin-right: 20
+      margin-bottom: 14
+      text-align: top-left
+      text-wrap: true
+      color: #ffffff
+      font: verdana-11px-rounded
+      text: Carregando informacoes da meta...
+
+  UIWidget
+    id: descPanel
+    anchors.top: infoPanel.bottom
+    anchors.left: infoPanel.left
+    anchors.right: infoPanel.right
+    margin-top: 14
+    height: 176
+    image-source: images/window_secondary
+
+    UILabel
+      id: descLabel
+      anchors.fill: parent
+      margin-top: 18
+      margin-left: 20
+      margin-right: 20
+      margin-bottom: 16
+      text-align: top-left
+      text-wrap: true
+      color: #ffffff
+      font: verdana-11px-rounded
+      text: Bike Cronus
+
+  UIWidget
+    id: redeemButton
+    anchors.left: infoPanel.left
+    anchors.right: infoPanel.right
+    anchors.top: descPanel.bottom
+    margin-top: 14
+    height: 46
+    background-color: #075f1f
+    opacity: 0.9
+    color: #ffffff
+    text: Resgatar
+    text-align: center
+    font: verdana-11px-rounded
+    change-cursor-image: true
+    cursor: pointer
+
+  UILabel
+    id: statusLabel
+    anchors.left: infoPanel.left
+    anchors.right: infoPanel.right
+    anchors.top: redeemButton.bottom
+    margin-top: 8
+    text-align: center
+    color: #ffd55a
+    font: verdana-11px-rounded
+    text: Aguardando dados da meta...

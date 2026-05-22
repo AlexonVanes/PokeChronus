@@ -1,0 +1,333 @@
+OffsetWindow < MainWindow
+  id: OffsetWindow
+  size: 500 582
+  text: Offset Fixer
+  draggable: true
+  focusable: true
+  anchors.centerIn: parent
+
+  Label
+    id: idLabel
+    !text: tr('ID:')
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 35
+    margin-left: 0
+
+  CreateAccountTextEdit
+    id: idInput
+    anchors.left: idLabel.right
+    anchors.right: parent.right
+    anchors.top: parent.top
+    margin-left: 5
+    margin-top: 35
+
+    $!text-color:
+
+  ComboBox
+    id: offsetComboBox
+    width: 140
+    anchors.left: parent.left
+    anchors.top: idInput.bottom
+    margin-top: 5
+
+  ComboBox
+    id: displacementTypeComboBox
+    width: 140
+    anchors.left: offsetComboBox.right
+    anchors.top: idInput.bottom
+    margin-left: 5
+    margin-top: 5
+    !text: tr('Select Displacement Type')
+
+  ComboBox
+    id: effectOpacityComboBox
+    width: 140
+    anchors.left: displacementTypeComboBox.right
+    anchors.top: idInput.bottom
+    anchors.right: parent.right
+    margin-left: 5
+    margin-top: 5
+    visible: true
+    !text: tr('Effect or Item Mode')
+    @onOptionChange: OffsetManager.toggleOpacityMode()
+
+  GamePanel
+    id: preview
+    anchors.top: effectOpacityComboBox.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.left: offsetComboBox.left
+    anchors.right: idInput.right
+    margin-top: 10
+    height: 225
+    clipping: true
+
+    GamePanel
+      id: floor
+      anchors.centerIn: parent
+      size: 440 215
+      image-source: /images/game/offset/Floor
+      layout: "anchor"
+
+      ChaseModeBox
+        id: movement
+        anchors.top: parent.top
+        anchors.left: parent.left
+        margin-top: 5
+        margin-left: 5
+        image-color: #dfdfdf
+        tooltip: Enable/Disable movement animation
+
+        $hover:
+          image-color: #ffffff
+
+      UIItem
+        id: itemView
+        size: 128 128
+        margin-right: 35
+        margin-bottom: 30
+        anchors.centerIn: parent
+
+      UIEffect
+        id: effectView
+        size: 64 64
+        anchors.centerIn: parent
+
+      UICreature
+        id: outfitView
+        anchors.centerIn: parent
+        size: 96 96 
+        margin-right: 10
+        margin-bottom: 1
+        outfit-shader: outfit_default
+
+  GamePanel
+    id: OpacityPanel
+    size: 250 50
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.top: preview.bottom
+    margin-top: 10
+    visible: false
+
+    Label
+      id: opacityLabel
+      !text: tr('Opacity:')
+      anchors.left: parent.left
+      anchors.top: parent.top
+      margin-top: 5
+
+    TextEdit
+      id: opacityInput
+      size: 86 24
+      anchors.left: opacityLabel.right
+      anchors.top: opacityLabel.top
+      margin-left: 5
+      margin-top: -3
+      image-source: /images/game/offset/textbox
+
+      $!text-color:
+        color: #00991b
+  GamePanel
+    id: OpacityOutfit
+    size: 175 50
+    anchors.left: offsetComboBox.left
+    anchors.top: preview.bottom
+    margin-top: 10
+
+    Label
+      id: opacityLabel
+      !text: tr('Opacity:')
+      anchors.left: parent.left
+      anchors.top: parent.top
+      margin-top: 5
+
+    TextEdit
+      id: opacityInput
+      size: 86 24
+      anchors.left: opacityLabel.right
+      anchors.top: opacityLabel.top
+      margin-left: 5
+      margin-top: -3
+      image-source: /images/game/offset/textbox
+
+      $!text-color:
+        color: #00991b
+  GamePanel
+    id: OffsetPanel
+    size: 175 50
+    anchors.left: OpacityOutfit.right
+    anchors.right: parent.right
+    anchors.top: OpacityOutfit.top
+    margin-left: 5
+
+    Label
+      id: offsetXLabel
+      !text: tr('Offset X:')
+      anchors.left: parent.left
+      anchors.top: parent.top
+      margin-top: 5
+
+    TextEdit
+      id: offsetX
+      size: 86 24
+      anchors.left: offsetXLabel.right
+      anchors.top: offsetXLabel.top
+      margin-left: 5
+      margin-top: -3
+      image-source: /images/game/offset/textbox
+
+      $!text-color:
+        color: #00991b
+
+    Label
+      id: offsetYLabel
+      !text: tr('Offset Y:')
+      anchors.left: offsetX.right
+      anchors.top: offsetXLabel.top
+      margin-left: 10
+
+    TextEdit
+      id: offsetY
+      size: 86 24
+      anchors.left: offsetYLabel.right
+      anchors.top: offsetYLabel.top
+      margin-left: 5
+      margin-top: -3
+      image-source: /images/game/offset/textbox
+
+      $!text-color:
+        color: #00991b
+
+
+
+  Label
+    id: directionsLabel
+    !text: tr('Directions')
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.top: OffsetPanel.bottom
+    margin-top: 15
+
+  UIWidget
+    id: ResetButton
+    size: 47 47
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.top: directionsLabel.top
+    margin-top: 25
+    margin-left: 120
+    opacity: 1.0
+    image-source: /images/game/offset/Reset
+    @onClick: OffsetManager.resetOffset()
+    $hover:
+      opacity: 0.7
+    $pressed:
+      opacity: 0.5
+
+  GamePanel
+    id: DirectionsPanel
+    size: 230 80
+    anchors.left: offsetComboBox.left
+    anchors.right: idInput.right
+    anchors.top: directionsLabel.bottom
+    margin-top: 10
+
+    UIWidget
+      id: imageLeft
+      size: 16 16
+      anchors.left: parent.left
+      anchors.top: parent.top
+      margin-left: 30
+      image-source: /images/game/offset/Esquerda
+
+    CheckBox
+      id: checkLeft
+      size: 16 16
+      anchors.top: imageLeft.bottom
+      anchors.horizontalCenter: imageLeft.horizontalCenter
+      margin-top: 2
+      margin-left: 2
+      @onClick: OffsetManager.toggleDirection('left')
+
+    UIWidget
+      id: imageUp
+      size: 16 16
+      anchors.left: imageRight.right
+      anchors.top: parent.top
+      margin-left: 30
+      image-source: /images/game/offset/Norte
+
+    CheckBox
+      id: checkUp
+      size: 16 16
+      anchors.top: imageUp.bottom
+      anchors.horizontalCenter: imageUp.horizontalCenter
+      margin-top: 2
+      margin-left: 0
+      @onClick: OffsetManager.toggleDirection('up')
+
+    UIWidget
+      id: imageDown
+      size: 16 16
+      anchors.left: checkUp.right
+      anchors.top: parent.top
+      margin-left: 30
+      image-source: /images/game/offset/Sul
+
+    CheckBox
+      id: checkDown
+      size: 16 16
+      anchors.top: imageDown.bottom
+      anchors.horizontalCenter: imageDown.horizontalCenter
+      margin-top: 2
+      margin-left: 0
+      @onClick: OffsetManager.toggleDirection('down')
+
+    UIWidget
+      id: imageRight
+      size: 16 16
+      anchors.left: checkLeft.right
+      anchors.top: parent.top
+      margin-left: 30
+      image-source: /images/game/offset/Direita
+
+    CheckBox
+      id: checkRight
+      size: 16 16
+      anchors.top: imageRight.bottom
+      anchors.horizontalCenter: imageRight.horizontalCenter
+      margin-top: 2
+      margin-left: 0
+      @onClick: OffsetManager.toggleDirection('right')
+
+  Panel
+    id: buttonPanel
+    height: 50
+    anchors.left: offsetComboBox.left
+    anchors.right: idInput.right
+    anchors.top: DirectionsPanel.bottom
+
+    Button
+      id: saveButton
+      width: 100
+      anchors.left: parent.left
+      anchors.top: parent.top
+      !text: tr('Apply')
+      @onClick: OffsetManager.saveOffset()
+
+    Button
+      id: viewButton
+      width: 100
+      anchors.left: saveButton.right
+      anchors.top: parent.top
+      margin-left: 5
+      !text: tr('View')
+      @onClick: OffsetManager.viewOffset()
+
+    ButtonRed
+      id: deleteButton
+      width: 100
+      anchors.right: parent.right
+      anchors.left: viewButton.right
+      anchors.top: parent.top
+      margin-left: 5
+      !text: tr('Delete')
+      @onClick: OffsetManager.deleteOffset()

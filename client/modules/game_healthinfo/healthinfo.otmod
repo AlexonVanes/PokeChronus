@@ -1,0 +1,12 @@
+Module
+  name: game_healthinfo
+  description: Displays health pokemon and player
+  author: Kowalski
+  website: https://github.com/edubart/otclient
+  autoload: true
+  autoload-priority: 1000
+  dependencies: [ game_interface ]
+  sandboxed: true
+  scripts: [ healthinfo ]
+  @onLoad: init()
+  @onUnload: terminate()

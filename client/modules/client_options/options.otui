@@ -1,0 +1,38 @@
+OptionCheckBox < CheckBox
+  @onCheckChange: modules.client_options.setOption(self:getId(), self:isChecked())
+  height: 22
+
+  $!first:
+    margin-top: 5
+OptionScrollbar < HorizontalScrollBar
+  step: 1
+  @onValueChange: modules.client_options.setOption(self:getId(), self:getValue())
+  
+OptionPanel < Panel
+  layout:
+    type: verticalBox
+    
+GameMainWindow
+  id: optionsWindow
+  !text: tr('Options')
+  size: 600 480
+  draggable: true
+  @onEnter: modules.client_options.hide()
+  @onEscape: modules.client_options.hide()
+
+  TabBarVertical
+    id: optionsTabBar
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.bottom: parent.bottom
+    margin-top: 36
+
+  GamePanel
+    id: optionsTabContent
+    anchors.top: optionsTabBar.top
+    anchors.left: optionsTabBar.right
+    anchors.right: parent.right
+    anchors.bottom: optionsTabBar.bottom
+    margin-left: 10
+    margin-top: 3
+    padding: 15

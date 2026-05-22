@@ -1,0 +1,151 @@
+VerticalScrollBarSlider < UIButton
+  id: sliderButton
+  anchors.centerIn: parent
+  width: 9
+  height: 27
+  image-source: /images/UI_REWORK/SCROLLBAR_VERTICAL
+  image-border: 7
+  image-color: #ffffffff
+
+HorizontalScrollBarSlider < UIButton
+  id: sliderButton
+  anchors.centerIn: parent
+  width: 27
+  height: 9
+  image-source: /images/UI_REWORK/SCROLLBAR_HORIZONTAL
+  image-border: 7
+  image-color: #ffffffff
+
+ScrollBarSlider < UIButton
+  id: sliderButton
+  anchors.centerIn: parent
+  width: 9
+  height: 27
+  image-source: /images/UI_REWORK/SCROLLBAR_VERTICAL
+  image-border: 7
+  image-color: #ffffffff
+
+NewScrollBarSlider < UIButton
+  id: sliderButton
+  anchors.centerIn: parent
+  size: 13 160
+  image-source: /images/ui/NewScrollBar
+  opacity: 0.8
+  image-border: 5
+  $hover:
+    opacity: 1.0
+  $pressed:
+    opacity: 1.0
+  $disabled:
+    opacity: 0.5
+
+NewVerticalScrollBar < UIScrollBar
+  orientation: vertical
+  width: 15
+  height: 39
+  image-border: 5
+  pixels-scroll: true
+
+  UIButton
+    id: decrementButton
+    anchors.top: parent.top
+    anchors.horizontalCenter: parent.horizontalCenter
+    size: 1 1
+    visible: false
+    image-source: /images/ui/NewScrollBar
+    image-clip: 15 0 15 15
+    opacity: 0.7
+    $hover:
+      size: 15 15
+      opacity: 1.0
+    $pressed:
+      size: 13 13
+      opacity: 1.0
+    $disabled:
+      opacity: 0.5
+
+  UIButton
+    id: incrementButton
+    anchors.bottom: parent.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+    size: 1 1
+    visible: false
+    image-source: /images/ui/NewScrollBar
+    image-clip: 15 15 15 15
+    $hover:
+      size: 15 15
+      opacity: 1.0
+    $pressed:
+      size: 13 13
+      opacity: 1.0
+    $disabled:
+      opacity: 0.5
+
+  NewScrollBarSlider
+    margin-right: 1
+
+ScrollBarValueLabel < Label
+  id: valueLabel
+  anchors.fill: parent
+  color: white
+  text-align: center
+
+VerticalScrollBar < UIScrollBar
+  orientation: vertical
+  width: 9
+  height: 27
+  image-source: /images/UI_REWORK/PANEL_SCROLLBAR_VERTICAL
+  image-border: 7
+  pixels-scroll: true
+
+  UIButton
+    id: decrementButton
+    visible: false
+    anchors.top: parent.top
+    anchors.left: parent.left
+    image-source: /images/ui/upScrollBarButton
+    image-color: #ffffffff
+    size: 13 13
+
+  UIButton
+    id: incrementButton
+    visible: false
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right
+    size: 13 13
+    
+    image-source: /images/ui/downScrollBarButton
+    image-color: #ffffffff
+
+  VerticalScrollBarSlider
+
+  ScrollBarValueLabel
+
+HorizontalScrollBar < UIScrollBar
+  orientation: horizontal
+  width: 27
+  height: 9
+  image-source: /images/UI_REWORK/PANEL_SCROLLBAR_HORIZONTAL
+  image-border: 7
+
+  $disabled:
+    color: #bbbbbb88
+
+  UIButton
+    id: decrementButton
+    visible: false
+    size: 13 13
+    anchors.top: parent.top
+    anchors.left: parent.left
+    image-source: /images/ui/leftScrollBarButton
+
+  UIButton
+    id: incrementButton
+    visible: false
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right
+    size: 13 13
+    image-source: /images/ui/rightScrollBarButton
+  HorizontalScrollBarSlider
+
+  ScrollBarValueLabel

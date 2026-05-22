@@ -1,0 +1,72 @@
+ButtonRed < UIButton
+  font: window
+  color: white
+  size: 90 50
+  text-offset: 0 1
+  image-border: 5
+  padding: 5 10 5 10
+  opacity: 1.0
+  change-cursor-image: true
+  cursor: pointer
+  text-auto-resize: false
+
+  $!hover !pressed:
+    image-source: /images/UI_REWORK/BUTTON_RED_NORMAL
+
+  $hover !pressed:
+    image-source: /images/UI_REWORK/BUTTON_RED_HOVER
+
+  $pressed:
+    image-source: /images/UI_REWORK/BUTTON_RED_PRESSED
+
+ButtonBlue < UIButton
+  font: window
+  color: white
+  size: 90 50
+  text-offset: 0 1
+  image-border: 5
+  padding: 5 10 5 10
+  opacity: 1.0
+  change-cursor-image: true
+  cursor: pointer
+  text-auto-resize: false
+
+  $!hover !pressed:
+    image-source: /images/UI_REWORK/BUTTON_BLUE_NORMAL
+
+  $hover !pressed:
+    image-source: /images/UI_REWORK/BUTTON_BLUE_HOVER
+
+  $pressed:
+    image-source: /images/UI_REWORK/BUTTON_BLUE_PRESSED
+
+
+MessageBoxLabel < Label
+  id: messageBoxLabel
+  anchors.horizontalCenter: parent.horizontalCenter
+  anchors.top: parent.top
+  text-wrap: true
+  text-auto-resize: true
+
+MessageBoxButtonHolder < UIWidget
+  id: buttonHolder
+  anchors.bottom: parent.bottom
+  anchors.left: parent.left
+  anchors.right: parent.right
+  margin-top: 10
+
+MessageBoxButtonRed < ButtonRed
+  id: btnred
+  anchors.right: parent.right
+  margin-left: 10
+  image-border: 20
+  height: 50
+
+
+MessageBoxButton < ButtonBlue
+  id: btnblue
+  anchors.left: parent.left
+  margin-left: 10
+  image-border: 20
+  height: 50
+

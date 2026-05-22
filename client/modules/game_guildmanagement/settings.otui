@@ -1,0 +1,109 @@
+MainWindowGuild
+  size: 256 440
+  text: Configuracoes da Guild
+
+  MiniPanel
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    height: 105
+    text: Geral
+    layout: verticalBox
+
+    Panel
+      height: 23
+      layout: horizontalBox
+
+      Label
+        margin-top: 9
+        width: 122
+        color: #FFAA00
+        text: Entrada
+
+      ComboBoxGuild
+        id: status
+
+    Panel
+      height: 23
+      margin-top: 5
+      layout: horizontalBox
+
+      Label
+        margin-top: 9
+        width: 122
+        color: #FFAA00
+        text: Nivel necessario
+
+      TextEdit
+        id: reqLevel
+        width: 91
+
+    Panel
+      height: 23
+      margin-top: 5
+      layout: horizontalBox
+
+      Label
+        margin-top: 9
+        width: 122
+        color: #FFAA00
+        text: Idioma
+
+      ComboBoxGuild
+        id: language
+
+  MiniPanel
+    anchors.top: prev.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 5
+    height: 152
+    text: Emblema
+
+    Panel
+      id: emblem
+      anchors.top: parent.top
+      anchors.horizontalCenter: parent.horizontalCenter
+      image-source: images/guild_management/emblems
+      image-clip: 0 0 128 128
+      size: 128 128
+
+    ButtonGuild
+      anchors.verticalCenter: emblem.verticalCenter
+      anchors.right: emblem.left
+      width: 24
+      text: <
+      @onClick: modules.game_guildmanagement.settingsPrevEmblem()
+
+    ButtonGuild
+      anchors.verticalCenter: emblem.verticalCenter
+      anchors.left: emblem.right
+      width: 24
+      text: >
+      @onClick: modules.game_guildmanagement.settingsNextEmblem()
+
+  MiniPanel
+    anchors.top: prev.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    height: 104
+    margin-top: 5
+    text: Mensagem do Dia
+
+    MultilineTextEdit
+      id: motd
+      anchors.fill: parent
+      text-wrap: true
+      max-length: 140
+
+  ButtonGuild
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    text: Fechar
+    @onClick: modules.game_guildmanagement.closeSettings()
+
+  ButtonGuild
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right
+    text: Salvar
+    @onClick: modules.game_guildmanagement.saveSettings()

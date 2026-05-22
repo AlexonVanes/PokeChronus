@@ -1,0 +1,302 @@
+ActionButton < UIWidget
+  font: verdana-11px-rounded
+  size: 44 44
+  margin: 1
+
+  UIItem
+    id: icon
+    anchors.fill: parent
+    virtual: true
+    phantom: true
+    hide-count: true
+    $!on:
+      image-source: /images/game/actionbar/actionbarslot
+      image-color: #181a26
+    $on:
+      image-source: /images/game/actionbar/actionbarslotUsed
+      image-color: #181a26
+    $pressed on:
+      image-source: /images/game/actionbar/actionbarslotUsed
+      image-color: #303348
+
+  UIItem
+    id: item
+    size: 42 42
+    &selectable: true
+    &editable: false
+    virtual: true
+    draggable: true
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.verticalCenter: parent.verticalCenter
+    change-cursor-image: true
+    cursor: pointer
+    opacity: 1.0
+    $hover:
+      opacity: 0.82
+    $pressed:
+      opacity: 0.65
+
+  Label
+    id: text
+    anchors.fill: prev
+    text-auto-resize: true
+    text-wrap: true
+    phantom: true
+    margin: 1
+    text-align: center
+    font: verdana-11px-rounded
+
+  Label
+    id: parameterText
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    margin-bottom: -3
+    margin-left: 2
+    margin-right: 2
+    font: verdana-11px-rounded
+    color: white
+    text-align: center
+
+  Label
+    id: hotkeyLabel
+    !text: 'text'
+    font: verdana-11px-rounded
+    anchors.top: parent.top
+    anchors.right: parent.right
+    text-auto-resize: true
+    phantom: true
+    color: white
+    margin-top: 2
+    margin-right: 3
+
+  Label
+    id: countItem
+    font: verdana-11px-rounded
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right
+    text-auto-resize: true
+    phantom: true
+    color: white
+    margin-bottom: 4
+    margin-right: 3
+
+  UIProgressRect
+    id: cooldown
+    size: 44 44
+    background: #101010aa
+    percent: 100
+    focusable: false
+    phantom: true
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.verticalCenter: parent.verticalCenter
+    font: verdana-11px-rounded
+    color: white
+
+  UIWidget
+    id: border
+    border: 1 #34364a
+    anchors.fill: parent
+    phantom: true
+
+LeftSliders < Panel
+  size: 17 34
+
+  UIButton
+    id: prev
+    anchors.fill: parent
+    anchors.bottom: parent.verticalCenter
+    @onClick: modules.game_actionbar.moveActionButtons(self)
+
+    $!on:
+      tooltip: No further action buttons in this direction
+
+    $on:
+      tooltip: Move to the previous action button
+
+    UIWidget
+      id: image
+      anchors.centerIn: parent
+      phantom: true
+
+      $!on:
+        image-source: /images/game/actionbar/arrow-disabled
+
+      $on:
+        image-source: /images/game/actionbar/arrow
+
+  UIButton
+    id: first
+    anchors.fill: parent
+    anchors.top: parent.verticalCenter
+    @onClick: modules.game_actionbar.moveActionButtons(self)
+
+    $!on:
+      tooltip: No further action buttons in this direction
+
+    $on:
+      tooltip: Move to the first action button
+
+    UIWidget
+      id: image
+      anchors.centerIn: parent
+      phantom: true
+
+      $!on:
+        image-source: /images/game/actionbar/arrow-skip-disabled
+
+      $on:
+        image-source: /images/game/actionbar/arrow-skip
+
+RightSliders < Panel
+  size: 29 34
+  background-color: alpha
+  
+  UIButton
+    id: lock
+    anchors.top: parent.top
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    width: 12
+    @onClick: modules.game_actionbar.changeLockState(self)
+
+    $!on:
+      tooltip: Action Bar Locked: You cannot assign actions to or switch actions on action buttons by "drag&drop".
+
+    $on:
+      tooltip: Action Bar Unlocked: You can assign actions to or switch actions on action buttons by "drag&drop".
+
+    UIWidget
+      id: image
+      anchors.centerIn: parent
+      margin-right: 1
+      phantom: true
+      
+      $!on:
+        image-source: /images/game/actionbar/locked
+
+      $on:
+        image-source: /images/game/actionbar/unlocked
+
+  UIButton
+    id: next
+    anchors.top: parent.top
+    anchors.bottom: parent.verticalCenter
+    anchors.left: parent.left
+    anchors.right: lock.left
+    margin-right: 1
+    @onClick: modules.game_actionbar.moveActionButtons(self)
+    on: true
+
+    $!on:
+      tooltip: No further action buttons in this direction
+
+    $on:
+      tooltip: Move to the next action button
+
+    UIWidget
+      id: image
+      anchors.centerIn: parent
+      phantom: true
+      margin-top: 1
+      margin-left: 2
+      rotation: 180
+      on: true
+
+      $!on:
+        image-source: /images/game/actionbar/arrow-disabled
+
+      $on:
+        image-source: /images/game/actionbar/arrow
+
+  UIButton
+    id: last
+    anchors.top: parent.verticalCenter
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    anchors.right: prev.right
+    @onClick: modules.game_actionbar.moveActionButtons(self)
+    on: true
+
+    $!on:
+      tooltip: No further action buttons in this direction
+
+    $on:
+      tooltip: Move to the last action button
+
+    UIWidget
+      id: image
+      anchors.centerIn: parent
+      phantom: true
+      margin-top: 1
+      margin-left: 1
+      rotation: 180
+      on: true
+
+      $!on:
+        image-source: /images/game/actionbar/arrow-skip-disabled
+
+      $on:
+        image-source: /images/game/actionbar/arrow-skip
+  
+Panel
+  id: actionBar
+  height: 62
+  margin-bottom: 0
+  background-color: #090910e6
+  border-width: 1
+  border-color: #27283acc
+  border-radius: 6
+  padding: 6 10 6 10
+  
+  $on:
+    height: 62
+    visible: true
+    
+  $!on:
+    height: 0
+    visible: false
+
+  UIWidget
+    id: leftArrow
+    size: 24 34
+    anchors.left: parent.left
+    anchors.verticalCenter: parent.verticalCenter
+    margin-left: 8
+    icon: /images/game/actionbar/arrow
+    icon-color: #ffffffcc
+
+  UIWidget
+    id: rightArrow
+    size: 24 34
+    anchors.right: parent.right
+    anchors.verticalCenter: parent.verticalCenter
+    margin-right: 8
+    icon: /images/game/actionbar/arrow
+    icon-color: #b45cff
+    rotation: 180
+
+  ScrollablePanel
+    id: tabBar
+    anchors.top: parent.top
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-left: 40
+    margin-right: 40
+    margin-top: 8
+    margin-bottom: 8
+    clipping: true
+    padding-top: 0
+    padding-bottom: 0
+    horizontal-scrollbar: actionScroll
+    layout: horizontalBox
+
+  HorizontalScrollBar
+    id: actionScroll
+    anchors.top: tabBar.top
+    anchors.bottom: tabBar.bottom
+    anchors.right: tabBar.right
+    step: 46
+    pixels-scroll: true
+    visible: false

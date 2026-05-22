@@ -1,0 +1,11 @@
+Module
+  name: game_notification
+  description: System of notifications
+  author: Antigravity
+  website: -
+  sandboxed: true
+  autoload: true
+  autoload-priority: 1000
+  scripts: [ game_notification ]
+  @onLoad: init()
+  @onUnload: terminate()

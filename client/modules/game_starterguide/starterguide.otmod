@@ -1,0 +1,10 @@
+Module
+  name: game_starterguide
+  description: Starter Guide module (PokeChronus Style)
+  author: Cascade AI
+  sandboxed: true
+  autoload: true
+  autoload-priority: 1000
+  scripts: [ starterguide ]
+  @onLoad: init()
+  @onUnload: terminate()

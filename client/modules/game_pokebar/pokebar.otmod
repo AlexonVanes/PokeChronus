@@ -1,0 +1,9 @@
+Module
+  name: game_pokebar
+  description: Game PokeBar
+  author: Gengo
+  scripts: [ pokebar ]
+  sandboxed: true
+  dependencies: [ game_interface, game_poketeam ]
+  @onLoad: init()
+  @onUnload: terminate()

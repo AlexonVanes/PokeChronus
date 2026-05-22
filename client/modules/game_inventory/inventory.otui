@@ -1,0 +1,363 @@
+ConditionWidget < UIWidget
+  size: 18 18
+
+  $!first:
+    margin-left: 2
+
+InventoryItem < UIItem
+  size: 20 20
+  UIItem
+    id: bordered
+    size: 20 20
+    visible: false
+    phantom: true
+    anchors.top: parent.top
+    anchors.left: parent.left
+  UIItem
+    id: moveborder
+    size: 20 20
+    visible: false
+    phantom: true
+    anchors.top: parent.top
+    anchors.left: parent.left
+
+HeadSlot < InventoryItem
+  id: slot1
+  &position: {x=65535, y=1, z=0}
+
+BodySlot < InventoryItem
+  id: slot4
+  &position: {x=65535, y=4, z=0}
+
+LegSlot < InventoryItem
+  id: slot7
+  &position: {x=65535, y=7, z=0}
+
+FeetSlot < InventoryItem
+  id: slot8
+  &position: {x=65535, y=8, z=0}
+
+NeckSlot < InventoryItem
+  id: slot2
+  &position: {x=65535, y=2, z=0}
+
+LeftSlot < InventoryItem
+  id: slot6
+  &position: {x=65535, y=6, z=0}
+
+FingerSlot < InventoryItem
+  id: slot9
+  &position: {x=65535, y=9, z=0}
+
+BackSlot < InventoryItem
+  id: slot3
+  &position: {x=65535, y=3, z=0}
+
+RightSlot < InventoryItem
+  id: slot5
+  &position: {x=65535, y=5, z=0}
+
+AmmoSlot < InventoryItem
+  id: slot10
+  &position: {x=65535, y=10, z=0}
+
+InfoSlot < InventoryItem
+  id: slot12
+  &position: {x=65535, y=12, z=0}
+
+OrderSlot < InventoryItem
+  id: slot11
+  &position: {x=65535, y=11, z=0}
+
+InventoryActionButton < UIButton
+  size: 44 40
+  image-source: /images/ui/inventory/slot
+  image-border: 6
+  image-color: #d5ddf5
+  background-color: #111827ee
+  border-width: 1
+  border-color: #2f3c5a
+  border-radius: 3
+  change-cursor-image: true
+  cursor: pointer
+
+  $hover:
+    image-color: #ffffff
+    background-color: #1b263cee
+    border-color: #6e88c4
+
+  $pressed:
+    image-color: #9fb0d6
+    background-color: #0d1422ee
+    border-color: #25324d
+
+InventoryActionIcon < UIWidget
+  id: actionIcon
+  size: 27 27
+  anchors.top: parent.top
+  anchors.horizontalCenter: parent.horizontalCenter
+  margin-top: 2
+  phantom: true
+  image-color: #ffffff
+  icon-color: #ffffff
+  icon-rect: 0 0 27 27
+  icon-clip: 0 0 27 27
+
+InventoryActionLabel < Label
+  id: actionLabel
+  font: verdana-9px-bold
+  color: #6cf3ff
+  anchors.left: parent.left
+  anchors.right: parent.right
+  anchors.bottom: parent.bottom
+  margin-bottom: 1
+  text-align: center
+  text-auto-resize: true
+  text-stroke: 1 black
+  phantom: true
+
+NewInventoryWindow < MiniWindow
+  !text: tr('Inventory')
+  icon: /images/ui/inventory/icon
+  height: 260
+  width: 186
+
+NewInventoryWindow
+  id: inventoryWindow
+  @onClose: modules.game_inventory.onMiniWindowClose()
+  &save: true
+
+  Label
+    id: name
+    text:
+    visible: false
+
+  UIWidget
+    id: progressBar
+    size: 112 7
+    visible: false
+
+  UICreature
+    id: pokeOutfit
+    size: 1 1
+    visible: false
+    phantom: true
+
+  UIWidget
+    id: removeOutfit
+    size: 1 1
+    visible: false
+
+  UIWidget
+    id: contentsPanel
+    visible: false
+    size: 1 1
+    anchors.top: parent.top
+    anchors.left: parent.left
+
+    HeadSlot
+    NeckSlot
+    BackSlot
+    BodySlot
+    RightSlot
+    LeftSlot
+    LegSlot
+    FeetSlot
+    FingerSlot
+    AmmoSlot
+    OrderSlot
+    InfoSlot
+
+  UIWidget
+    id: launcherPanel
+    size: 168 196
+    image-source: /images/ui/inventory/background
+    image-border: 10
+    background-color: #111827ee
+    border-width: 1
+    border-color: #3d4a67
+    border-radius: 3
+    anchors.top: parent.top
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-top: 34
+
+    InventoryActionButton
+      id: ropeButton
+      tooltip: Rope
+      anchors.top: parent.top
+      anchors.left: parent.left
+      margin-top: 8
+      margin-left: 10
+      @onClick: modules.game_inventory.openInventoryAction('rope')
+      InventoryActionIcon
+        id: actionIcon
+        image-source: /images/ui/inventory/actions/rope
+      InventoryActionLabel
+        id: actionLabel
+        text: ROPE
+
+    InventoryActionButton
+      id: bikeButton
+      tooltip: Bike
+      anchors.top: ropeButton.top
+      anchors.left: ropeButton.right
+      margin-left: 8
+      @onClick: modules.game_inventory.openInventoryAction('bike')
+      InventoryActionIcon
+        id: actionIcon
+        image-source: /images/ui/inventory/actions/bike
+      InventoryActionLabel
+        id: actionLabel
+        text: BIKE
+
+    InventoryActionButton
+      id: shopButton
+      tooltip: Loja
+      anchors.top: ropeButton.top
+      anchors.left: bikeButton.right
+      margin-left: 8
+      @onClick: modules.game_inventory.openInventoryAction('shop')
+      InventoryActionIcon
+        id: actionIcon
+        image-source: /images/ui/inventory/actions/shop
+      InventoryActionLabel
+        id: actionLabel
+        text: SHOP
+
+    InventoryActionButton
+      id: rodButton
+      tooltip: Old Rod
+      anchors.top: ropeButton.bottom
+      anchors.left: ropeButton.left
+      margin-top: 8
+      @onClick: modules.game_inventory.openInventoryAction('rod')
+      InventoryActionIcon
+        id: actionIcon
+        image-source: /images/ui/inventory/actions/rod
+      InventoryActionLabel
+        id: actionLabel
+        text: ROD
+
+    InventoryActionButton
+      id: coinsButton
+      tooltip: Coins
+      anchors.top: rodButton.top
+      anchors.left: rodButton.right
+      margin-left: 8
+      @onClick: modules.game_inventory.openInventoryAction('coins')
+      InventoryActionIcon
+        id: actionIcon
+        image-source: /images/ui/inventory/actions/coins
+      InventoryActionLabel
+        id: actionLabel
+        text: COINS
+
+    InventoryActionButton
+      id: badgesButton
+      tooltip: Perfil / Badges
+      anchors.top: rodButton.top
+      anchors.left: coinsButton.right
+      margin-left: 8
+      @onClick: modules.game_inventory.openInventoryAction('badges')
+      InventoryActionIcon
+        id: actionIcon
+        image-source: /images/ui/inventory/actions/badges
+      InventoryActionLabel
+        id: actionLabel
+        text: BADGES
+
+    InventoryActionButton
+      id: bagButton
+      tooltip: Bag
+      anchors.top: rodButton.bottom
+      anchors.left: rodButton.left
+      margin-top: 8
+      @onClick: modules.game_inventory.openInventoryAction('bag')
+      InventoryActionIcon
+        id: actionIcon
+        image-source: /images/ui/inventory/actions/bag
+      InventoryActionLabel
+        id: actionLabel
+        text: BAG
+
+    InventoryActionButton
+      id: pokemonButton
+      tooltip: Pokemon
+      anchors.top: bagButton.top
+      anchors.left: bagButton.right
+      margin-left: 8
+      @onClick: modules.game_inventory.openInventoryAction('pokemon')
+      InventoryActionIcon
+        id: actionIcon
+        image-source: /images/ui/inventory/actions/pokes
+      InventoryActionLabel
+        id: actionLabel
+        text: POKES
+
+    InventoryActionButton
+      id: orderButton
+      tooltip: Order
+      anchors.top: bagButton.top
+      anchors.left: pokemonButton.right
+      margin-left: 8
+      @onClick: modules.game_inventory.openInventoryAction('order')
+      InventoryActionIcon
+        id: actionIcon
+        image-source: /images/ui/inventory/actions/order
+      InventoryActionLabel
+        id: actionLabel
+        text: ORDER
+
+    InventoryActionButton
+      id: catchButton
+      tooltip: Catch
+      anchors.top: bagButton.bottom
+      anchors.left: bagButton.left
+      margin-top: 8
+      @onClick: modules.game_inventory.openInventoryAction('catch')
+      InventoryActionIcon
+        id: actionIcon
+        image-source: /images/ui/inventory/actions/catch
+      InventoryActionLabel
+        id: actionLabel
+        text: CATCH
+
+    InventoryActionButton
+      id: pokedexButton
+      tooltip: Dar Dex
+      anchors.top: catchButton.top
+      anchors.left: catchButton.right
+      margin-left: 8
+      @onClick: modules.game_inventory.openInventoryAction('pokedex')
+      InventoryActionIcon
+        id: actionIcon
+        image-source: /images/ui/inventory/actions/dex
+      InventoryActionLabel
+        id: actionLabel
+        text: DEX
+
+    InventoryActionButton
+      id: ballpackButton
+      tooltip: Ballpack
+      anchors.top: catchButton.top
+      anchors.left: pokedexButton.right
+      margin-left: 8
+      @onClick: modules.game_inventory.openInventoryAction('ballpack')
+      InventoryActionIcon
+        id: actionIcon
+        image-source: /images/ui/inventory/actions/ballpack
+      InventoryActionLabel
+        id: actionLabel
+        text: BALL
+
+  Panel
+    id: conditionPanel
+    height: 18
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    margin-left: 8
+    margin-right: 8
+    margin-bottom: 5
+    layout:
+      type: horizontalBox

@@ -1,0 +1,12 @@
+Module
+  name: space_phone
+  description: cellphone portatilkkkk
+  author: san
+  website: 
+  autoload: false
+  autoload-priority: 1000
+  scripts: [ space_phone ]
+  sandboxed: true
+  dependencies: [ game_interface ]
+  @onLoad: init()
+  @onUnload: terminate()

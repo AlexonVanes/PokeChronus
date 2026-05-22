@@ -1,0 +1,191 @@
+UIWindow
+  id: wheel_window
+  size: 395 655
+  anchors.centerIn: parent
+  image-source: images/background
+  $mobile:
+    size: 316 524
+  UIWidget
+    id: pageWheel
+    visible: false
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-left: 135
+    margin-top: 65
+    !text: tr('Porygon Wheel')
+    text-auto-resize: true
+    font: otp-font
+  PreviousButton
+    id: prev
+    visible: false
+    phantom: true
+    size: 19 19
+    anchors.bottom: pageWheel.bottom
+    anchors.right: pageWheel.left
+    margin-right: 5
+    margin-bottom: 0
+    @onClick: modules.game_wheel.onPrevPage(self)
+  NextButton
+    id: next
+    visible: false
+    phantom: true
+    size: 19 19
+    anchors.bottom: prev.bottom
+    anchors.left: pageWheel.right
+    margin-left: 5
+    @onClick: modules.game_wheel.onNextPage(self)
+
+  UIWidget
+    id: wheelCost
+    anchors.bottom: wheelInfo.top
+    anchors.right: wheelInfo.right
+    margin-right: 5
+    font: otp-font
+    text-auto-resize: true
+    color: #ffab19
+  UIWidget
+    id: buyTickets
+    size: 25 25
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin: 25
+    image-source: /images/TOPBUTTONS_REWORK/ICON_SHOP
+    opacity: 0.8
+    !tooltip: tr('Comprar Tickets')
+    @onClick: modules.game_wheel.buyTickets()
+    $hover:
+      opacity: 1.0
+  UIWidget
+    id: closebu
+    size: 25 25
+    anchors.top: parent.top
+    anchors.right: parent.right
+    margin: 25
+    background-color: #c9373f
+    border-radius: 4
+    opacity: 0.95
+    color: white
+    text: X
+    text-align: center
+    font: otp-font
+    !tooltip: tr('Fechar')
+    @onClick: modules.game_wheel.hide()
+    $hover:
+      background-color: #ff4d57
+      opacity: 1.0
+  UIWidget
+    id: rollWheel
+    anchors.top: next.bottom
+    anchors.left: next.left
+    margin-left: 18
+    margin-top: 5
+    image-source: images/button
+    opacity: 0.7
+    @onClick: g_game.getProtocolGame():sendExtendedOpcode(177, json.encode({protocol = "requestwheel"}))
+    $hover:
+      opacity: 1.0
+  UIWidget
+    id: wheelInfo
+    !text: tr('VOCE POSSUI 0 TICKETS')
+    anchors.bottom: parent.bottom
+    anchors.left: next.left
+    margin-left: 15
+    margin-bottom: 90
+    text-auto-resize: true
+    text-align: left
+    font: otp-font
+    $mobile:
+      margin-left: -10
+      margin-bottom: 70
+  UIWidget
+    id: wheelSource
+    image-source: images/wheel
+    size: 250 250
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-left: 72
+    margin-top: 161
+    $mobile:
+      size: 200 200
+      margin-left: 57
+      margin-top: 128
+    UIItem
+      id: 1
+      size: 42 42
+      //text: 1
+      //background-color: red
+      anchors.centerIn: parent
+      margin-left: -35
+      margin-top: -85
+    UIItem
+      id: 2
+      size: 42 42
+      //text: 2
+      //background-color: green
+      anchors.centerIn: parent
+      margin-left: 35
+      margin-top: -85
+    UIItem
+      id: 3
+      size: 42 42
+      //text: 3
+      //background-color: blue
+      anchors.centerIn: parent
+      margin-left: 85
+      margin-top: -35
+    UIItem
+      id: 4
+      size: 42 42
+      //text: 4
+      //background-color: yellow
+      anchors.centerIn: parent
+      margin-left: 85
+      margin-top: 35
+    UIItem
+      id: 5
+      size: 42 42
+      //text: 5
+      //background-color: pink
+      anchors.centerIn: parent
+      margin-left: 35
+      margin-top: 85
+    UIItem
+      id: 6
+      size: 42 42
+      //text: 6
+      //background-color: black
+      anchors.centerIn: parent
+      margin-left: -35
+      margin-top: 85
+    UIItem
+      id: 7
+      size: 42 42
+      //text: 7
+      //background-color: white
+      anchors.centerIn: parent
+      margin-left: -85
+      margin-top: 35
+    UIItem
+      id: 8
+      size: 42 42
+      //text: 8
+      //background-color: orange
+      anchors.centerIn: parent
+      margin-left: -85
+      margin-top: -35
+  UIWidget
+    id: arrow
+    image-source: images/arrow
+    anchors.centerIn: parent
+    margin-left: -4
+    margin-top: -55
+  UIWidget
+    id: effect
+    image-source: images/bright
+    anchors.centerIn: parent
+    size: 400 400
+    margin-top: -35
+    margin-left: 2
+    opacity: 0.6
+    phantom: true
+    visible: false

@@ -1,0 +1,11 @@
+Module
+  name: game_loottracker
+  description: Autoloot Analyzer and Tracker
+  author: Antigravity
+  website: ""
+  sandboxed: true
+  autoload: true
+  scripts: [ game_loottracker ]
+  dependencies: [ client_topmenu, game_interface, game_autoloot ]
+  @onLoad: init()
+  @onUnload: terminate()

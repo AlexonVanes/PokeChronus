@@ -1,0 +1,12 @@
+Module
+  name: game_playerstats
+  description: base of base
+  author: stone
+  website: https://x.gd/kJ2WH
+  autoload: true
+  security: e5365d2e6eaefb7cadaf2277ed5ade7441c214235ab38651046a8a130ce75fe8
+  autoload-priority: 1000
+  scripts: [ function_library, playerstats ]
+  sandboxed: true
+  @onLoad: init()
+  @onUnload: terminate()

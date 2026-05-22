@@ -1,0 +1,17 @@
+CHECKLIST DE CLONE LIMPO
+
+[ ] Clonar o repositorio em outra pasta ou outra maquina.
+[ ] Entrar na pasta clonada.
+[ ] Executar: git lfs pull
+[ ] Abrir VERIFICAR_AMBIENTE.bat.
+[ ] Confirmar que os itens principais aparecem como OK.
+[ ] Abrir INICIAR_SERVIDOR.bat.
+[ ] Confirmar que o servidor abriu.
+[ ] Abrir INICIAR_CLIENT.bat.
+[ ] Confirmar que o client abriu.
+[ ] Alterar um arquivo simples de teste, por exemplo um .txt.
+[ ] Executar ENVIAR.bat.
+[ ] Em outra copia do projeto, executar ATUALIZAR.bat.
+[ ] Confirmar que a alteracao chegou na outra copia.
+
+Se der erro de conflito, login, permissao ou arquivo grande faltando, chamar o Alexon.

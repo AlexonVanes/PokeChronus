@@ -1,0 +1,82 @@
+UIWidget
+  id: healthCircleWindow
+  anchors.fill: parent
+  opacity: 0.8
+  phantom: true
+  UIProgressBar
+    id: pokeManaCircle
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.verticalCenter: parent.verticalCenter
+    image-source: /images/circle/minirightempty    
+    image-auto-resize: true
+    margin-left: 101
+    margin-bottom: 39
+    opacity: 0.9
+    phantom: true
+  UIProgressBar
+    id: pokeManaCircleFront
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.verticalCenter: parent.verticalCenter
+    image-source: /images/circle/minirightfull
+    margin-left: 101
+    margin-bottom: 39   
+    opacity: 0.9
+    image-color: #3b93ff
+    phantom: true
+  UIProgressBar
+    id: healthCircle
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.verticalCenter: parent.verticalCenter
+    image-source: /images/circle/left_empty
+    margin-right: 145
+    margin-bottom: 40
+    opacity: 0.9
+    phantom: true
+  UIProgressBar
+    id: healthCircleFront
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.verticalCenter: parent.verticalCenter
+    image-source: /images/circle/left_full
+    margin-right: 145
+    margin-bottom: 40
+    opacity: 0.9
+    phantom: true
+  UIProgressBar
+    id: pokeCircle
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.verticalCenter: parent.verticalCenter
+    image-source: /images/circle/right_empty    
+    image-auto-resize: true
+    margin-left: 110
+    margin-bottom: 40
+    opacity: 0.9
+    phantom: true
+  UIProgressBar
+    id: pokeCircleFront
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.verticalCenter: parent.verticalCenter
+    image-source: /images/circle/right_full
+    margin-left: 110
+    margin-bottom: 40    
+    opacity: 0.9
+    image-color: #ff0d5d
+    phantom: true
+  UIProgressBar
+    id: extraPokeCircleFront
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.verticalCenter: parent.verticalCenter
+    image-source: /images/circle/right_full
+    margin-left: 110
+    margin-bottom: 40  
+    opacity: 0.9
+    image-color: yellow
+    visible: false
+    phantom: true
+  UIProgressBar
+    id: invulnerablePokeCircleFront
+    anchors.fill: pokeCircleFront
+    image-source: /images/circle/def_full
+    opacity: 1.0
+    margin-left: 2
+    visible: false
+    phantom: true

@@ -1,0 +1,142 @@
+labelInfosBannerBonus < UIWidget
+  size: 120 11
+  phantom: true
+  UIWidget
+    id: title
+    !text: 'Title'
+    font: sono_medium_12
+    color: #97abc6
+    text-auto-resize: true
+    text-align: left
+    phantom: true
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.left: parent.left
+    margin-left: 1
+  UIWidget
+    id: info
+    !text: '0'
+    font: sono_medium_12
+    color: #ffffff
+    text-auto-resize: true
+    text-align: left
+    phantom: true
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.right: parent.right
+    margin-right: 1
+
+XpBannerClockWidget < UIWidget
+  id: XpBannerClockWidget
+  size: 152 172
+  image-source: images/base_hover
+  image-border-top: 40 
+  image-border-bottom: 50 
+  UIWidget
+    id: base
+    size: 27 27
+    image-source: images/base_icon
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.top: parent.top
+    margin-top: 15
+  UIItem
+    id: item
+    size: 27 27
+    phantom: true
+    virtual: true
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.top: parent.top
+    margin-top: 15
+
+  UIWidget
+    id: title
+    !text: 'Stone Banner'
+    font: sono_bold_12
+    color: white
+    text-auto-resize: true
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.top: base.bottom
+    margin-top: 9
+
+  UIScrollArea
+    id: bonusList
+    size: 120 0
+    phantom: true
+    auto-focus: none
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.top: title.bottom
+    margin-top: 10
+    layout:
+      type: verticalBox
+      spacing: 5
+
+  UIWidget
+    id: timer
+    font: sono_bold_16
+    color: white
+    text-auto-resize: true
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.top: bonusList.bottom
+    margin-top: 12
+
+bonusBaseSlot < UIWidget
+  size: 30 45
+  phantom: true
+  UIWidget
+    id: base
+    size: 27 27
+    image-source: images/base_bonus
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.top: parent.top
+  UIItem
+    id: item
+    size: 27 27
+    phantom: true
+    virtual: true
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.top: parent.top
+  UIWidget
+    id: decrease
+    size: 24 24
+    phantom: true
+    image-source: images/decrease_bonus
+    image-border: 3
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 1
+    margin-left: 1
+
+  UIWidget
+    id: timer
+    !text: '06:00'
+    font: sono_bold_12
+    color: white
+    text-auto-resize: true
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.bottom: parent.bottom
+    margin-bottom: 4
+
+UIWidget
+  id: windowPlayerStats
+  size: 645 200
+  phantom: true
+  anchors.horizontalCenter: parent.horizontalCenter
+  anchors.bottom: parent.bottom
+  margin-bottom: 190
+
+  UIWidget
+    id: moveChild
+    size: 27 5
+    phantom: true
+    anchors.left: listBonus.left
+    anchors.bottom: listBonus.top
+    margin-bottom: 2
+
+  UIScrollArea
+    id: listBonus
+    size: 755 40
+    anchors.bottom: parent.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+    layout:
+      type: grid
+      cell-size: 30 45
+      cell-spacing: 6
+      flow: true

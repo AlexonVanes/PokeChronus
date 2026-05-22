@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<npc name="Dialog" script="dailyKillBase.lua" floorchange="0" walkinterval="0">
+    <health now="150" max="150"/>
+    <look type="3328" head="25" body="30" legs="10" feet="80"/>
+</npc>

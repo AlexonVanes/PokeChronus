@@ -1,0 +1,258 @@
+HotkeyListLabel < UILabel
+  font: verdana-11px-monochrome
+  background-color: alpha
+  text-offset: 2 0
+  focusable: true
+  phantom: false
+  color: white
+
+  $focus:
+    background-color: #ffffff22
+
+GameMainWindow
+  id: hotkeysWindow
+  !text: tr('Hotkeys')
+  size: 553 500
+
+  @onEnter: modules.game_hotkeys.ok()
+  @onEscape: modules.game_hotkeys.cancel()
+  @onClose: modules.game_hotkeys.cancel()
+
+  ComboBox
+    id: configSelector
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.top: parent.top
+    margin-top: 8
+    menu-scroll: true
+    menu-height: 125
+    menu-scroll-step: 25
+    text-offset: 5 2
+    visible: false
+    @onOptionChange:  modules.game_hotkeys.onConfigChange()  
+    @onSetup: |
+      self:addOption(tr("Hotkeys config #1"))
+      self:addOption(tr("Hotkeys config #2"))
+      self:addOption(tr("Hotkeys config #3"))
+      self:addOption(tr("Hotkeys config #4"))
+      self:addOption(tr("Hotkeys config #5"))
+    
+
+  VerticalScrollBar
+    id: currentHotkeysScrollBar
+    anchors.top: next.top
+    anchors.bottom: next.bottom
+    anchors.left: next.right
+    step: 14
+    pixels-scroll: true
+
+  TextList
+    id: currentHotkeys
+    size: 340 128
+    anchors.top: configSelector.bottom
+    anchors.left: parent.left
+    margin-top: 12
+    focusable: false
+    vertical-scrollbar: currentHotkeysScrollBar
+
+  ButtonBlue
+    id: resetButton
+    width: 112
+    !text: tr('Reset All')
+    anchors.top: prev.bottom
+    anchors.left: parent.left
+    @onClick: modules.game_hotkeys.reset()
+    margin-top: 10
+
+  ButtonBlue
+    id: addHotkeyButton
+    !text: tr('Add')
+    width: 112
+    anchors.left: prev.right
+    anchors.top: prev.top
+    margin-left: 5
+    @onClick: modules.game_hotkeys.addHotkey()
+
+  ButtonRed
+    id: removeHotkeyButton
+    !text: tr('Remove')
+    width: 112
+    enabled: false
+    anchors.left: prev.right
+    anchors.top: prev.top
+    margin-left: 5
+    @onClick: modules.game_hotkeys.removeHotkey()
+    
+  Label
+    anchors.left: resetButton.left
+    anchors.top: prev.bottom
+    font: window
+    margin-top: 20
+    !text: tr('Extra action:')    
+  
+  ComboBox
+    id: action
+    font: window
+    anchors.left: prev.left
+    anchors.top: prev.bottom
+    anchors.right: parent.right
+    margin-top: 3
+    @onClick: modules.game_hotkeys.removeHotkey()
+
+  Label
+    id: hotKeyTextLabel
+    !text: tr('Edit hotkey text:')
+    enable: false
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.top: prev.bottom
+    margin-top: 12
+
+  CreateAccountTextEdit
+    id: hotkeyText
+    enabled: false
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.top: prev.bottom
+    margin-top: 5
+    @onTextChange: modules.game_hotkeys.onHotkeyTextChange(self:getText())
+
+  CheckBox
+    id: sendAutomatically
+    !text: tr('Send automatically')
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.top: prev.bottom
+    enabled:false
+    margin-top: 12
+    @onCheckChange: modules.game_hotkeys.onSendAutomaticallyChange(self:isChecked())
+
+  Item
+    id: itemPreview
+    anchors.left: currentHotkeysScrollBar.right
+    anchors.top: currentHotkeys.top
+    margin-left: 8
+    virtual: true
+
+  ButtonBlue
+    id: selectObjectButton
+    !text: tr('Selecione Item')
+    anchors.right: parent.right
+    enabled: false
+    anchors.left: prev.right
+    anchors.top: prev.top
+    margin-left: 5
+    @onClick: modules.game_hotkeys.startChooseItem()
+
+  ButtonBlue
+    id: clearObjectButton
+    !text: tr('Clear object')
+    enabled: false
+    anchors.left: prev.left
+    anchors.right: prev.right
+    anchors.top: prev.bottom
+    margin-top: 2
+    @onClick: modules.game_hotkeys.clearObject()
+
+  ButtonBox
+    id: useOnSelf
+    !text: tr('Use on yourself')
+    width: 128
+    enabled: false
+    anchors.right: parent.right
+    anchors.left: currentHotkeysScrollBar.right
+    anchors.top: prev.bottom
+    checked: false
+    margin-left: 8
+    margin-top: 15
+
+  ButtonBox
+    id: useOnTarget
+    !text: tr('Use on target')
+    width: 128
+    enabled: false
+    anchors.right: prev.right
+    anchors.left: prev.left
+    anchors.top: prev.bottom
+    checked: false
+    margin-top: 2
+
+  ButtonBox
+    id: useWith
+    !text: tr('With crosshair')
+    width: 128
+    enabled: false
+    anchors.right: prev.right
+    anchors.left: prev.left
+    anchors.top: prev.bottom
+    checked: false
+    margin-top: 2
+
+  HorizontalSeparator
+    id: separator
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: next.top
+    margin-bottom: 6
+
+  ButtonBlue
+    id: okButton
+    !text: tr('Ok')
+    anchors.right: parent.right
+    anchors.left: parent.left
+    anchors.bottom: parent.bottom
+    @onClick: modules.game_hotkeys.ok()
+
+HotkeyAssignWindow < GameWindow
+  id: assignWindow
+  !text: tr('Button Assign')
+  size: 372 218
+  @onEscape: self:destroy()
+  @onClose: self:destroy()
+
+  Label
+    !text: tr('Please, press the key you wish to add onto your hotkeys manager')
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.top: parent.top
+    text-auto-resize: true
+    text-align: center
+    text-wrap: true
+    margin-top: 60
+    color: #e8c05e
+
+  Label
+    id: comboPreview
+    !text: tr('Current hotkey to add: %s', 'none')
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.top: prev.bottom
+    margin-top: 20
+    text-auto-resize: true
+
+  Label
+    id: usingHotkey
+    !text: tr('This shortcut key is already in use')
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.bottom: next.top
+    margin-bottom: 10
+    color: red
+    text-auto-resize: true
+    visible: false
+
+  HorizontalSeparator
+    id: separator
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: next.top
+    margin-bottom: 12
+
+  ButtonBlue
+    id: addButton
+    !text: tr('Add')
+    width: 100
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.right: parent.right
+    anchors.left: parent.left
+    anchors.bottom: parent.bottom
+    @onClick: modules.game_hotkeys.hotkeyCaptureOk(self:getParent(), self:getParent():getChildById('comboPreview').keyCombo)
+

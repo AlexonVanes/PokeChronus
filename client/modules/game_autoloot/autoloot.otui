@@ -1,0 +1,162 @@
+ItemName < Label
+  color: white
+  font: verdana-11px-monochrome
+  anchors.left: parent.left
+  anchors.top: parent.top
+  margin-left: 40
+  margin-top: 10
+
+ItemOption < UIButton
+  size: 20 20
+  image-source: images/button
+  image-border: 5
+  color: white
+  text: +
+  anchors.right: parent.right
+  anchors.verticalCenter: parent.verticalCenter
+  margin-right: 5
+
+  $hover:
+    image-source: images/button_hover
+
+LootListEntry < Panel
+  height: 35
+  margin-top: 2
+  
+  Item
+    id: item
+    anchors.left: parent.left
+    anchors.verticalCenter: parent.verticalCenter
+    margin-left: 5
+    size: 32 32
+    virtual: true
+
+  ItemName
+    id: nameItem
+
+  ItemOption
+    id: itemOption
+
+AddedLootEntry < Panel
+  size: 32 32
+  
+  Item
+    id: item
+    anchors.fill: parent
+    virtual: true
+
+  UIButton
+    id: removeBtn
+    size: 12 12
+    anchors.top: parent.top
+    anchors.right: parent.right
+    image-source: images/button
+    image-border: 2
+    text: -
+    font: verdana-11px-monochrome
+    
+    $hover:
+      image-source: images/button_hover
+
+AutolootWindow < MainWindow
+  id: autoloot_window
+  !text: tr('Auto Loot')
+  size: 415 323
+  anchors.centerIn: parent
+  @onEscape: modules.game_autoloot.exibir()
+
+  UIButton
+    id: titleTab
+    size: 212 28
+    image-source: images/titleTab
+    anchors.top: parent.top
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-top: 8
+
+  ComboBox
+    id: options
+    size: 120 20
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-left: 12
+    margin-top: 40
+
+  TextEdit
+    id: pesquisar
+    size: 130 20
+    anchors.top: options.top
+    anchors.left: options.left
+    margin-left: 132
+
+  UIButton
+    id: power_on
+    text: OFF
+    size: 80 24
+    image-source: images/button
+    image-border: 20
+    anchors.top: pesquisar.top
+    anchors.left: pesquisar.left
+    margin-left: 145
+
+    $hover:
+      image-source: images/button_hover
+
+  ScrollableFlatPanel
+    id: panel_loots
+    size: 246 210
+    anchors.top: options.bottom
+    anchors.left: parent.left
+    margin-top: 10
+    margin-left: 14
+    padding-top: 5
+    layout:
+      type: verticalBox
+      spacing: 2
+    vertical-scrollbar: panel_loots_scr
+
+  VerticalScrollBar
+    id: panel_loots_scr
+    anchors.top: panel_loots.top
+    anchors.bottom: panel_loots.bottom
+    anchors.right: panel_loots.right
+    margin-right: -15
+    step: 40
+    pixels-scroll: true
+
+  ScrollableFlatPanel
+    id: panel_loots_added
+    size: 78 210
+    anchors.top: power_on.bottom
+    anchors.left: power_on.left
+    margin-top: 10
+    margin-left: 2
+    padding: 2
+    layout:
+      type: grid
+      cell-size: 32 32
+      flow: true
+    vertical-scrollbar: panel_loots_added_scr
+
+  VerticalScrollBar
+    id: panel_loots_added_scr
+    anchors.top: panel_loots_added.top
+    anchors.bottom: panel_loots_added.bottom
+    anchors.right: parent.right
+    margin-right: 13
+    step: 40
+    pixels-scroll: true
+
+  UIButton
+    id: close_button
+    text: Fechar
+    image-source: images/button
+    image-border: 20
+    size: 70 24
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right
+    margin-bottom: 3
+    margin-right: 10
+    @onClick: modules.game_autoloot.exibir()
+
+    $hover:
+      image-source: images/button_hover

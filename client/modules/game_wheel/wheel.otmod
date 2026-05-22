@@ -1,0 +1,11 @@
+Module
+  name: game_wheel
+  description: daily wheel
+  author: Endrosmose
+  website: 
+  sandboxed: true
+  autoload: true
+  autoload-priority: 1000
+  scripts: [ wheel ]
+  @onLoad: init()
+  @onUnload: terminate()

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<npc name="Holder" script="default.lua" speechbubble = "0" walkinterval="2000" floorchange="1" speed="200">
+	<health now="150" max="150"/>
+	<look type="3328" head="91" body="102" legs="83" feet="0"/>
+	<parameters>
+	</parameters>
+</npc>

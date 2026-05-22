@@ -1,0 +1,144 @@
+DailyRewardBox < UIWidget
+  size: 72 72
+  background-color: #0f0f0f
+  border-width: 2
+  border-color: #2a2a2a
+  focusable: true
+  phantom: false
+  
+  UIWidget
+    id: dayBadge
+    size: 24 16
+    anchors.top: parent.top
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-top: -8
+    background-color: #1a1a1a
+    border-width: 1
+    border-color: #3a3a3a
+    
+    Label
+      id: dayNumber
+      anchors.fill: parent
+      text-align: center
+      font: verdana-11px-rounded
+      color: #cccccc
+      text: 1
+    
+  UIItem
+    id: itemIcon
+    anchors.centerIn: parent
+    margin-top: 2
+    size: 40 40
+    
+  Label
+    id: statusLabel
+    anchors.bottom: parent.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-bottom: 4
+    text-align: center
+    font: verdana-11px-rounded
+    color: #666666
+    text: ---
+    
+  UIWidget
+    id: glowEffect
+    anchors.fill: parent
+    margin: -2
+    border-width: 2
+    border-color: #00000000
+    visible: false
+    phantom: true
+    
+  $on:
+    background-color: #1a1a00
+    border-color: #ffcc00
+    
+  $!on:
+    background-color: #0f0f0f
+    border-color: #2a2a2a
+  
+  $hover !disabled:
+    background-color: #1a1a1a
+    border-color: #4a4a4a
+
+MainWindow
+  id: dailyRewardsWindow
+  size: 560 480
+  text: Recompensas diarias
+  @onEscape: modules.game_daily_rewards.closeWindow()
+  
+  Label
+    id: titleText
+    text: RECOMPENSAS DIARIAS - 21 DIAS
+    text-align: center
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 45
+    font: verdana-11px-rounded
+    color: #ffff00
+    height: 20
+  
+  UIWidget
+    id: rewardsPanel
+    anchors.top: titleText.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-top: 15
+    size: 540 240
+    layout:
+      type: grid
+      cell-size: 72 72
+      cell-spacing: 4
+      num-columns: 7
+      num-lines: 3
+      fit-children: false
+  
+  Label
+    id: infoText
+    text: Aperte em Claim para coletar a recompensa!
+    text-wrap: true
+    text-align: center
+    anchors.top: rewardsPanel.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 12
+    margin-left: 20
+    margin-right: 20
+    font: verdana-11px-rounded
+    color: #00ff00
+    height: 25
+  
+  Label
+    id: descText
+    text: Entre todos os dias para ganhar recompensas incriveis!
+    text-wrap: true
+    text-align: center
+    anchors.top: infoText.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 2
+    margin-left: 20
+    margin-right: 20
+    font: verdana-11px-rounded
+    color: #aaaaaa
+    height: 25
+  
+  Button
+    id: claimButton
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.bottom: parent.bottom
+    margin-bottom: 15
+    margin-left: 50
+    size: 150 35
+    text: CLAIM REWARD
+    @onClick: modules.game_daily_rewards.claimReward()
+  
+  Button
+    id: closeButtonBottom
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.bottom: parent.bottom
+    margin-bottom: 15
+    margin-left: -80
+    size: 100 35
+    text: CLOSE
+    @onClick: modules.game_daily_rewards.closeWindow()

@@ -1,0 +1,1294 @@
+ShopPanelDark < UIWidget
+  background: alpha
+  border-width: 0
+  image-source: assets/ui/panel_navy_dark
+  image-border: 14
+  image-smooth: true
+
+ShopPanelMid < UIWidget
+  background: alpha
+  border-width: 0
+  image-source: assets/ui/panel_navy_mid
+  image-border: 14
+  image-smooth: true
+
+ShopPanelInset < UIWidget
+  background: alpha
+  border-width: 0
+  image-source: assets/ui/panel_navy_inset
+  image-border: 12
+  image-smooth: true
+
+ShopButtonBase < UIButton
+  background: alpha
+  border-width: 0
+  image-source: assets/ui/btn_cyan
+  image-border: 24
+  image-smooth: true
+  change-cursor-image: true
+  cursor: pointer
+  color: #0b1020
+  text-align: center
+  text-auto-resize: false
+  font: sono_bold_12
+  padding: 0 18
+  size: 160 48
+
+  $hover !disabled:
+    image-source: assets/ui/btn_cyan_hover
+
+ShopButtonPrimary < ShopButtonBase
+  image-source: assets/ui/btn_cyan
+  $hover !disabled:
+    image-source: assets/ui/btn_cyan_hover
+
+ShopButtonSecondary < ShopButtonBase
+  image-source: assets/ui/btn_navy
+  color: #d9e0ee
+  $hover !disabled:
+    image-source: assets/ui/btn_navy_light
+
+ShopButtonGreen < ShopButtonBase
+  image-source: assets/ui/btn_green
+  color: #06140a
+  $hover !disabled:
+    image-source: assets/ui/btn_green_hover
+
+ShopButtonAmber < ShopButtonBase
+  image-source: assets/ui/btn_amber
+  color: #111827
+  $hover !disabled:
+    image-source: assets/ui/btn_amber_hover
+
+ShopWalletButton < UIButton
+  size: 30 30
+  background: alpha
+  border-width: 0
+  image-source: assets/ui/btn_navy
+  image-border: 15
+  image-smooth: true
+  change-cursor-image: true
+  cursor: pointer
+  color: #d9e0ee
+  text-align: center
+  text-auto-resize: false
+  font: sono_bold_14
+  $hover:
+    image-source: assets/ui/btn_navy_light
+
+ShopToggle < ShopButtonBase
+  image-source: assets/ui/btn_navy
+  color: #8ea0c2
+  $hover !disabled:
+    image-source: assets/ui/btn_navy_light
+  $on:
+    image-source: assets/ui/btn_cyan
+    color: #0b1020
+  $on $hover:
+    image-source: assets/ui/btn_cyan_hover
+
+ShopCloseButton < UIButton
+  size: 32 32
+  background: alpha
+  border-width: 0
+  image-source: assets/ui/btn_navy
+  image-border: 16
+  image-smooth: true
+  text: "X"
+  color: #95a0b5
+  font: sono_bold_12
+  text-align: center
+  change-cursor-image: true
+  cursor: pointer
+  $hover:
+    image-source: assets/ui/btn_red
+    color: #ffffff
+
+ShopScrollSlider < UIButton
+  id: sliderButton
+  anchors.centerIn: parent
+  image-source: assets/ui/scroll_slider
+  image-border: 4
+  image-smooth: true
+  $hover:
+    image-source: assets/ui/scroll_slider_hover
+  $pressed:
+    image-source: assets/ui/scroll_slider_hover
+  $disabled:
+    opacity: 0.4
+
+ShopVerticalScrollBar < UIScrollBar
+  orientation: vertical
+  width: 12
+  height: 40
+  image-source: assets/ui/scroll_track
+  image-border: 6
+  image-smooth: true
+  image-color: #050810
+  pixels-scroll: true
+
+  UIButton
+    id: decrementButton
+    size: 1 1
+    visible: false
+
+  UIButton
+    id: incrementButton
+    size: 1 1
+    visible: false
+
+  ShopScrollSlider
+    size: 10 30
+
+ShopHorizontalScrollBar < UIScrollBar
+  orientation: horizontal
+  height: 8
+  width: 40
+  image-source: assets/ui/scroll_track
+  image-border: 4
+  image-smooth: true
+  pixels-scroll: true
+
+  UIButton
+    id: decrementButton
+    size: 1 1
+    visible: false
+
+  UIButton
+    id: incrementButton
+    size: 1 1
+    visible: false
+
+  ShopScrollSlider
+    size: 30 8
+
+quantityWindow < UIWindow
+  anchors.centerIn: parent
+  image-source: assets/ui/panel_window
+  image-border: 22
+  image-smooth: true
+  size: 280 200
+  font: sono_bold_12
+  color: #ffffff
+  @onEscape: self:destroy()
+
+  UIWidget
+    id: modalHeader
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    height: 44
+    margin-top: 12
+    margin-left: 14
+    margin-right: 14
+    image-source: assets/ui/panel_navy_dark
+    image-border: 12
+    image-smooth: true
+
+  UIWidget
+    anchors.top: modalHeader.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-top: 4
+    size: 140 2
+    background: #22d3ee
+
+  Label
+    id: topText
+    anchors.fill: modalHeader
+    margin: 0 8
+    text-auto-resize: false
+    font: future-earth-16px
+    color: #ffffff
+    text-align: center
+    phantom: true
+    margin-top: 0
+
+  UIWidget
+    id: priceFrame
+    anchors.top: modalHeader.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-top: 18
+    size: 200 32
+    image-source: assets/ui/panel_navy_inset
+    image-border: 12
+    image-color: #0e1424
+
+  UIWidget
+    id: minusButton
+    anchors.left: priceFrame.left
+    anchors.verticalCenter: priceFrame.verticalCenter
+    margin-left: 6
+    size: 26 26
+    image-source: assets/ui/btn_navy
+    image-border: 13
+    image-smooth: true
+    text: "-"
+    text-align: center
+    font: sono_bold_14
+    color: #d9e0ee
+    change-cursor-image: true
+    cursor: pointer
+    $hover:
+      image-source: assets/ui/btn_navy_light
+
+  Label
+    id: precoItem
+    anchors.fill: priceFrame
+    margin: 0 36
+    font: sono_bold_14
+    color: #22d3ee
+    text-align: center
+    text-auto-resize: false
+    phantom: true
+
+  UIWidget
+    id: plusButton
+    anchors.right: priceFrame.right
+    anchors.verticalCenter: priceFrame.verticalCenter
+    margin-right: 6
+    size: 26 26
+    image-source: assets/ui/btn_navy
+    image-border: 13
+    image-smooth: true
+    text: "+"
+    text-align: center
+    font: sono_bold_14
+    color: #d9e0ee
+    change-cursor-image: true
+    cursor: pointer
+    $hover:
+      image-source: assets/ui/btn_navy_light
+
+  Label
+    id: quantidadeLabel
+    anchors.top: priceFrame.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-top: 6
+    size: 100 16
+    font: sono_bold_12
+    color: #8ea0c2
+    text-align: center
+    text: "1 x"
+    phantom: true
+
+  HorizontalScrollBar
+    id: quantidadeBuy
+    minimum: 1
+    maximum: 10000
+    anchors.top: quantidadeLabel.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 8
+    margin-left: 36
+    margin-right: 36
+    step: 1
+    @onValueChange: modules.game_shop.changeQuantidade(self:getValue())
+
+  ShopButtonGreen
+    id: buyButton
+    anchors.bottom: parent.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-bottom: 4
+    text: "COMPRAR"
+    size: 130 48
+
+  ShopButtonAmber
+    id: sellButton
+    anchors.bottom: parent.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-bottom: 4
+    text: "VENDER"
+    size: 130 48
+    visible: false
+
+  ShopCloseButton
+    id: closeButton
+    anchors.top: parent.top
+    anchors.right: parent.right
+    margin-top: 10
+    margin-right: 12
+    @onClick: modules.game_shop.destroyWindow()
+
+diamondTransferWindow < UIWindow
+  anchors.centerIn: parent
+  image-source: assets/ui/panel_window
+  image-border: 22
+  image-smooth: true
+  size: 360 320
+  font: sono_bold_12
+  color: #ffffff
+  @onEscape: modules.game_shop.closeDiamondTransferWindow()
+
+  UIWidget
+    id: modalHeader
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    height: 44
+    margin-top: 12
+    margin-left: 14
+    margin-right: 14
+    image-source: assets/ui/panel_navy_dark
+    image-border: 12
+    image-smooth: true
+
+  Label
+    id: transferTitle
+    text: "TRANSFERIR DIAMANTES"
+    anchors.fill: modalHeader
+    margin: 0 8
+    font: future-earth-16px
+    color: #ffffff
+    text-align: center
+    text-auto-resize: false
+    phantom: true
+
+  UIWidget
+    anchors.top: modalHeader.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-top: 4
+    size: 170 2
+    background: #22d3ee
+
+  Label
+    id: currentBalance
+    text: "Saldo atual: 0"
+    anchors.top: modalHeader.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 22
+    margin-left: 24
+    margin-right: 24
+    height: 18
+    font: sono_bold_12
+    color: #22d3ee
+    text-align: center
+    text-auto-resize: false
+    phantom: true
+
+  Label
+    id: targetLabel
+    text: "Jogador"
+    anchors.top: currentBalance.bottom
+    anchors.left: parent.left
+    margin-top: 16
+    margin-left: 32
+    height: 16
+    font: sono_bold_12
+    color: #8ea0c2
+    text-auto-resize: false
+    phantom: true
+
+  TextEdit
+    id: targetName
+    anchors.top: targetLabel.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 6
+    margin-left: 32
+    margin-right: 32
+    height: 34
+    image-source: assets/ui/panel_navy_inset
+    image-border: 12
+    padding-left: 10
+    padding-top: 8
+    font: sono_bold_12
+    color: #ffffff
+
+  Label
+    id: amountLabel
+    text: "Quantidade"
+    anchors.top: targetName.bottom
+    anchors.left: targetName.left
+    margin-top: 16
+    height: 16
+    font: sono_bold_12
+    color: #8ea0c2
+    text-auto-resize: false
+    phantom: true
+
+  TextEdit
+    id: amount
+    anchors.top: amountLabel.bottom
+    anchors.left: targetName.left
+    anchors.right: targetName.right
+    margin-top: 6
+    height: 34
+    image-source: assets/ui/panel_navy_inset
+    image-border: 12
+    padding-left: 10
+    padding-top: 8
+    font: sono_bold_12
+    color: #ffffff
+    @onSetup: self:setValidCharacters('0123456789')
+
+  ShopButtonGreen
+    id: transferButton
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    margin-bottom: 16
+    margin-left: 42
+    text: "TRANSFERIR"
+    size: 124 44
+    @onClick: modules.game_shop.confirmDiamondTransfer()
+
+  ShopButtonSecondary
+    id: cancelButton
+    anchors.bottom: transferButton.bottom
+    anchors.right: parent.right
+    margin-right: 42
+    text: "CANCELAR"
+    size: 112 44
+    @onClick: modules.game_shop.closeDiamondTransferWindow()
+
+  ShopCloseButton
+    id: closeButton
+    anchors.top: parent.top
+    anchors.right: parent.right
+    margin-top: 10
+    margin-right: 12
+    @onClick: modules.game_shop.closeDiamondTransferWindow()
+
+itemClube < UIItem
+  image-source: assets/ui/panel_navy_inset
+  image-border: 10
+  image-smooth: true
+  margin-left: 6
+  margin-right: -6
+  margin-top: 8
+  margin-bottom: -8
+
+baseCategoria < UIWidget
+  size: 220 50
+  background: alpha
+  border-width: 0
+  image-source: assets/ui/panel_navy_mid
+  image-border: 14
+  image-smooth: true
+  image-color: #ffffff
+  text-offset: 0 8
+  text-align: center
+  font: sono_bold_14
+  color: #c5cad6
+  change-cursor-image: true
+  cursor: pointer
+
+  &updateOnStates: |
+    function(self)
+      local children = self:getChildren()
+      for i=1,#children do
+        children[i]:setOn(self:isFocused())
+      end
+    end
+  @onFocusChange: self:updateOnStates()
+  @onSetup: self:updateOnStates()
+
+  $hover !$focus:
+    image-color: #c8e8ff
+    color: #ffffff
+
+  $focus:
+    image-color: #1f3760
+    color: #5fe7ff
+
+  UIWidget
+    id: stripe
+    size: 4 26
+    background: #22d3ee
+    border-width: 0
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.left: parent.left
+    margin-left: 7
+    opacity: 0.0
+    phantom: true
+
+    $on:
+      opacity: 1.0
+
+baseItem < UIWidget
+  size: 100 116
+  background: alpha
+  border-width: 0
+  image-source: assets/ui/panel_navy_mid
+  image-border: 12
+  image-smooth: true
+  margin: 1
+  change-cursor-image: true
+  cursor: pointer
+
+  UIWidget
+    id: hoverGlow
+    anchors.fill: parent
+    image-source: assets/ui/panel_navy_inset
+    image-border: 12
+    image-smooth: true
+    image-color: #22d3ee
+    opacity: 0
+    phantom: true
+
+  UIWidget
+    id: itemFrame
+    size: 64 64
+    background: alpha
+    border-width: 0
+    image-source: ~
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.top: parent.top
+    margin-top: 22
+    phantom: true
+
+  UIItem
+    id: item
+    size: 48 48
+    anchors.centerIn: itemFrame
+    phantom: true
+    virtual: true
+
+  Label
+    id: name
+    color: #e8ecf4
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.top: parent.top
+    text-auto-resize: true
+    margin-top: 6
+    font: sono_bold_12
+    phantom: true
+
+  UIWidget
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    margin-left: 14
+    margin-right: 14
+    margin-bottom: 30
+    height: 1
+    background: #22d3ee
+    opacity: 0.25
+    phantom: true
+
+  UIWidget
+    id: priceChip
+    size: 84 22
+    anchors.bottom: parent.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-bottom: 6
+    background: alpha
+    border-width: 0
+    image-source: ~
+    phantom: true
+
+  UIItem
+    id: icon_currency
+    size: 18 18
+    anchors.left: priceChip.left
+    anchors.verticalCenter: priceChip.verticalCenter
+    margin-left: 8
+    phantom: true
+
+  Label
+    id: preco
+    text-auto-resize: false
+    font: sono_bold_14
+    anchors.left: icon_currency.right
+    anchors.right: priceChip.right
+    anchors.verticalCenter: priceChip.verticalCenter
+    margin-left: 6
+    margin-right: 8
+    color: #22d3ee
+    text-align: left
+    phantom: true
+
+  UIWidget
+    id: tooltipName
+    anchors.fill: parent
+    phantom: true
+
+  @onClick: modules.game_shop.createWindow(self:getId(), self)
+
+baseOutfit < UIWidget
+  size: 100 116
+  background: alpha
+  border-width: 0
+  image-source: assets/ui/panel_navy_mid
+  image-border: 12
+  image-smooth: true
+  margin: 1
+  change-cursor-image: true
+  cursor: pointer
+
+  UIWidget
+    id: outfitFrame
+    size: 64 64
+    background: alpha
+    border-width: 0
+    image-source: ~
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.top: parent.top
+    margin-top: 22
+    phantom: true
+
+  UICreature
+    id: outfit
+    size: 48 48
+    anchors.centerIn: outfitFrame
+    phantom: true
+
+  Label
+    id: name
+    color: #e8ecf4
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.top: parent.top
+    text-auto-resize: true
+    margin-top: 6
+    font: sono_bold_12
+    phantom: true
+
+  UIWidget
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    margin-left: 14
+    margin-right: 14
+    margin-bottom: 30
+    height: 1
+    background: #22d3ee
+    opacity: 0.25
+    phantom: true
+
+  UIWidget
+    id: priceChip
+    size: 84 22
+    anchors.bottom: parent.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-bottom: 6
+    background: alpha
+    border-width: 0
+    image-source: ~
+    phantom: true
+
+  UIItem
+    id: icon_currency
+    size: 18 18
+    anchors.left: priceChip.left
+    anchors.verticalCenter: priceChip.verticalCenter
+    margin-left: 8
+    phantom: true
+
+  Label
+    id: preco
+    text-auto-resize: false
+    font: sono_bold_14
+    anchors.left: icon_currency.right
+    anchors.right: priceChip.right
+    anchors.verticalCenter: priceChip.verticalCenter
+    margin-left: 6
+    margin-right: 8
+    color: #22d3ee
+    text-align: left
+    phantom: true
+
+  UIWidget
+    id: tooltipName
+    anchors.fill: parent
+    phantom: true
+
+  @onClick: modules.game_shop.sendBuffer(self:getId())
+
+basePokemon < UIWidget
+  size: 100 116
+  background: alpha
+  border-width: 0
+  image-source: assets/ui/panel_navy_mid
+  image-border: 12
+  image-smooth: true
+  margin: 1
+  change-cursor-image: true
+  cursor: pointer
+
+  UIWidget
+    id: outfitFrame
+    size: 64 64
+    background: alpha
+    border-width: 0
+    image-source: ~
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.top: parent.top
+    margin-top: 22
+    phantom: true
+
+  UICreature
+    id: outfit
+    size: 48 48
+    anchors.centerIn: outfitFrame
+    phantom: true
+
+  Label
+    id: name
+    color: #e8ecf4
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.top: parent.top
+    text-auto-resize: true
+    margin-top: 6
+    font: sono_bold_12
+    phantom: true
+
+  UIWidget
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    margin-left: 14
+    margin-right: 14
+    margin-bottom: 30
+    height: 1
+    background: #22d3ee
+    opacity: 0.25
+    phantom: true
+
+  UIWidget
+    id: priceChip
+    size: 84 22
+    anchors.bottom: parent.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-bottom: 6
+    background: alpha
+    border-width: 0
+    image-source: ~
+    phantom: true
+
+  UIItem
+    id: icon_currency
+    size: 18 18
+    anchors.left: priceChip.left
+    anchors.verticalCenter: priceChip.verticalCenter
+    margin-left: 8
+    phantom: true
+
+  Label
+    id: preco
+    text-auto-resize: false
+    font: sono_bold_14
+    anchors.left: icon_currency.right
+    anchors.right: priceChip.right
+    anchors.verticalCenter: priceChip.verticalCenter
+    margin-left: 6
+    margin-right: 8
+    color: #22d3ee
+    text-align: left
+    phantom: true
+
+  UIWidget
+    id: iconRank
+    size: 22 22
+    phantom: true
+    anchors.right: outfitFrame.right
+    anchors.top: outfitFrame.top
+    margin-right: -6
+    margin-top: -6
+
+  UIWidget
+    id: tooltipName
+    anchors.fill: parent
+    phantom: true
+
+  @onClick: modules.game_shop.sendBuffer(self:getId())
+
+basePack < UIWidget
+  size: 192 220
+  background: alpha
+  border-width: 0
+  image-source: assets/ui/panel_navy_mid
+  image-border: 14
+  image-smooth: true
+  margin: 3
+  change-cursor-image: true
+  cursor: pointer
+
+  UIWidget
+    id: packHeader
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    height: 32
+    margin-top: 10
+    margin-left: 10
+    margin-right: 10
+    background: #0e1424
+    border-width: 1
+    border-color: #22d3ee
+    phantom: true
+
+  Label
+    id: name
+    color: #5fe7ff
+    anchors.fill: packHeader
+    margin: 0 12
+    text-auto-resize: false
+    text-align: center
+    font: sono_bold_14
+    phantom: true
+
+  UIWidget
+    anchors.top: packHeader.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-top: 4
+    size: 80 2
+    background: #22d3ee
+    opacity: 0.6
+    phantom: true
+
+  UIWidget
+    id: outfitFrame
+    size: 116 116
+    background: alpha
+    border-width: 0
+    image-source: ~
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.top: packHeader.bottom
+    margin-top: 8
+    phantom: true
+
+  UICreature
+    id: outfit
+    size: 96 96
+    anchors.centerIn: outfitFrame
+    phantom: true
+
+  UIWidget
+    id: iconRank
+    size: 26 26
+    phantom: true
+    anchors.right: outfitFrame.right
+    anchors.top: outfitFrame.top
+    margin-right: -4
+    margin-top: -4
+
+  UIWidget
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    margin-left: 14
+    margin-right: 14
+    margin-bottom: 70
+    height: 1
+    background: #22d3ee
+    opacity: 0.25
+    phantom: true
+
+  Panel
+    id: itemsPanel
+    height: 36
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-bottom: 30
+    margin-left: 18
+    margin-right: 18
+    layout:
+      type: grid
+      cell-size: 32 32
+      cell-spacing: 4
+      flow: true
+      num-columns: 4
+
+  UIItem
+    id: icon_currency
+    size: 22 22
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    margin-bottom: 6
+    margin-left: 18
+    phantom: true
+
+  Label
+    id: preco
+    text-auto-resize: true
+    font: sono_bold_14
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right
+    margin-bottom: 8
+    margin-right: 18
+    color: #22d3ee
+    text-align: right
+    phantom: true
+
+  UIWidget
+    id: tooltipName
+    anchors.fill: parent
+    phantom: true
+
+  @onClick: modules.game_shop.sendBuffer(self:getId())
+
+packItemWidget < UIWidget
+  size: 32 32
+  image-source: assets/ui/panel_navy_inset
+  image-border: 16
+  image-smooth: true
+  image-color: #ffffff
+  padding: 3
+
+  UIItem
+    id: itemWidget
+    size: 26 26
+    anchors.centerIn: parent
+    virtual: true
+    phantom: true
+
+UIWindow
+  id: gameShop
+  anchors.centerIn: parent
+  size: 800 596
+  image-source: assets/ui/panel_window
+  image-border: 22
+  image-smooth: true
+  text: ""
+  padding: 0
+  focusable: true
+  @onEscape: self:hide()
+  @onFocusChange: if self:isFocused() then self:raise() end
+  @onSetup: self:setDraggable(true)
+
+  UIWidget
+    id: headerBar
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    height: 76
+    margin-top: 14
+    margin-left: 16
+    margin-right: 16
+    image-source: assets/ui/panel_navy_dark
+    image-border: 14
+    image-smooth: true
+
+  UIWidget
+    id: titleStripe
+    anchors.top: headerBar.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-top: 4
+    size: 220 2
+    background: #22d3ee
+    border-width: 0
+
+  UIWidget
+    id: logoChip
+    anchors.left: headerBar.left
+    anchors.verticalCenter: headerBar.verticalCenter
+    margin-left: 14
+    size: 56 56
+    image-source: assets/ui/panel_navy_inset
+    image-border: 12
+    image-smooth: true
+    image-color: #0a1020
+
+    UIWidget
+      id: logoIcon
+      anchors.centerIn: parent
+      size: 32 32
+      image-source: assets/topbutton/diamond
+      image-smooth: true
+      phantom: true
+
+  UIWidget
+    id: logoAccent
+    size: 32 4
+    background: #22d3ee
+    anchors.horizontalCenter: logoChip.horizontalCenter
+    anchors.bottom: logoChip.bottom
+    margin-bottom: 6
+
+  Label
+    id: shopTitle
+    !text: tr('SPACE SHOP')
+    anchors.left: logoChip.right
+    anchors.right: parent.right
+    anchors.top: headerBar.top
+    margin-left: 18
+    margin-right: 80
+    margin-top: 14
+    font: future-earth-26
+    color: #ffffff
+    text-auto-resize: false
+    text-align: left
+    phantom: true
+
+  Label
+    id: shopSubtitle
+    !text: tr('Compre items, pokemons, outfits e packs exclusivos')
+    anchors.top: shopTitle.bottom
+    anchors.left: shopTitle.left
+    anchors.right: shopTitle.right
+    margin-top: 16
+    font: sono_bold_12
+    color: #8ea0c2
+    text-auto-resize: false
+    text-align: left
+    phantom: true
+
+  ShopCloseButton
+    id: closeButton
+    anchors.top: parent.top
+    anchors.right: parent.right
+    margin-top: 22
+    margin-right: 22
+    @onClick: self:getParent():hide()
+
+  ShopToggle
+    id: modeButton
+    anchors.top: titleStripe.bottom
+    anchors.left: sidebarFrame.right
+    margin-top: 14
+    margin-left: 52
+    text: "Modo: Compra"
+    size: 138 48
+    @onClick: |
+      local currentText = self:getText()
+      if currentText == "Modo: Compra" then
+        self:setText("Modo: Venda")
+        self:setOn(true)
+        modules.game_shop.setMode("sell")
+      else
+        self:setText("Modo: Compra")
+        self:setOn(false)
+        modules.game_shop.setMode("buy")
+      end
+
+  ShopButtonSecondary
+    id: typeMoeda
+    anchors.top: modeButton.top
+    anchors.left: modeButton.right
+    margin-left: 14
+    text: "Moeda: Todas"
+    size: 148 48
+
+  UIWidget
+    id: diamondBalancePanel
+    anchors.top: modeButton.top
+    anchors.left: typeMoeda.right
+    margin-left: 14
+    size: 166 48
+    image-source: assets/ui/btn_navy
+    image-border: 24
+    image-smooth: true
+    change-cursor-image: true
+    cursor: pointer
+    tooltip: "Diamantes"
+
+    UIItem
+      id: diamondBalanceIcon
+      size: 22 22
+      anchors.left: parent.left
+      anchors.verticalCenter: parent.verticalCenter
+      margin-left: 12
+      item-id: 25218
+      virtual: true
+      phantom: true
+
+    ShopWalletButton
+      id: diamondRechargeButton
+      anchors.right: parent.right
+      anchors.verticalCenter: parent.verticalCenter
+      margin-right: 10
+      text: "+"
+      tooltip: "Recarregar via Pix"
+      image-source: assets/ui/btn_green
+      color: #06140a
+      $hover:
+        image-source: assets/ui/btn_green_hover
+
+    ShopWalletButton
+      id: diamondTransferButton
+      anchors.right: diamondRechargeButton.left
+      anchors.verticalCenter: parent.verticalCenter
+      margin-right: 6
+      text: ">"
+      tooltip: "Transferir diamantes"
+
+    Label
+      id: diamondBalanceLabel
+      text: "0"
+      anchors.left: diamondBalanceIcon.right
+      anchors.right: diamondTransferButton.left
+      anchors.verticalCenter: parent.verticalCenter
+      margin-left: 8
+      margin-right: 6
+      height: 18
+      font: sono_bold_14
+      color: #ffffff
+      text-align: left
+      text-auto-resize: false
+      phantom: true
+
+  UIWidget
+    id: sidebarFrame
+    size: 232 460
+    anchors.top: headerBar.bottom
+    anchors.left: parent.left
+    anchors.bottom: parent.bottom
+    margin-top: 10
+    margin-left: 12
+    margin-bottom: 22
+    image-source: assets/ui/panel_navy_dark
+    image-border: 14
+    image-smooth: true
+    phantom: true
+
+  ScrollablePanel
+    id: panelCategorias
+    anchors.top: sidebarFrame.top
+    anchors.bottom: sidebarFrame.bottom
+    anchors.left: sidebarFrame.left
+    anchors.right: sidebarFrame.right
+    margin-top: 10
+    margin-bottom: 10
+    margin-left: 6
+    margin-right: 6
+    image-source: ~
+    background: alpha
+    vertical-scrollbar: panelBar
+    layout:
+      type: grid
+      cell-size: 220 50
+      cell-spacing: 6
+      flow: false
+      num-columns: 1
+
+  ShopVerticalScrollBar
+    id: panelBar
+    visible: true
+    anchors.top: sidebarFrame.top
+    anchors.bottom: sidebarFrame.bottom
+    anchors.left: sidebarFrame.right
+    margin-top: 0
+    margin-bottom: 0
+    margin-left: 15
+    step: 56
+
+  ScrollablePanel
+    id: verticalPanel
+    anchors.top: modeButton.bottom
+    anchors.bottom: sidebarFrame.bottom
+    anchors.left: sidebarFrame.right
+    anchors.right: parent.right
+    margin-top: 14
+    margin-left: 52
+    margin-right: 52
+    image-source: assets/ui/panel_navy_dark
+    image-border: 14
+    image-smooth: true
+    padding: 14
+    visible: false
+    vertical-scrollbar: verticalBar
+    layout:
+      type: grid
+      cell-spacing: 8
+      cell-size: 100 116
+      flow: true
+      num-columns: 4
+
+  ShopVerticalScrollBar
+    id: verticalBar
+    anchors.top: verticalPanel.top
+    anchors.bottom: verticalPanel.bottom
+    anchors.left: verticalPanel.right
+    margin-top: 0
+    margin-bottom: 0
+    margin-left: 15
+    step: 40
+    pixels-scroll: true
+    visible: false
+
+  UIWidget
+    id: vipPanel
+    anchors.top: modeButton.bottom
+    anchors.bottom: sidebarFrame.bottom
+    anchors.left: sidebarFrame.right
+    anchors.right: parent.right
+    margin-top: 14
+    margin-left: 52
+    margin-right: 52
+    image-source: assets/ui/panel_navy_dark
+    image-border: 14
+    image-smooth: true
+    padding: 14
+    visible: false
+
+  UIWidget
+    id: vipImage
+    size: 424 318
+    anchors.top: vipPanel.top
+    anchors.horizontalCenter: vipPanel.horizontalCenter
+    margin-top: 14
+    visible: false
+    image-source: assets/backgrounds/vipplus
+    image-smooth: true
+    phantom: true
+
+  UIButton
+    id: vip_info
+    size: 26 26
+    image-source: assets/info
+    image-smooth: true
+    anchors.top: vipImage.top
+    anchors.left: vipImage.left
+    margin-top: 12
+    margin-left: 12
+    visible: false
+    change-cursor-image: true
+    cursor: pointer
+
+  ScrollablePanel
+    id: backgroundClubText
+    size: 200 130
+    anchors.top: vipImage.top
+    anchors.right: vipImage.right
+    margin-top: 70
+    margin-right: 14
+    image-source: assets/ui/panel_navy_inset
+    image-border: 12
+    image-smooth: true
+    text-align: topleft
+    vertical-scrollbar: verticalTextBar
+    layout: verticalBox
+    padding: 10
+    visible: false
+
+    UIWidget
+      id: text
+      font: sono_bold_12
+      color: #c5cad6
+      size: 170 300
+      text-align: topleft
+      text-offset: 6 6
+      text-wrap: true
+
+  ShopVerticalScrollBar
+    id: verticalTextBar
+    anchors.top: backgroundClubText.top
+    anchors.bottom: backgroundClubText.bottom
+    anchors.right: backgroundClubText.right
+    margin-top: 6
+    margin-bottom: 6
+    margin-right: 4
+    step: 40
+    visible: false
+
+  UILabel
+    id: clubBeneficiosTopText
+    text: "BENEFICIOS"
+    color: #5fe7ff
+    text-auto-resize: true
+    anchors.bottom: backgroundClubText.top
+    anchors.horizontalCenter: backgroundClubText.horizontalCenter
+    font: future-earth-16px
+    margin-bottom: 6
+    visible: false
+
+  ShopButtonGreen
+    id: VIP_BUY
+    size: 200 48
+    anchors.horizontalCenter: backgroundClubText.horizontalCenter
+    anchors.top: backgroundClubText.bottom
+    margin-top: 14
+    visible: false
+    text: "COMPRAR VIP"
+    @onClick: modules.game_shop.sendBuffer(self:getId())

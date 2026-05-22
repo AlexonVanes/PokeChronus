@@ -1,0 +1,347 @@
+// NOVAS WINDOWS B4GS STUDIO
+
+// WINDOWS
+ButtonRed < UIButton
+  font: window
+  color: white
+  size: 90 50
+  text-offset: 0 1
+  image-border: 5
+  padding: 5 10 5 10
+  opacity: 1.0
+  change-cursor-image: true
+  cursor: pointer
+
+  $!hover !pressed:
+    image-source: /images/UI_REWORK/BUTTON_RED_NORMAL
+
+  $hover !pressed:
+    image-source: /images/UI_REWORK/BUTTON_RED_HOVER
+
+  $pressed:
+    image-source: /images/UI_REWORK/BUTTON_RED_PRESSED
+
+
+
+ButtonRedClose < UIButton
+  size: 25 25
+  font: window
+  color: white
+  image-border: 5
+  margin-top: 4
+  margin-right: -5
+  !tooltip: tr('Close')
+  text: x
+  change-cursor-image: true
+  cursor: pointer
+
+  $!hover !pressed:
+    image-source: /images/UI_REWORK/BUTTON_RED_NORMAL
+
+  $hover !pressed:
+    image-source: /images/UI_REWORK/BUTTON_RED_HOVER
+
+  $pressed:
+    image-source: /images/UI_REWORK/BUTTON_RED_PRESSED
+
+WindowBox < UIWindow
+  size: 264 264
+  anchors.centerIn: parent
+  opacity: 1
+  color: #e6be5d
+  text-offset: 0 10
+  text-align: top
+  image-source: /images/UI_REWORK/WINDOW
+  image-border: 20
+  opacity: 1
+  padding-top: 35
+  padding-left: 10
+  padding-right: 10
+  padding-bottom: 10
+
+  $disabled:
+    color: #aaaaaa88
+
+  $dragging:
+    opacity: 0.8
+
+
+GameWindow < UIWindow
+  font: verdana-11px-antialised
+  size: 200 200
+  opacity: 1
+  text-offset: 0 10
+  text-align: top
+  image-source: /images/UI_REWORK/WINDOW
+  image-border: 20
+  padding: 3 12 12 12
+
+  $disabled:
+    color: #dfdfdf88
+
+  $dragging:
+    opacity: 0.9
+
+  ButtonRedClose
+    id: closeButton
+    anchors.top: parent.top
+    anchors.right: parent.right
+
+
+GameMainWindow < GameWindow
+  anchors.centerIn: parent
+
+
+EnterGameWindow < UIWindow
+  width: 470
+  anchors.top: parent.top
+  anchors.bottom: parent.bottom
+  anchors.left: parent.left
+  image-source: /images/UI_REWORK/window_entergame
+  opacity: 1
+  color: #1E1E1E
+  text-offset: 0 6
+  text-align: top
+  image-border: 20
+  padding-top: 36
+  padding-left: 16
+  padding-right: 16
+  padding-bottom: 16
+
+CreateAccountWindow < UIWindow
+  width: 470
+  anchors.top: parent.top
+  anchors.bottom: parent.bottom
+  anchors.left: parent.left
+  image-source: /images/UI_REWORK/window_entergame
+  color: #1E1E1E
+  text-offset: 0 6
+  text-align: top
+  image-border: 20
+  padding-top: 36
+  padding-left: 16
+  padding-right: 16
+
+CharacterListWindow < UIWindow
+  width: 400
+  font: proximanova-bold-16
+  anchors.centerIn: parent
+  image-source: /images/UI_REWORK/window_entergame
+  color: #1E1E1E
+  text-offset: 35 30
+  text-align: top-left
+  image-border: 20
+  padding-top: 36
+  padding-left: 16
+  padding-right: 16
+
+// PANELS
+
+LogoPanel < UIWidget
+  size: 470 346
+  image-source: /images/UI_REWORK/logo
+
+EnterGamePanel < UIWidget
+  size: 470 318
+  image-source: /images/UI_REWORK/window_entergame
+
+SocialPanel < UIWidget
+
+// TEXTEDITS
+
+EnterGameTextEdit < UITextEdit
+  font: window
+  color: #FFFFFF
+  height: 35
+  padding: 10
+  text-align: center-left
+  image-source: /images/UI_REWORK/ENTERGAME_TEXTEDIT
+  image-border: 5
+  change-cursor-image: true
+  $disabled:
+    color: #27272788
+    opacity: 0.8
+    change-cursor-image: false
+
+CreateAccountTextEdit < UITextEdit
+  font: window
+  color: #0B1C38
+  height: 35
+  padding: 10
+  text-align: center-left
+  image-source: /images/UI_REWORK/CREATEACC_TEXTEDIT
+  image-border: 5
+  change-cursor-image: true
+  $disabled:
+    color: #27272788
+    opacity: 0.8
+    change-cursor-image: false
+
+// BUTTONS
+
+ButtonWhite < UIButton
+  font: window
+  color: #0B1C38
+  size: 90 50
+  text-offset: 0 1
+  image-source: /images/UI_REWORK/BUTTON_WHITE
+  image-color: #dfdfdf
+  image-border: 5
+  padding: 5 10 5 10
+  opacity: 1.0
+  change-cursor-image: true
+  cursor: pointer
+
+ButtonGreen < UIButton
+  font: window
+  color: #0B1C38
+  size: 90 50
+  text-offset: 0 1
+  image-source: /images/UI_REWORK/BUTTON_GREEN
+  image-color: #dfdfdf
+  image-border: 5
+  padding: 5 10 5 10
+  opacity: 1.0
+  change-cursor-image: true
+  cursor: pointer
+
+CloseButton < UIButton
+  font: window
+  color: white
+  size: 20 20
+  text-offset: 0 1
+  image-border: 5
+  padding: 5 10 5 10
+  opacity: 1.0
+  change-cursor-image: true
+  cursor: pointer
+
+  $!hover !pressed:
+    image-source: /images/UI_REWORK/BUTTON_RED_NORMAL
+
+  $hover !pressed:
+    image-source: /images/UI_REWORK/BUTTON_RED_HOVER
+
+  $pressed:
+    image-source: /images/UI_REWORK/BUTTON_RED_PRESSED
+
+
+
+ButtonBlue < UIButton
+  font: window
+  color: white
+  size: 90 50
+  text-offset: 0 1
+  image-border: 5
+  padding: 5 10 5 10
+  opacity: 1.0
+  change-cursor-image: true
+  cursor: pointer
+
+  $!hover !pressed:
+    image-source: /images/UI_REWORK/BUTTON_BLUE_NORMAL
+
+  $hover !pressed:
+    image-source: /images/UI_REWORK/BUTTON_BLUE_HOVER
+
+  $pressed:
+    image-source: /images/UI_REWORK/BUTTON_BLUE_PRESSED
+
+ButtonLine < UIButton
+  font: window
+  color: white
+  size: 50 50
+  text-offset: 0 1
+  image-border: 5
+  padding: 5 10 5 10
+  opacity: 1.0
+  change-cursor-image: true
+  cursor: pointer
+
+  $!hover !pressed:
+    image-source: /images/UI_REWORK/BUTTON_LINE
+    opacity: 0.8
+  $hover !pressed:
+    image-source: /images/UI_REWORK/BUTTON_LINE
+    opacity: 0.8
+  $pressed:
+    image-source: /images/UI_REWORK/BUTTON_LINE
+    opacity: 0.5
+
+ButtonShop < UIButton
+  font: window
+  color: white
+  size: 160 261
+  text-offset: 0 1
+  image-border: 10
+  image-border-bottom: 61
+  padding: 5 10 5 10
+  opacity: 1.0
+  change-cursor-image: true
+  cursor: pointer
+
+  $!hover !pressed:
+    image-source: /images/UI_REWORK/BUTTON_SHOP_NORMAL
+
+  $hover !pressed:
+    image-source: /images/UI_REWORK/BUTTON_SHOP_HOVER
+
+
+
+
+
+SocialButton < UIButton
+  font: window
+  color: #FFFFFF
+  size: 50 50
+  text-offset: 0 1
+  image-source: /images/UI_REWORK/ENTERGAME_SOCIALBUTTON
+  image-color: #dfdfdf
+  padding: 5 10 5 10
+  opacity: 1.0
+  change-cursor-image: true
+  cursor: pointer
+
+
+
+// CHECKBOX
+
+EnterGameCheckBox < UICheckBox
+  size: 21 21
+  image-source: /images/UI_REWORK/unchecked
+  $checked:
+    !tooltip: tr('Seu client, agora lembra sua conta')
+    image-source:/images/UI_REWORK/checked
+  $!checked:
+    !tooltip: tr('Ative para salvar sua conta.')
+
+ViewCheckBox < UICheckBox
+  size: 20 12
+  image-source: /images/UI_REWORK/viewunchecked
+  $checked:
+    !tooltip: tr('Clique para ocultar informação')
+    image-source:/images/UI_REWORK/viewchecked
+  $!checked:
+    !tooltip: tr('Clique para visualizar informação.')
+
+GameCheckBox < UICheckBox
+  size: 21 21
+  image-source: /images/UI_REWORK/unchecked
+  $checked:
+    !tooltip: tr('Seu chat esta desativado')
+    image-source:/images/UI_REWORK/checked
+  $!checked:
+    !tooltip: tr('Desativar o chat.')
+
+// CREATURE
+
+Personagem < UICreature
+  size: 158 196
+  padding: 1
+  image-source: /images/ui/panel_flat
+  image-border: 1
+  border-width: 1
+  border-color: alpha
+
+  $checked:
+    border-color: white

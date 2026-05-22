@@ -1,0 +1,75 @@
+BattleButton < CreatureButton
+  &isBattleButton: true
+  height: 32
+  margin-left: 4
+  margin-right: 5
+  margin-bottom: 3
+  padding: 3
+  image-source: /images/game/battle/poketibia_row
+  image-border: 6
+  image-color: #ffffffff
+  focusable: false
+  change-cursor-image: true
+  cursor: pointer
+
+  $hover:
+    image-color: #ffffff
+
+  $on:
+    image-color: #ffffffff
+
+  UICreature
+    id: creature
+    size: 26 26
+    anchors.left: parent.left
+    anchors.verticalCenter: parent.verticalCenter
+    phantom: true
+    old-scaling: true
+    margin-left: 4
+
+  UIWidget
+    id: spacer
+    width: 1
+    anchors.left: creature.right
+    anchors.top: creature.top
+    phantom: true
+    margin-left: 6
+
+  UIWidget
+    id: skull
+    size: 11 11
+    anchors.left: spacer.right
+    anchors.top: creature.top
+    phantom: true
+
+  UIWidget
+    id: emblem
+    size: 11 11
+    anchors.left: skull.right
+    anchors.top: creature.top
+    phantom: true
+
+  Label
+    id: label
+    anchors.left: emblem.right
+    anchors.right: parent.right
+    anchors.top: creature.top
+    margin-left: 3
+    margin-right: 6
+    height: 15
+    font: verdana-11px-rounded
+    color: #dbe7f3
+    text-offset: 0 1
+    phantom: true
+
+  LifeProgressBar
+    id: lifeBar
+    height: 6
+    anchors.left: spacer.right
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    margin-right: 6
+    margin-bottom: 5
+    border: 1 #0c1118
+    background-color: #46c86d
+    phantom: true

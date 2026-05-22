@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quests>
+	<quest name="Catch'em All" startstorageid="1000" startstoragevalue="0">
+		<mission name="Quest" storageid="1000" startvalue="0" endvalue="1">
+			<missionstate id="0" description="Ajude na catalogacao dos pokemons ate a terceira geracao os capturando. Depois procure sua recompensa." />
+			<missionstate id="1" description="Apos capturar todos os pokemons ate a terceira geracao, Oak lhe da uma escritura antiga como recompensa. E agora? Apos tanto trabalho o que ganho e apenas um papel velho. Seu futuro certamente possuira varias surpresas, boas e ruins!!!" />
+		</mission>
+	</quest>
+</quests>
+

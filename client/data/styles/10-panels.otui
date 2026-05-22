@@ -1,0 +1,35 @@
+Panel < UIWidget
+  phantom: true
+  auto-focus: first
+
+GamePanel < UIWidget
+  phantom: true
+  auto-focus: first
+  image-source: /images/UI_REWORK/GAME_PANEL
+  image-border: 12
+
+ScrollablePanel < UIScrollArea
+  phantom: true
+  auto-focus: first
+
+ShopScrollablePanel < UIScrollArea
+  phantom: true
+  auto-focus: first
+  image-source: /images/UI_REWORK/GAME_PANEL
+  image-border: 12
+
+FlatPanel < Panel
+  image-source: /images/ui/panel_flat
+  image-border: 1
+
+ScrollableFlatPanel < ScrollablePanel
+
+  image-border: 1
+
+LightFlatPanel < Panel
+  image-source: /images/ui/panel_lightflat
+  image-border: 1
+
+PanelGuild < UIWidget
+  phantom: true
+  auto-focus: first

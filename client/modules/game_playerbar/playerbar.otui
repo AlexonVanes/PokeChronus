@@ -1,0 +1,354 @@
+QuickSlotItem < UIItem
+  size: 24 24
+  image-source: /images/ui/item
+  font: verdana-11px-rounded
+  background-color: alpha
+  color: white
+  virtual: true
+  &selectable: true
+  &editable: false
+
+  $!on:
+    border: 0 alpha
+
+  $hover !on:
+    border: 1 white
+
+  $hover:
+    background-color: #ffffff65
+
+  $on:
+    border-width: 1
+
+OrderSlotItem < UIItem
+  size: 24 24
+  image-source: /images/ui/item
+  font: verdana-11px-rounded
+  background-color: alpha
+  color: white
+  virtual: true
+  &selectable: true
+  &editable: false
+
+  $!on:
+    border: 0 alpha
+
+  $hover !on:
+    border: 1 white
+
+  $hover:
+    background-color: #ffffff65
+
+  $on:
+    border-width: 1
+
+StatusIconTooltip < UIWindow
+  size: 150 118
+  image-source: /images/ui/tooltip/background_tooltip
+  focusable: false
+
+  UIWidget
+    id: icon
+    size: 25 25
+    anchors.top: parent.top
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-top: 22
+
+  Label
+    id: title
+    color: white
+    phantom: true
+    font: sono_medium_12
+    text-auto-resize: true
+    anchors.top: icon.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-top: 5
+
+  UIWidget
+    id: separator
+    size: 128 1
+    image-source: /images/ui/tooltip/separator
+    anchors.top: title.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-top: 7
+
+  UILabel
+    id: desc
+    font: sono_medium_10
+    color: #dfdfdf
+    phantom: true
+    text-align: center
+    text-wrap: true
+    text-vertical-auto-resize: true
+    anchors.top: separator.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 7
+    margin-left: 14
+    margin-right: 14
+
+PlayerBar < UIWindow
+  size: 260 104
+  background-color: #16213dcc
+  border-width: 1
+  border-color: #39568fdd
+  border-radius: 6
+  focusable: false
+
+  Label
+    id: playerNameLabel
+    text:
+    color: #f4f7ff
+    font: sans-bold-16px-rounded
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 2
+    margin-left: 92
+    text-auto-resize: true
+    text-stroke: 2 black
+
+  UIWidget
+    id: centerBall
+    size: 82 82
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-left: 6
+    margin-top: 18
+    background-color: #253c70cc
+    border-width: 2
+    border-color: #4d6fa8dd
+    border-radius: 40
+
+  UIWidget
+    id: perfilBase
+    size: 58 58
+    anchors.horizontalCenter: centerBall.horizontalCenter
+    anchors.verticalCenter: centerBall.verticalCenter
+    image-source: /perfil/circle/base
+    phantom: true
+
+  UIWidget
+    id: perfilImage
+    size: 58 58
+    anchors.horizontalCenter: perfilBase.horizontalCenter
+    anchors.verticalCenter: perfilBase.verticalCenter
+    image-source: /perfil/circle/male/32
+    phantom: true
+
+  UIWidget
+    id: perfilStatus
+    size: 58 58
+    anchors.horizontalCenter: perfilBase.horizontalCenter
+    anchors.verticalCenter: perfilBase.verticalCenter
+    visible: false
+    phantom: true
+
+  UIWidget
+    id: perfilBorder
+    size: 72 72
+    anchors.horizontalCenter: perfilBase.horizontalCenter
+    anchors.verticalCenter: perfilBase.verticalCenter
+    image-source: /perfil/border/none
+    phantom: true
+
+  Label
+    id: lvlLabel
+    text: Lv. 1
+    color: #dce8ff
+    font: verdana-11px-rounded
+    anchors.left: centerBall.left
+    anchors.bottom: centerBall.bottom
+    margin-left: 9
+    margin-bottom: -1
+    text-auto-resize: true
+    text-stroke: 2 black
+
+  UIWidget
+    id: barsPanel
+    size: 162 58
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-left: 92
+    margin-top: 22
+
+    Label
+      id: hpTextLabel
+      text: HP
+      color: #ffe26e
+      font: verdana-9px-bold
+      width: 32
+      text-align: left
+      anchors.left: parent.left
+      anchors.top: parent.top
+      text-stroke: 1 black
+
+    ProgressBar
+      id: healthBar
+      size: 120 10
+      anchors.left: hpTextLabel.right
+      anchors.verticalCenter: hpTextLabel.verticalCenter
+      margin-left: 4
+      background-color: #00d829
+      border-width: 1
+      border-color: #09200d
+      border-radius: 2
+      color: #ffffff
+      font: verdana-9px-bold
+      text-align: center
+      text-stroke: 2 black
+
+    Label
+      id: healthPercentLabel
+      text: 100%
+      color: #ffffff
+      font: verdana-9px-bold
+      anchors.centerIn: healthBar
+      text-auto-resize: true
+      text-stroke: 2 black
+      phantom: true
+
+    Label
+      id: expTextLabel
+      text: EXP
+      color: #ffd35c
+      font: verdana-9px-bold
+      width: 32
+      text-align: left
+      anchors.left: parent.left
+      anchors.top: hpTextLabel.bottom
+      margin-top: 3
+      text-stroke: 1 black
+
+    UIWidget
+      id: expBar
+      size: 120 8
+      anchors.left: healthBar.left
+      anchors.verticalCenter: expTextLabel.verticalCenter
+      background-color: #142447
+      border-width: 1
+      border-color: #08111f
+      border-radius: 2
+      clipping: true
+
+      UIWidget
+        id: xpFill
+        size: 0 8
+        anchors.left: parent.left
+        anchors.top: parent.top
+        background-color: #3878ff
+
+    Label
+      id: expPercentLabel
+      text: 0%
+      color: #ffffff
+      font: verdana-9px-bold
+      anchors.right: expBar.right
+      anchors.verticalCenter: expBar.verticalCenter
+      margin-right: 2
+      text-auto-resize: true
+      text-stroke: 1 black
+
+    Label
+      id: fishTextLabel
+      text: FISH
+      color: #ffe26e
+      font: verdana-9px-bold
+      width: 32
+      text-align: left
+      anchors.left: parent.left
+      anchors.top: expTextLabel.bottom
+      margin-top: 3
+      text-stroke: 1 black
+
+    UIWidget
+      id: fishBar
+      size: 120 8
+      anchors.left: healthBar.left
+      anchors.verticalCenter: fishTextLabel.verticalCenter
+      background-color: #102040
+      border-width: 1
+      border-color: #08111f
+      border-radius: 2
+      clipping: true
+
+      UIWidget
+        id: fishFill
+        size: 72 8
+        anchors.left: parent.left
+        anchors.top: parent.top
+        background-color: #2e79ff
+
+    Label
+      id: fishPercentLabel
+      text: 60%
+      color: #ffffff
+      font: verdana-9px-bold
+      anchors.right: fishBar.right
+      anchors.verticalCenter: fishBar.verticalCenter
+      margin-right: 2
+      text-auto-resize: true
+      text-stroke: 1 black
+
+    Label
+      id: staminaTextLabel
+      text: STM
+      color: #ffe26e
+      font: verdana-9px-bold
+      width: 32
+      text-align: left
+      anchors.left: parent.left
+      anchors.top: fishTextLabel.bottom
+      margin-top: 3
+      text-stroke: 1 black
+
+    UIWidget
+      id: staminaBar
+      size: 120 8
+      anchors.left: healthBar.left
+      anchors.verticalCenter: staminaTextLabel.verticalCenter
+      background-color: #2b1712
+      border-width: 1
+      border-color: #120705
+      border-radius: 2
+      clipping: true
+
+      UIWidget
+        id: staminaFill
+        size: 90 8
+        anchors.left: parent.left
+        anchors.top: parent.top
+        background-color: #ff6a25
+
+  UIWidget
+    id: blessIcon
+    size: 15 16
+    anchors.left: parent.left
+    anchors.top: barsPanel.bottom
+    margin-left: 92
+    margin-top: 3
+    image-source: /modules/game_playerbar/images/icons/bless_off
+    opacity: 0.45
+
+  UIWidget
+    id: vipIcon
+    size: 15 16
+    anchors.left: blessIcon.right
+    anchors.verticalCenter: blessIcon.verticalCenter
+    margin-left: 5
+    image-source: /modules/game_playerbar/images/icons/vip
+    opacity: 0.45
+
+  Panel
+    id: actionbarPanel
+    size: 628 43
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.bottom: parent.top
+    margin-bottom: 8
+    visible: false
+    layout:
+      type: verticalBox
+      spacing: 5
+
+PlayerBar
+  id: playerBarWindow
+  visible: false

@@ -1,0 +1,42 @@
+OptionPanel
+  OptionCheckBox
+    id: enableAudio
+    !text: tr('Ativar audio;')
+
+  OptionCheckBox
+    id: enableMusicSound
+    !text: tr('Ativar sons do jogo.')
+
+  Label
+    font: window
+    id: musicSoundVolumeLabel
+    !text: tr('Volume dos sons: %d', 100)
+    margin-left: 
+    margin-top: 10
+    @onSetup: |
+      local value = modules.client_options.getOption('musicSoundVolume')
+      self:setText(tr('Volume dos sons: %d', value))
+
+  OptionScrollbar
+    id: musicSoundVolume
+    margin-left: 
+    margin-top: 3
+    minimum: 0
+    maximum: 100
+
+  Label
+    font: window
+    id: botSoundVolumeLabel
+    !text: tr('Volume do bot: %d', 100)
+    margin-left: 
+    margin-top: 6
+    @onSetup: |
+      local value = modules.client_options.getOption('botSoundVolume')
+      self:setText(tr('Volume do bot: %d', value))
+
+  OptionScrollbar
+    id: botSoundVolume
+    margin-left: 
+    margin-top: 3
+    minimum: 0
+    maximum: 100

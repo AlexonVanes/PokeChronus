@@ -1,0 +1,203 @@
+QuestTrackerLabel < Panel
+  height: 20
+  layout:
+    type: verticalBox
+    fit-children: true
+
+  $!first:
+    margin-top: 3
+
+  Label
+    id: description
+    text-align: center
+    text-wrap: true
+    text-auto-resize: true
+
+  HorizontalSeparator
+    margin-top: 3
+
+QuestLabel < Label
+  font: verdana-11px-monochrome
+  height: 18
+  text-offset: 10 1
+  focusable: true
+  color: white
+  background-color: alpha
+
+  $checked:
+    background-color: alpha
+
+  $focus:
+    background-color: #ffffff22
+
+  $hover:
+    background-color: #ffffff22
+
+QuestLog < GamePanel
+  TextListQuest
+    id: questList
+    anchors.fill: parent
+    margin-top: 12
+    margin-bottom: 20
+    focusable: false
+    background-color: alpha
+    vertical-scrollbar: questListScrollBar
+
+  VerticalScrollBar
+    id: questListScrollBar
+    anchors.top: questList.top
+    anchors.bottom: questList.bottom
+    anchors.left: questList.right
+    margin-left: 2
+    step: 14
+    pixels-scroll: true
+
+MissionLog < GamePanel
+  Label
+    id: questName
+    margin-top: 12
+    margin-left: 5
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    text-align: left
+    color: orange
+    text: questline name
+
+  TextListQuest
+    id: missionList
+    anchors.top: prev.bottom
+    anchors.left: parent.left
+    anchors.right: missionListScrollBar.left
+    color: white
+    margin-top: 12
+    margin-right: 1
+    height: 140
+    padding-left: 8
+    focusable: false
+    vertical-scrollbar: missionListScrollBar
+
+  VerticalScrollBar
+    id: missionListScrollBar
+    anchors.top: questName.bottom
+    anchors.right: parent.right
+    anchors.bottom: missionDescription.top
+    step: 50
+    margin-top: 12
+    margin-right: 1
+    pixels-scroll: true
+
+  Label
+    id: missionDescription
+    height: 100
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    background-color: #414141
+    margin-left: 5
+    margin-right: 5
+    margin-bottom: 35
+    margin-top: 10
+    text-wrap: true
+    text-offset: 10 10
+
+  CheckBox
+    id: track
+    anchors.top: missionDescription.bottom
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-left: 5
+    margin-top: 6
+    margin-bottom: 7
+    !text: tr('Show in quest tracker')
+    @onClick: modules.game_questlog.onTrackOptionChange(self)
+    enabled: false
+
+QuestLogWindow < MainWindow
+  id: questLogWindow
+  !text: tr('Quest')
+  size: 500 450
+  padding-top: 10
+  @onEscape: modules.game_questlog.back()
+  $mobile:
+    size: 330 350
+
+  QuestLog
+    id: questlog
+    anchors.top: parent.top
+    anchors.bottom: bottomSep.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-bottom: 20
+    margin-top: 35
+    visible: false
+  
+  MissionLog
+    id: missionlog
+    anchors.top: questlog.top
+    anchors.bottom: bottomSep.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-bottom: 5
+    margin-top: 0
+
+  HorizontalSeparator
+    id: bottomSep
+    anchors.right: parent.right
+    anchors.left: parent.left
+    anchors.bottom: showButton.top
+    margin-bottom: 6    
+
+  Button
+    id: showButton
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    size: 80 50
+    !text: tr('Show')
+    @onClick: modules.game_questlog.showQuestLine()
+
+
+  Button
+    id: trackerButton
+    anchors.verticalCenter: prev.verticalCenter
+    anchors.left: showButton.right
+    anchors.right: parent.right
+    margin-left: 5
+    size: 80 50
+    text-align: center
+    !text: tr('Quest Tracker')
+    @onClick: modules.game_questlog.toggle()
+
+
+
+
+QuestTracker < MiniWindow
+  id: questTracker
+  !text: tr('Quest Tracker')
+  height: 60
+  icon: /images/topbuttons/quest_tracker
+
+  MiniWindowContents
+    padding-left: 5
+    padding-right: 5
+    padding-top: 5
+    layout: verticalBox
+
+    Panel
+      id: list
+      layout:
+        type: verticalBox
+        fit-children: true
+
+    Panel
+      height: 20
+      margin-top: 5
+      Button
+        !text: tr('Add Tracked Quest')
+        anchors.fill: parent
+        margin-left: 30
+        margin-right: 30 
+        font: cipsoftFont
+        color: #FFFFFF
+        @onClick: g_game.requestQuestLog()

@@ -1,0 +1,29 @@
+NotificationWindow < UIWidget
+  focusable: false
+  phantom: true
+  background-color: #00000099
+  border-width: 1
+  border-color: #333333
+  padding: 10
+  width: 250
+  
+  Label
+    id: title
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    text-align: center
+    color: #FF3333
+    font: verdana-11px-rounded
+    margin-bottom: 5
+
+  Label
+    id: message
+    anchors.top: prev.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    text-align: center
+    text-wrap: true
+    color: #FFFFFF
+    font: verdana-11px-rounded

@@ -1,0 +1,1205 @@
+MissionWidget < UIWidget
+  size: 168 136
+  image-source: ~
+  background-color: #061923dd
+  border: 1 #0d9fd0bb
+
+  UIWidget
+    id: topGlow
+    height: 2
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    background-color: #ffd43b
+
+  UIWidget
+    id: base
+    size: 92 48
+    anchors.top: parent.top
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-top: 43
+    image-source: images/mission/base
+  UIWidget
+    id: itemIcon
+    size: 44 44
+    anchors.centerIn: base
+    phantom: true
+  UIWidget
+    id: progressTrack
+    size: 118 6
+    anchors.left: parent.left
+    anchors.bottom: parent.bottom
+    margin-left: 25
+    margin-bottom: 30
+    background-color: #000000cc
+    border: 1 #17475d
+  UIWidget
+    id: progressFill
+    size: 1 4
+    anchors.left: progressTrack.left
+    anchors.verticalCenter: progressTrack.verticalCenter
+    margin-left: 1
+    background-color: #ffd43b
+  UIWidget
+    id: xpicon
+    size: 21 17
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    margin-bottom: 8
+    margin-left: 9
+    image-source: images/mission/xp_icon
+  UIWidget
+    id: xptext
+    size: 48 15
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    margin-bottom: 8
+    margin-left: 32
+    text-align: left
+    font: damas
+    color: #ffffff
+  UIWidget
+    id: star
+    size: 18 18
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right
+    margin-bottom: 7
+    margin-right: 10
+    font: damas
+    image-source: images/mission/loading
+    $on:
+      image-source: images/mission/complet
+  UIWidget
+    id: progress
+    size: 168 18
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    margin-bottom: 20
+    text-align: center
+    font: damas
+    color: #ffffff
+  UIWidget
+    id: desc
+    size: 148 34
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 8
+    margin-left: 10
+    text-align: topLeft
+    text-wrap: true
+    font: damas
+    color: #ffffff
+
+tittleMissions < UIWidget
+  id: tittleMissions
+  size: 520 34
+  image-source: ~
+  background-color: #061923ee
+  border: 1 #0d9fd0bb
+  anchors.top: parent.top
+  anchors.right: parent.right
+  visible: false
+  margin-top: 58
+  margin-right: 15
+  UIWidget
+    id: titleAccent
+    width: 4
+    anchors.top: parent.top
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    background-color: #ffd43b
+  Label
+    id: missionTitle
+    text: MISSOES DO PASSE
+    text-auto-resize: true
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.left: parent.left
+    margin-left: 18
+    color: #b9f4ff
+    font: window
+  Label
+    id: missionTag
+    text: DIARIAS E SEMANAIS
+    text-auto-resize: true
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.right: parent.right
+    margin-right: 14
+    color: #ffd43b
+    font: damas
+backgroundMissions < UIWidget
+  id: backgroundMissions
+  size: 245 288
+  image-source: images/mission/background_image
+  anchors.top: parent.top
+  anchors.left: parent.left
+  visible: false
+  margin-left: 55
+  margin-top: 124
+
+MissionPanel < UIScrollArea
+  id: missionPanel
+  size: 520 284
+  anchors.top: parent.top
+  anchors.right: parent.right
+  margin-top: 104
+  margin-right: 15
+  visible: false
+  layout:
+    type: grid
+    cell-size: 168 136
+    flow: true
+    cell-spacing: 8
+  vertical-scrollbar: missionScrollBar
+MissionScrollBar < VerticalScrollBar
+  id: missionScrollBar
+  anchors.top: missionPanel.top
+  anchors.bottom: missionPanel.bottom
+  anchors.left: missionPanel.right
+  margin-left: 7
+  step: 30
+  opacity: 0.7
+  visible: false
+MissionClose < UIButton
+  id: returnMission
+  size: 88 28
+  anchors.bottom: parent.bottom
+  anchors.right: parent.right
+  margin-right: 44
+  margin-bottom: 30
+  image-source: ~
+  background-color: #061923ee
+  border: 1 #ffd43b
+  color: #ffd43b
+  text: VOLTAR
+  text-offset: 0 1
+  font: window
+  change-cursor-image: true
+  cursor: pointer
+  @onClick: modules.game_pass.hideMissions()
+  visible: false
+  opacity: 0.8
+  $hover:
+    opacity: 1
+  $pressed:
+    opacity: 0.9
+
+CollectedMask < UIWidget
+  size: 64 77
+  //anchors.fill: parent
+  anchors.bottom: parent.bottom
+  anchors.top: parent.top
+  anchors.left: parent.left
+  anchors.right: parent.right
+  margin-bottom: -13
+  margin-top: -13
+  margin-left: -13
+  margin-right: -13
+  image-source: images/collected
+  phantom: true
+PassWidgetLevel < UIWidget
+  width: 64
+  height: 20
+  image-source: ~
+  background-color: #061a2add
+  border-width: 1
+  border-color: #1da7ff88
+  color: #ffffff
+  text-align: center
+  font: damas
+  $hover:
+    border-color: #ffd44faa
+UIPassExperience < UIWidget
+  size: 64 77
+  padding: 13
+  image-source: images/experience
+UIPassPremiumPoints < UIWidget
+  size: 64 77
+  padding: 13
+  color: white
+  font: damas
+  text-offset: 40 55
+  image-source: images/premiumpoints
+UIPassSkin < UICreature
+  size: 64 77
+  padding: 13
+  fixed-creature-size: true
+UIPassItem < UIWidget
+  size: 64 77
+  padding: 13
+  image-source: images/slot
+  background-color: #03142199
+  border-width: 1
+  border-color: #103a55aa
+  opacity: 0.9
+  $hover:
+    opacity: 1
+    border-color: #ffd44fcc
+  $pressed:
+    opacity: 0.5
+  Item
+    id: item
+    anchors.fill: parent
+    anchors.bottom: parent.bottom
+    margin-bottom: 6
+    phantom: true
+    virtual: true
+UIPassMask < UIWidget
+  size: 64 77
+  image-source: ~
+  background-color: black
+  opacity: 0.5
+  phantom: true
+  anchors.bottom: parent.bottom
+  anchors.top: parent.top
+  anchors.left: parent.left
+  anchors.right: parent.right
+  margin-bottom: -10
+  margin-top: -10
+  margin-left: -10
+  margin-right: -10
+StarWidget < UIWidget
+  anchors.top: parent.top
+  anchors.left: parent.left
+  margin-top: 1
+  margin-left: 2
+  image-source: images/progress/0
+
+  $!first:
+    image-source: images/progress/0
+    margin-left: 0
+
+UIBlackWindow < UIWidget
+  id: UIBlackWindow
+  size: 827 429
+  image-source: images/blackwindow
+  anchors.top: parent.top
+  anchors.left: parent.left
+  margin-top: -30
+  margin-left: -9
+  visible: false
+
+AlertWindow < UIWidget
+  id: AlertWindow
+  size: 360 150
+  image-source: ~
+  background-color: #02111bf2
+  border-width: 1
+  border-color: #168fc0cc
+  anchors.centerIn: parent
+  margin-bottom: 18
+  @onEscape: hideAlertWindow()
+  visible: false
+  UIWidget
+    id: topLine
+    height: 3
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    background-color: #35cfff
+  UIWidget
+    id: accentLine
+    width: 4
+    anchors.top: parent.top
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    margin-top: 14
+    margin-bottom: 14
+    margin-left: 14
+    background-color: #ffd44f
+  UIWidget
+    id: iconFrame
+    size: 74 74
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 28
+    margin-left: 30
+    background-color: #031823ee
+    border-width: 1
+    border-color: #35cfff77
+  UIWidget
+    id: icon
+    size: 52 52
+    anchors.centerIn: iconFrame
+  Label
+    id: alertTitle
+    !text: tr('AVISO')
+    font: damas
+    color: #ffd95a
+    anchors.top: parent.top
+    anchors.left: iconFrame.right
+    margin-top: 30
+    margin-left: 18
+    text-auto-resize: true
+  UIWidget
+    id: alertLine
+    size: 185 3
+    image-source: images/separator_vertical
+    anchors.top: alertTitle.bottom
+    anchors.left: alertTitle.left
+    margin-top: 3
+  Label
+    id: alertMessage
+    size: 206 34
+    !text: tr('Mensagem do passe.')
+    font: verdana-11px-rounded
+    color: #d8f4ff
+    anchors.top: alertLine.bottom
+    anchors.left: alertTitle.left
+    margin-top: 8
+    text-wrap: true
+  UIWidget
+    id: text
+    visible: false
+  UIButton
+    id: cancelar
+    image-source: ~
+    size: 124 30
+    background-color: #0b2638dd
+    border-width: 1
+    border-color: #35cfff99
+    color: #e8fbff
+    text: FECHAR
+    text-align: center
+    font: damas
+    anchors.bottom: parent.bottom
+    anchors.left: alertTitle.left
+    margin-bottom: 14
+    opacity: 0.8
+    @onClick: hideAlertWindow()
+    $hover:
+      opacity: 1.0
+      border-color: #35cfffff
+      background-color: #0f3650ee
+    
+    $pressed:
+      opacity: 0.9
+
+UIBuyLevel < UIWidget
+  id: UIBuyLevel
+  size: 360 150
+  image-source: ~
+  background-color: #02111bf2
+  border-width: 1
+  border-color: #168fc0cc
+  anchors.centerIn: parent
+  margin-bottom: 18
+  @onEscape: hideUpWindow()
+  visible: false
+  UIWidget
+    id: topLine
+    height: 3
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    background-color: #35cfff
+  UIWidget
+    id: accentLine
+    width: 4
+    anchors.top: parent.top
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    margin-top: 14
+    margin-bottom: 14
+    margin-left: 14
+    background-color: #ffd44f
+  UIWidget
+    id: levelFrame
+    size: 74 74
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 28
+    margin-left: 30
+    background-color: #031823ee
+    border-width: 1
+    border-color: #35cfff77
+  UIWidget
+    id: xpIcon
+    size: 42 42
+    image-source: images/buylevel/xp_icon
+    anchors.centerIn: levelFrame
+  UIWidget
+    id: divider
+    size: 5 82
+    image-source: images/separator
+    anchors.top: levelFrame.top
+    anchors.left: levelFrame.right
+    margin-left: 14
+  Label
+    id: levelTitle
+    !text: tr('COMPRAR NIVEL')
+    font: damas
+    color: #ffd95a
+    anchors.top: parent.top
+    anchors.left: divider.right
+    margin-top: 30
+    margin-left: 16
+    text-auto-resize: true
+  UIWidget
+    id: levelLine
+    size: 156 3
+    image-source: images/separator_vertical
+    anchors.top: levelTitle.bottom
+    anchors.left: levelTitle.left
+    margin-top: 3
+  Label
+    id: levelText
+    !text: tr('Avance 1 nivel do passe.')
+    font: verdana-11px-rounded
+    color: #d8f4ff
+    anchors.top: levelLine.bottom
+    anchors.left: levelTitle.left
+    margin-top: 8
+    text-auto-resize: true
+  UIWidget
+    id: priceBox
+    size: 112 30
+    anchors.top: levelText.bottom
+    anchors.left: levelTitle.left
+    margin-top: 7
+    background-color: #061a2ddd
+    border-width: 1
+    border-color: #32c8ffcc
+  UIWidget
+    id: diamond
+    size: 24 24
+    image-source: images/buylevel/diamond
+    anchors.left: priceBox.left
+    anchors.verticalCenter: priceBox.verticalCenter
+    margin-left: 8
+  Label
+    id: priceLabel
+    text: 10
+    font: verdana-11px-rounded
+    color: #ffffff
+    anchors.left: diamond.right
+    anchors.verticalCenter: priceBox.verticalCenter
+    margin-left: 5
+    text-auto-resize: true
+  Label
+    id: priceText
+    !text: tr('Diamonds')
+    font: small-9px
+    color: #68dfff
+    anchors.left: priceLabel.right
+    anchors.verticalCenter: priceBox.verticalCenter
+    margin-left: 3
+    text-auto-resize: true
+  UIButton
+    id: cancelar
+    image-source: ~
+    size: 124 30
+    background-color: #0b2638dd
+    border-width: 1
+    border-color: #35cfff99
+    color: #e8fbff
+    text: CANCELAR
+    text-align: center
+    font: damas
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    margin-left: 196
+    margin-bottom: 14
+    opacity: 0.8
+    @onClick: hideUpWindow()
+    $hover:
+      opacity: 1.0
+      border-color: #35cfffff
+      background-color: #0f3650ee
+    
+    $pressed:
+      opacity: 0.9
+  UIButton
+    id: comprar
+    image-source: ~
+    size: 124 30
+    background-color: #0b2638dd
+    border-width: 1
+    border-color: #ffd44faa
+    color: #ffdd62
+    text: COMPRAR
+    text-align: center
+    font: damas
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    margin-left: 58
+    margin-bottom: 14
+    opacity: 0.8
+    $hover:
+      opacity: 1.0
+      border-color: #ffd44fff
+      background-color: #17344bee
+    
+    $pressed:
+      opacity: 0.9
+UIBuyPass35 < UIWidget
+  id: UIBuyPass35
+  size: 360 168
+  image-source: ~
+  background-color: #02111bf2
+  border-width: 1
+  border-color: #168fc0cc
+  anchors.centerIn: parent
+  margin-bottom: 18
+  @onEscape: doCloseBuyWindow()
+  visible: false
+  UIWidget
+    id: topLine
+    height: 3
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    background-color: #35cfff
+  UIWidget
+    id: accentLine
+    width: 4
+    anchors.top: parent.top
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    margin-top: 14
+    margin-bottom: 14
+    margin-left: 14
+    background-color: #ffd44f
+  UIWidget
+    id: passFrame
+    size: 82 82
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 28
+    margin-left: 30
+    background-color: #031823ee
+    border-width: 1
+    border-color: #35cfff77
+  UIWidget
+    id: passIcon
+    size: 58 58
+    image-source: images/buypass/pass_icon
+    anchors.centerIn: passFrame
+  UIWidget
+    id: eliteBadge
+    size: 30 30
+    image-source: images/icons/elite
+    anchors.right: passFrame.right
+    anchors.bottom: passFrame.bottom
+    margin-right: -4
+    margin-bottom: -4
+  UIWidget
+    id: divider
+    size: 5 92
+    image-source: images/separator
+    anchors.top: passFrame.top
+    anchors.left: passFrame.right
+    margin-left: 14
+  Label
+    id: confirmTitle
+    !text: tr('PASSE DE ELITE')
+    font: damas
+    color: #ffd95a
+    anchors.top: parent.top
+    anchors.left: divider.right
+    margin-top: 25
+    margin-left: 16
+    text-auto-resize: true
+  UIWidget
+    id: line
+    size: 156 3
+    image-source: images/separator_vertical
+    anchors.top: confirmTitle.bottom
+    anchors.left: confirmTitle.left
+    margin-top: 2
+  Label
+    id: confirmText
+    !text: tr('Recompensas elite da temporada.')
+    font: verdana-11px-rounded
+    color: #d8f4ff
+    anchors.top: line.bottom
+    anchors.left: confirmTitle.left
+    margin-top: 7
+    text-auto-resize: true
+  UIWidget
+    id: priceBox
+    size: 124 30
+    anchors.top: confirmText.bottom
+    anchors.left: confirmTitle.left
+    margin-top: 7
+    background-color: #061a2ddd
+    border-width: 1
+    border-color: #32c8ffcc
+  UIWidget
+    id: diamond
+    size: 24 24
+    image-source: images/buylevel/diamond
+    anchors.left: priceBox.left
+    anchors.verticalCenter: priceBox.verticalCenter
+    margin-left: 8
+  Label
+    id: priceValue
+    text: 50
+    font: verdana-11px-rounded
+    color: #ffffff
+    anchors.left: diamond.right
+    anchors.verticalCenter: priceBox.verticalCenter
+    margin-left: 5
+    text-auto-resize: true
+  Label
+    id: priceText
+    !text: tr('Diamonds')
+    font: small-9px
+    color: #68dfff
+    anchors.left: priceValue.right
+    anchors.verticalCenter: priceBox.verticalCenter
+    margin-left: 3
+    text-auto-resize: true
+  UIWidget
+    id: warningIcon
+    size: 24 24
+    image-source: images/sclaming
+    anchors.top: parent.top
+    anchors.right: parent.right
+    margin-top: 24
+    margin-right: 18
+  UIButton
+    id: cancelar
+    image-source: ~
+    size: 124 30
+    background-color: #0b2638dd
+    border-width: 1
+    border-color: #35cfff99
+    color: #e8fbff
+    text: CANCELAR
+    text-align: center
+    font: damas
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    margin-left: 196
+    margin-bottom: 16
+    opacity: 0.8
+    @onClick: doCloseBuyWindow()
+    $hover:
+      opacity: 1.0
+      border-color: #35cfffff
+      background-color: #0f3650ee
+    
+    $pressed:
+      opacity: 0.9
+  UIButton
+    id: comprar
+    image-source: ~
+    size: 124 30
+    background-color: #0b2638dd
+    border-width: 1
+    border-color: #ffd44faa
+    color: #ffdd62
+    text: COMPRAR
+    text-align: center
+    font: damas
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    margin-left: 58
+    margin-bottom: 16
+    @onClick: doBuyPass35Server()
+    opacity: 0.8
+    $hover:
+      opacity: 1.0
+      border-color: #ffd44fff
+      background-color: #17344bee
+    
+    $pressed:
+      opacity: 0.9
+windowList < UIWidget
+  id: windowList
+  size: 790 216
+  image-source: images/list_background
+  anchors.bottom: parent.bottom
+  anchors.left: parent.left
+  margin-bottom: 27
+  margin-left: 26
+
+PassInfo < UIWidget
+  id: passInfo
+  size: 790 174
+  anchors.top: parent.top
+  anchors.left: parent.left
+  margin-top: 34
+  margin-left: 27
+
+  UIWidget
+    id: headerPanel
+    size: 742 126
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 12
+    margin-left: 4
+    background-color: #02111baa
+    border-width: 1
+    border-color: #168fc066
+
+  UIWidget
+    id: headerAccent
+    size: 5 82
+    anchors.top: headerPanel.top
+    anchors.left: headerPanel.left
+    margin-top: 18
+    margin-left: 14
+    background-color: #ffd44f
+
+  Label
+    id: battleTitle
+    !text: tr('PASSE DE BATALHA')
+    font: damas
+    color: #ffdd62
+    anchors.top: headerPanel.top
+    anchors.left: headerAccent.right
+    margin-top: 14
+    margin-left: 13
+    text-auto-resize: true
+
+  Label
+    id: battleSubtitle
+    !text: tr('TEMPORADA SPACE')
+    font: verdana-11px-rounded
+    color: #5fe7ff
+    anchors.top: battleTitle.bottom
+    anchors.left: battleTitle.left
+    margin-top: 2
+    text-auto-resize: true
+
+  UIWidget
+    id: heroPreview
+    size: 1 1
+    image-source: images/preview/charizard
+    anchors.top: headerPanel.top
+    anchors.right: headerPanel.right
+    visible: false
+
+  UIWidget
+    id: statusCard
+    size: 228 74
+    anchors.top: headerPanel.top
+    anchors.left: headerAccent.right
+    margin-top: 45
+    margin-left: 13
+    background-color: #031823ee
+    border-width: 1
+    border-color: #35cfff77
+
+  UIWidget
+    id: progressCard
+    size: 265 74
+    anchors.top: statusCard.top
+    anchors.left: statusCard.right
+    margin-left: 22
+    background-color: #031823ee
+    border-width: 1
+    border-color: #35cfff55
+
+  UIWidget
+    id: eliteCard
+    size: 138 74
+    anchors.top: statusCard.top
+    anchors.left: progressCard.right
+    margin-left: 22
+    background-color: #031823ee
+    border-width: 1
+    border-color: #ffd44f77
+
+  UIWidget
+    id: premiumGlow
+    size: 64 77
+    image-source: images/premiumpoints
+    anchors.centerIn: eliteCard
+    opacity: 0.85
+
+  UIWidget
+    id: actionDock
+    size: 270 42
+    anchors.top: progressCard.bottom
+    anchors.left: progressCard.left
+    margin-top: 7
+    background-color: #061523dd
+    border-width: 1
+    border-color: #2bc3ff77
+
+  UIWidget
+    id: level
+    size: 59 47
+    image-source: images/level_base
+    anchors.top: progressCard.top
+    anchors.left: progressCard.left
+    margin-top: 14
+    margin-left: 12
+    text-offset: -15 5
+    font: window
+  UIWidget
+    id: daysLeft
+    text-auto-resize: true
+    anchors.top: statusCard.top
+    anchors.left: statusCard.left
+    margin-left: 84
+    margin-top: 52
+    font: damas
+  UIWidget
+    id: TimeLeft
+    text-auto-resize: true
+    anchors.top: statusCard.top
+    anchors.left: statusCard.left
+    margin-left: 84
+    margin-top: 37
+    font: damas
+  UIWidget
+    id: stars
+    size: 199 13
+    image-source: images/progress/progressbar
+    anchors.top: progressCard.top
+    anchors.left: level.right
+    margin-top: 32
+    margin-left: 17
+    font: damas
+    StarWidget
+      id: star1
+      size: 15 10
+      image-source: ~
+      $on:
+        image-source: images/progress/1
+        anchors.left: parent.left
+    StarWidget
+      id: star2
+      size: 16 10
+      image-source: ~
+      $on:
+        image-source: images/progress/2
+        anchors.left: prev.right
+    StarWidget
+      id: star3
+      size: 16 10
+      image-source: ~
+      $on:
+        image-source: images/progress/3
+        anchors.left: prev.right
+    StarWidget
+      id: star4
+      size: 19 10
+      image-source: ~
+      $on:
+        image-source: images/progress/4
+        anchors.left: prev.right
+    StarWidget
+      id: star5
+      size: 20 10
+      image-source: ~
+      $on:
+        image-source: images/progress/5
+        anchors.left: prev.right
+    StarWidget
+      id: star6
+      size: 20 10
+      image-source: ~
+      $on:
+        image-source: images/progress/6
+        anchors.left: prev.right
+    StarWidget
+      id: star7
+      size: 21 10
+      image-source: ~
+      $on:
+        image-source: images/progress/7
+        anchors.left: prev.right
+    StarWidget
+      id: star8
+      size: 21 10
+      image-source: ~
+      $on:
+        image-source: images/progress/8
+        anchors.left: prev.right
+    StarWidget
+      id: star9
+      size: 22 10
+      image-source: ~
+      $on:
+        image-source: images/progress/9
+        anchors.left: prev.right
+    StarWidget
+      id: star10
+      size: 33 10
+      image-source: ~
+      $on:
+        image-source: images/progress/10
+        anchors.left: prev.right
+  UIWidget
+    id: atualPass
+    size: 204 67
+    anchors.top: statusCard.top
+    anchors.left: statusCard.left
+    margin-top: 4
+    margin-left: 6
+  UIWidget
+    id: levelLabel
+    size: 62 14
+    anchors.top: stars.top
+    anchors.left: stars.left
+    margin-left: 68
+    margin-top: -2
+    opacity: 0.7
+    text-align: center
+    font: damas
+    !text: tr('01/100')
+  UIButton
+    id: missions
+    image-source: ~
+    size: 124 30
+    background-color: #0b2638dd
+    border-width: 1
+    border-color: #36d4ff99
+    color: #e8fbff
+    text: MISSOES
+    text-align: center
+    font: damas
+    anchors.top: actionDock.top
+    anchors.left: actionDock.left
+    margin-left: 8
+    margin-top: 6
+    opacity: 0.8
+    @onClick: modules.game_pass.showMissions()
+    $hover:
+      opacity: 1.0
+      border-color: #36d4ffff
+      background-color: #0f3650ee
+    
+    $pressed:
+      opacity: 0.9
+  UIButton
+    id: buyPassButton
+    image-source: ~
+    size: 124 30
+    background-color: #0b2638dd
+    border-width: 1
+    border-color: #ffd44faa
+    color: #ffdd62
+    text: ATUALIZAR
+    text-align: center
+    font: damas
+    anchors.top: missions.top
+    anchors.left: missions.right
+    margin-left: 8
+    !tooltip: tr('Comprar Passe - 50 diamonds')
+    opacity: 0.8
+    @onClick: modules.game_pass.showBuyPassElite()
+    $hover:
+      opacity: 1.0
+      border-color: #ffd44fff
+      background-color: #17344bee
+
+    $pressed:
+      opacity: 0.9
+  UIButton
+    id: passLeveuUp
+    image-source: images/add_level
+    size: 33 16
+    anchors.bottom: parent.bottom
+    anchors.left: levelLabel.right
+    margin-left: 100
+    margin-bottom: 56
+    !tooltip: tr('Comprar nivel do passe')
+    opacity: 0.8
+    @onClick: showUpWindow()
+    $hover:
+      opacity: 1.0
+    
+    $pressed:
+      opacity: 0.9
+  horizontal-scrollbar: itemsScrollBar
+
+ItemsVipImage < UIWidget
+  id: itemsVipImage
+  size: 54 54
+  image-source: images/icons/basico
+  anchors.bottom: parent.bottom
+  anchors.left: parent.left
+  margin-bottom: 166
+  margin-left: 48
+ItemsVipImageText < UIWidget
+  id: ItemsVipImageText
+  size: 101 17
+  image-source: images/icons/text/passe_basico
+  anchors.bottom: itemsVipImage.bottom
+  anchors.left: itemsVipImage.left
+  margin-bottom: -20
+  margin-left: -18
+ItemsVip < UIScrollArea
+  id: itemsVip
+  layout: horizontalBox
+  height: 77
+  anchors.bottom: parent.bottom
+  anchors.left: itemsVipImage.right
+  anchors.right: parent.right
+  margin-bottom: 134
+  margin-left: 42
+  margin-right: 34
+  horizontal-scrollbar: itemsScrollBar
+
+ItemsPremiumImage < UIWidget
+  id: itemsPremiumImage
+  size: 54 54
+  image-source: images/icons/elite
+  anchors.top: itemsVipImage.bottom
+  anchors.left: itemsVipImage.left
+  margin-top: 48
+ItemsPremiumImageText < UIWidget
+  id: ItemsPremiumImageText
+  size: 112 17
+  image-source: images/icons/text/passe_elite
+  anchors.bottom: itemsPremiumImage.bottom
+  anchors.left: itemsPremiumImage.left
+  margin-bottom: -20
+  margin-left: -24
+ItemsPremium < UIScrollArea
+  id: itemsPremium
+  layout: horizontalBox
+  height: 77
+  anchors.top: itemsVip.bottom
+  anchors.left: itemsPremiumImage.right
+  anchors.right: parent.right
+  margin-top: 5
+  margin-left: 42
+  margin-right: 34
+  horizontal-scrollbar: itemsScrollBar
+
+SeparatorList < UIWidget
+  id: SeparatorList
+  size: 5 103
+  image-source: images/separator
+  anchors.top: itemsVipImage.bottom
+  anchors.left: itemsVipImage.right
+  margin-top: -7
+  margin-left: 31
+
+ImageShow < UIWidget
+  id: imageShow
+  size: 467 157
+  anchors.top: parent.top
+  anchors.right: parent.right
+  UIWidget
+    id: separator
+    size: 336 3
+    image-source: images/separator_vertical
+    anchors.top: parent.top
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-top: 27
+  UIWidget
+    id: title
+    text-auto-resize: true
+    font: sans-bold-16px
+    color: #ffff99
+    anchors.top: parent.top
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-top: 1
+  UIWidget
+    id: image
+    size: 467 157
+    anchors.centerIn: parent
+  UIWidget
+    id: imagePass
+    size: 467 157
+    anchors.top: parent.top
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-top: 8
+    margin-right: 25
+  UIWidget
+    id: desc
+    size: 450 40
+    font: damas
+    text-align: topLeft
+    text-wrap: true
+    anchors.bottom: parent.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+AlertCollect < UIWidget
+  id: alertCollect
+  size: 16 30
+  image-source: images/sclaming
+  anchors.top: collectButton.top
+  anchors.right: collectButton.right
+  margin-top: -7
+  margin-right: -7
+  visible: false
+CollectButton < UIButton
+  id: collectButton
+  size: 44 43
+  image-source: images/collect
+  anchors.top: imageShow.top
+  anchors.left: imageShow.left
+  margin-top: 65
+  margin-left: 5
+  !tooltip: tr('Coletar')
+  visible: false
+  opacity: 0.8
+  $hover:
+    opacity: 1
+  $pressed:
+    opacity: 0.7
+PassLevels < UIScrollArea
+  id: passLevels
+  layout: horizontalBox
+  height: 20
+  anchors.top: parent.top
+  anchors.left: itemsPremiumImage.right
+  anchors.right: parent.right
+  margin-left: 42
+  margin-right: 53
+  margin-top: 222
+  horizontal-scrollbar: itemsScrollBar
+ItemsScrollBar < HorizontalScrollBar
+  id: itemsScrollBar
+  anchors.bottom: parent.bottom
+  anchors.left: parent.left
+  anchors.right: parent.right
+  height: 10
+  step: 50
+  opacity: 0.75
+  margin-bottom: 43
+  margin-left: 132
+  margin-right: 34
+
+MainWindow
+  size: 843 470
+  focusable: false
+  image-source: images/backgroundd
+  @onEnter: modules.game_pass.hide()
+  @onEscape: modules.game_pass.hide()
+
+  Label
+    id: topText
+    text-auto-resize: true
+    !text: tr('Space Pass')
+    font: future-earth-40
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.top: parent.top
+    color: #b9f4ff
+    draggable: false
+    phantom: true
+    margin-top: -20
+    margin-left: -10
+
+  PassInfo
+  windowList
+  SeparatorList
+  ItemsVipImage
+  ItemsVipImageText
+  ItemsVip
+  ItemsPremiumImage
+  ItemsPremiumImageText
+  ItemsPremium
+  //ImageShow
+  AlertCollect
+  CollectButton
+  PassLevels
+  ItemsScrollBar
+
+  UIBlackWindow
+  UIBuyLevel
+  UIBuyPass35
+  AlertWindow
+
+  MissionPanel
+  MissionScrollBar
+  MissionClose
+  backgroundMissions
+  tittleMissions

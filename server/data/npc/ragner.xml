@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<npc name="Ragner" nameColor="orange" script="ragner.lua" walkinterval="0" floorchange="0">
+<health now="100" max="100"/>
+<look type="3328" head="0" body="0" legs="0" feet="0" addons="0"/>
+<parameters>
+<parameter key="message_greet" value="Olá, |PLAYERNAME|, você chegou! Bem-vindo! Estou com seus Pokémon e itens prontos para iniciar sua jornada. Qual dos lendários deseja escolher: {Articuno, Moltres ou Zapdos?}" />
+<parameter key="message_farewell" value="Boa sorte na sua jornada!" />
+</parameters>
+</npc>

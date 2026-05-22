@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<npc name="Esther" script="Esther.lua" floorchange="0" walkinterval="0">
+    <health now="150" max="150"/>
+    <look type="3129" head="25" body="30" legs="10" feet="80"/>
+	    <voices interval="3000" chance="50">
+        <voice sentence="Ja esta chato esses bellsprouts ao redor do CP." />
+        <voice sentence="Preciso que alguem me ajude a limpar as redondezas do laboratorio." />
+    </voices>
+</npc>

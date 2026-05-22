@@ -1,0 +1,287 @@
+MainWindow
+  id: starterGuideWindow
+  size: 600 700
+  minimum-size: 520 600
+  maximum-size: 800 900
+  text: "Guia do Aventureiro"
+  color: #E7ECF3
+  background-color: #0e1726
+  border-color: #1a2943
+  border-width: 2
+  border-radius: 10
+  draggable: true
+  movable: true
+  closable: true
+  focusable: true
+  visible: false
+  padding: 6
+
+  Panel
+    id: mainPanel
+    anchors.fill: parent
+    padding: 12
+    layout:
+      type: verticalBox
+      spacing: 8
+
+    Panel
+      id: bannerPanel
+      height: 110
+      background-color: #12213a
+      border-radius: 10
+      padding: 12
+      layout:
+        type: verticalBox
+        spacing: 6
+        align: center
+        valign: center
+
+      Label
+        id: headerTitle
+        text: "GUIA DO AVENTUREIRO"
+        font: verdana-11px-rounded
+        color: #ffffff
+        text-align: center
+
+      Label
+        id: headerSubtitle
+        text: "Complete missões e desbloqueie recompensas"
+        font: verdana-9px
+        color: #9fc5ff
+        text-align: center
+
+    Panel
+      id: progressPanel
+      height: 120
+      background-color: #101b2f
+      border-radius: 10
+      padding: 12
+      layout:
+        type: anchor
+
+      Panel
+        id: progressHeader
+        height: 32
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+        layout:
+          type: horizontalBox
+          spacing: 6
+          align: center
+
+        Label
+          id: progressTitle
+          text: "Progresso Geral"
+          font: verdana-11px-rounded
+          color: #E7ECF3
+
+        UIWidget
+          layout:
+            type: horizontalBox
+            align: right
+
+          Label
+            id: progressValue
+            text: "0/12"
+            font: verdana-9px
+            color: #4da1ff
+
+      Label
+        id: progressHint
+        anchors.top: progressHeader.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        margin-top: 4
+        text: "Complete etapas para desbloquear recompensas exclusivas."
+        font: verdana-9px
+        color: #8fa7c7
+
+      Panel
+        id: progressBarWrapper
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        margin-top: 8
+        margin-bottom: 4
+        height: 18
+        layout:
+          type: anchor
+
+        UIProgressRect
+          id: progressBar
+          anchors.top: parent.top
+          anchors.bottom: parent.bottom
+          anchors.left: parent.left
+          anchors.right: parent.right
+          height: 12
+          background-color: #1b2941
+          foreground-color: #3dd598
+          border-radius: 6
+          percent: 0
+
+    Label
+      id: tasksTitle
+      text: "MISSÕES DISPONÍVEIS"
+      font: verdana-11px-rounded
+      color: #8FA7C7
+
+    Panel
+      id: tasksContainer
+      background-color: #101b2f
+      border-radius: 10
+      height: 480
+      padding: 12
+      layout:
+        type: anchor
+
+      ScrollablePanel
+        id: taskList
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        anchors.right: taskListScrollBar.left
+        margin-right: 8
+        layout:
+          type: verticalBox
+          spacing: 10
+          align-children-horizontally: center
+        fit-children: true
+        vertical-scrollbar: taskListScrollBar
+
+      VerticalScrollBar
+        id: taskListScrollBar
+        width: 10
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        anchors.right: parent.right
+        margin-top: 4
+        margin-bottom: 4
+        handle-color: #1f3355
+        handle-color-hover: #2f4b7f
+        background-color: #0c1421
+        border-radius: 4
+        step: 50
+        pixels-scroll: true
+
+TaskEntry < UIWidget
+  size: 520 120
+  background-color: #15233c
+  border-radius: 8
+  padding: 12
+  margin: 0 0 10 0
+  layout:
+    type: horizontalBox
+    spacing: 12
+    align: center
+
+  Panel
+    id: taskIconPanel
+    size: 48 48
+    background-color: #1f3254
+    border-radius: 24
+    border-width: 2
+    border-color: #2b4b78
+
+    Label
+      id: taskIcon
+      text: "TS"
+      font: verdana-11px-rounded
+      color: #7cc6ff
+      anchors.centerIn: parent
+
+  Panel
+    id: taskContent
+    width: 320
+    layout:
+      type: verticalBox
+      spacing: 6
+
+    Panel
+      layout:
+        type: horizontalBox
+        spacing: 6
+        align: center
+
+      Label
+        id: taskName
+        text: "Título da missão"
+        font: verdana-11px-rounded
+        color: #E7ECF3
+
+      UIWidget
+        layout:
+          type: horizontalBox
+          align: right
+
+        Label
+          id: taskProgressLabel
+          text: "0/10"
+          font: verdana-9px
+          color: #71c1ff
+          visible: false
+
+    Label
+      id: taskDescription
+      text: "Descrição da missão."
+      font: verdana-9px
+      color: #9cb6d6
+      text-wrap: true
+
+    Panel
+      id: taskProgressWrapper
+      height: 12
+      layout:
+        type: anchor
+      visible: false
+
+      UIProgressRect
+        id: taskProgressBar
+        anchors.fill: parent
+        background-color: #1b2941
+        foreground-color: #34d399
+        border-radius: 4
+        percent: 0
+
+    Panel
+      id: rewardsContainer
+      height: 30
+      layout:
+        type: horizontalBox
+        spacing: 6
+        align: center
+
+      Label
+        text: "Recompensas:"
+        font: verdana-9px
+        color: #8FA7C7
+
+  Panel
+    id: taskStatus
+    width: 90
+    layout:
+      type: verticalBox
+      spacing: 6
+      align: center
+
+    Label
+      id: completeCheck
+      size: 28 28
+      text: "✓"
+      font: verdana-11px-rounded
+      color: #34d399
+      visible: false
+      text-align: center
+
+    Button
+      id: actionButton
+      text: "IR"
+      size: 78 30
+      font: verdana-11px-rounded
+      color: #ffffff
+      background-color: #3b82f6
+      background-color-hover: #2563eb
+      border-radius: 5
+      border-width: 1
+      border-color: #1c4290
+      padding: 4

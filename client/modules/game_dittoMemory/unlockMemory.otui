@@ -1,0 +1,195 @@
+MemoryUnlockSlotButton < UIButton
+  size: 36 38
+  image-source: images/slot
+  phantom: false
+  focusable: false
+  UIWidget
+    id: icon
+    size: 40 30
+    visible: false
+    image-source: /pokemon/regular/gyarados
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.horizontalCenter: parent.horizontalCenter
+    focusable: false
+  UIWidget
+    id: buttonBuy
+    size: 20 19
+    visible: false
+    image-source: images/buy
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.verticalCenter: parent.verticalCenter
+    focusable: false
+    image-color: #cdcdcd
+    change-cursor-image: true
+    cursor: pointer
+    margin-top: 1
+    margin-left: -1
+    $hover:
+      image-color: #ffffff
+    $pressed:
+      image-color: #9b9b9b
+  UIWidget
+    id: uncopy
+    size: 8 8
+    image-source: images/close
+    anchors.top: parent.top
+    anchors.right: parent.right
+    focusable: false
+    visible: false
+    image-color: #cdcdcd
+    change-cursor-image: true
+    cursor: pointer
+    $hover:
+      image-color: #ffffff
+    $pressed:
+      image-color: #9b9b9b
+
+
+UIWindow
+  id: unlockMemoryWindow
+  focusable: false
+  size: 247 210
+  anchors.verticalCenter: parent.verticalCenter
+  anchors.horizontalCenter: parent.horizontalCenter
+  image-source: images/background
+  image-border-top: 41
+  image-border-left: 20
+  image-border-right: 20
+  image-border-bottom: 20
+  @onEscape: modules.game_dittoMemory.hideUnlockWindow()
+
+  UIWidget
+    id: windowIcon
+    size: 27 27
+    image-source: images/icon
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 7
+    margin-left: 15
+    phantom: true
+    focusable: false
+
+  UIWidget
+    id: windowName
+    !text: tr("Unlock Memory 1")
+    font: sono_medium_14
+    text-auto-resize: true
+    anchors.left: prev.right
+    anchors.verticalCenter: windowIcon.verticalCenter
+    margin-top: -1
+    margin-left: 5
+    phantom: true
+    focusable: false
+    text-align: left
+
+  Label
+    id: desc
+    size: 247 210
+    font: sono_bold_12
+    text-align: center
+    color: #bebebe
+    text-wrap: true
+    text-vertical-auto-resize: true
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.top: buyedThingPanel.bottom
+
+  Panel
+    id: buyedThingPanel
+    size: 224 67
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.top: parent.top
+    margin-top: 40
+    focusable: false
+    phantom: false
+    MemoryUnlockSlotButton
+      id: 1
+      anchors.left: parent.left
+      anchors.verticalCenter: parent.verticalCenter
+      margin-left: 25
+
+    UIWidget
+      id: arrow
+      image-source: /images/ui/ditto/buttons/arrow
+      size: 32 26
+      draggable: false
+      focusable: false
+      anchors.verticalCenter: parent.verticalCenter
+      anchors.left: prev.right
+      margin-left: 10
+      phantom: true
+    MemoryUnlockSlotButton
+      id: 2
+      anchors.right: parent.right
+      anchors.verticalCenter: parent.verticalCenter
+      margin-right: 25
+
+  UIButton
+    id: unlockButton
+    size: 91 22
+    image-source: images/confirm
+    anchors.left: parent.left
+    anchors.bottom: parent.bottom
+    margin-left: 28
+    margin-bottom: 15
+    image-color: #cdcdcd
+    change-cursor-image: true
+    cursor: pointer
+    $hover:
+      image-color: #ffffff
+    $pressed:
+      image-color: #9b9b9b
+    Label
+      id: value
+      color: white
+      text-align: center
+      size: 52 18
+      !text: tr('CONFIRM')
+      font: sono_medium_10
+      anchors.horizontalCenter: parent.horizontalCenter
+      anchors.verticalCenter: parent.verticalCenter
+      margin-bottom: 2
+
+  UIButton
+    id: cancelButton
+    size: 91 22
+    image-source: images/cancel
+    anchors.left: unlockButton.right
+    anchors.top: unlockButton.top
+    margin-left: 12
+    @onClick: modules.game_dittoMemory.hideUnlockWindow()
+    image-color: #cdcdcd
+    change-cursor-image: true
+    cursor: pointer
+    $hover:
+      image-color: #ffffff
+    $pressed:
+      image-color: #9b9b9b
+    Label
+      id: value
+      color: white
+      text-align: center
+      size: 52 18
+      !text: tr('CANCEL')
+      font: sono_medium_10
+      anchors.horizontalCenter: parent.horizontalCenter
+      anchors.verticalCenter: parent.verticalCenter
+      margin-bottom: 2
+
+  UIButton
+    id: closeButton
+    size: 14 14
+    image-source: images/close
+    anchors.right: parent.right
+    anchors.top: parent.top
+    margin-right: 15
+    margin-top: 13
+    @onClick: modules.game_dittoMemory.hideUnlockWindow()
+    image-color: #cdcdcd
+    change-cursor-image: true
+    cursor: pointer
+    $hover:
+      image-color: #ffffff
+    $pressed:
+      image-color: #9b9b9b

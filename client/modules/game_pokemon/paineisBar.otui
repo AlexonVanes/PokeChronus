@@ -1,0 +1,95 @@
+PaineisBarSlot < UIItem
+  size: 20 20
+  opacity: 0
+  change-cursor-image: true
+  cursor: pointer
+
+PaineisBarIcon < UIWidget
+  size: 20 20
+  phantom: true
+  icon-rect: 0 0 22 22
+  icon-clip: 0 0 27 27
+  icon-color: #999999
+  image-color: #999999
+
+PaineisBarBallpackIcon < UIWidget
+  id: ballpackIcon
+  size: 24 20
+  image-source: images/ico_pokemons
+  image-color: #999999
+  phantom: true
+
+PaineisBar < UIWidget
+  id: paineisBar
+  height: 30
+  image-source: /images/ui/container_filter
+  image-border: 12
+
+  // ORDER
+  PaineisBarSlot
+    id: painelSlot9
+    anchors.left: parent.left
+    anchors.verticalCenter: parent.verticalCenter
+    margin-left: 10
+    &position: {x=65535, y=9, z=0}
+
+  PaineisBarIcon
+    id: orderIcon
+    icon: /images/TOPBUTTONS_REWORK/ICON_INV_ORDER
+    anchors.left: painelSlot9.left
+    anchors.verticalCenter: parent.verticalCenter
+
+  // POKEDEX
+  PaineisBarSlot
+    id: painelSlot7
+    anchors.left: painelSlot9.right
+    anchors.verticalCenter: parent.verticalCenter
+    margin-left: 10
+    &position: {x=65535, y=7, z=0}
+
+  PaineisBarIcon
+    id: dexIcon
+    icon: /images/TOPBUTTONS_REWORK/ICON_INV_POKEDEX
+    anchors.left: painelSlot7.left
+    anchors.verticalCenter: parent.verticalCenter
+
+  // BACKPACK
+  PaineisBarSlot
+    id: painelSlot3
+    anchors.left: painelSlot7.right
+    anchors.verticalCenter: parent.verticalCenter
+    margin-left: 10
+    &position: {x=65535, y=3, z=0}
+
+  PaineisBarIcon
+    id: inventoryIcon
+    icon: /images/TOPBUTTONS_REWORK/ICON_INV_INVENTARIO
+    anchors.left: painelSlot3.left
+    anchors.verticalCenter: parent.verticalCenter
+
+  // ROD
+  PaineisBarSlot
+    id: painelSlot2
+    anchors.left: painelSlot3.right
+    anchors.verticalCenter: parent.verticalCenter
+    margin-left: 10
+    &position: {x=65535, y=2, z=0}
+
+  PaineisBarIcon
+    id: fishIcon
+    icon: /images/TOPBUTTONS_REWORK/ICON_INV_FISH
+    anchors.left: painelSlot2.left
+    anchors.verticalCenter: parent.verticalCenter
+
+  PaineisBarSlot
+    id: painelSlot12
+    anchors.left: painelSlot2.right
+    anchors.verticalCenter: parent.verticalCenter
+    margin-left: 10
+    size: 24 20
+    &position: {x=65535, y=12, z=0}
+    @onClick: modules.game_pokemon.openBallpackSlot()
+
+  PaineisBarBallpackIcon
+    anchors.left: painelSlot12.left
+    anchors.verticalCenter: parent.verticalCenter

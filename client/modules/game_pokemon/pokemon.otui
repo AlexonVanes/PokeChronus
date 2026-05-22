@@ -1,0 +1,454 @@
+HealthBar < UIWidget
+  id: healthBar
+  size: 107 18
+  phantom: true
+  anchors.top: parent.top
+  anchors.right: parent.right
+  margin-right: 4
+  UIWidget
+    id: base
+    size: 88 17
+    image-source: images/progressbar/progress_life_base
+    phantom: true
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-left: 18
+  UIWidget
+    id: under
+    size: 88 16
+    image-source: images/progressbar/progress_underlife_color 
+    phantom: true
+    opacity: 0.5
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-left: 18
+  UIWidget
+    id: progress
+    size: 88 16
+    image-source: images/progressbar/progress_life_color
+    phantom: true
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-left: 18
+  UIWidget
+    id: text
+    !text: '1.765/1.765'
+    font: sono_bold_12
+    color: white
+    text-auto-resize: true
+    text-align: center
+    phantom: true
+    anchors.verticalCenter: progress.verticalCenter
+    anchors.horizontalCenter: progress.horizontalCenter
+    margin-top: 2
+  UIWidget
+    id: background
+    size: 107 18
+    image-source: images/progressbar/progress_life_background
+    phantom: true
+    anchors.top: parent.top
+    anchors.left: parent.left
+
+PokeHealthBar < UIWidget
+  id: pokeHealthBar
+  size: 107 18
+  phantom: true
+  anchors.top: healthBar.bottom
+  anchors.right: parent.right
+  margin-top: 3
+  margin-right: 4
+  UIWidget
+    id: base
+    size: 88 17
+    image-source: images/progressbar/progress_life_base
+    phantom: true
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-left: 18
+  UIWidget
+    id: under
+    size: 88 16
+    image-source: images/progressbar/progress_underlife_color
+    phantom: true
+    opacity: 0.5
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-left: 18
+  UIWidget
+    id: progress
+    size: 88 16
+    image-source: images/progressbar/progress_poke_color
+    phantom: true
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-left: 18
+  UIWidget
+    id: text
+    font: sono_bold_12
+    color: white
+    text-auto-resize: true
+    text-align: center
+    phantom: true
+    anchors.verticalCenter: progress.verticalCenter
+    anchors.horizontalCenter: progress.horizontalCenter
+    margin-top: 2
+  UIWidget
+    id: background
+    size: 107 18
+    image-source: images/progressbar/progress_poke_background
+    phantom: true
+    anchors.top: parent.top
+    anchors.left: parent.left
+
+ConditionWidget2 < UIWidget
+  size: 32 32
+  phantom: true
+
+PokemonPanelSlot < UIItem
+  size: 32 32
+  hide-count: true
+  change-cursor-image: true
+  cursor: pointer
+
+InventoryItem < Item
+
+HeadSlot < InventoryItem
+  id: slot1
+  &position: {x=65535, y=1, z=0}
+
+BodySlot < InventoryItem
+  id: slot4
+  size: 12 16
+  visible: false
+  &position: {x=65535, y=4, z=0}
+
+LegSlot < InventoryItem
+  id: slot7
+  image-color: #FFFFFF00
+  &position: {x=65535, y=7, z=0}
+
+FeetSlot < InventoryItem
+  id: slot8
+  &position: {x=65535, y=8, z=0}
+
+NeckSlot < InventoryItem
+  id: slot2
+  &position: {x=65535, y=2, z=0}
+
+LeftSlot < InventoryItem
+  id: slot6
+  &position: {x=65535, y=6, z=0}
+
+FingerSlot < InventoryItem
+  id: slot9
+  &position: {x=65535, y=9, z=0}
+
+BackSlot < InventoryItem
+  id: slot3
+  &position: {x=65535, y=3, z=0}
+
+RightSlot < InventoryItem
+  id: slot5
+  &position: {x=65535, y=5, z=0}
+
+AmmoSlot < InventoryItem
+  id: slot10
+  &position: {x=65535, y=10, z=0}
+
+FightOffensiveBox < UICheckBox
+  size: 17 16
+  image-source: images/fightMode/offensive_off
+  @onClick: g_game.talk('!fmode1')
+  image-color: #b9b9b9
+  change-cursor-image: true
+  cursor: pointer
+
+  $checked:
+    image-source: images/fightMode/offensive_on
+
+FightBalancedBox < UICheckBox
+  size: 16 17
+  image-source: images/fightMode/balanced_off
+  @onClick: g_game.talk('!fmode2')
+  image-color: #b9b9b9
+  change-cursor-image: true
+  cursor: pointer
+
+  $checked:
+    image-source: images/fightMode/balanced_on
+
+FightDefensiveBox < UICheckBox
+  size: 15 18
+  image-source: images/fightMode/defensive_off
+  @onClick: g_game.talk('!fmode3')
+  image-color: #b9b9b9
+  change-cursor-image: true
+  cursor: pointer
+
+  $checked:
+    image-source: images/fightMode/defensive_on
+    @onClick: g_game.talk('!fmode3')
+
+MiniWindow
+  id: pokemonWindow
+  height: 203
+  &save: true
+
+  UIButton
+    id: loveButton
+    size: 16 13
+    !tooltip: 'Carinho'
+    anchors.top: parent.top
+    anchors.right: parent.right
+    margin-top: 12
+    margin-right: 25
+    image-source: images/love
+    change-cursor-image: true
+    cursor: pointer
+    image-color: #cbcbcb
+    opacity: 1.0
+    @onClick: g_game.talk('!love')
+    $hover:
+      opacity: 1.0
+      image-color: #ffffff
+    $pressed:
+      opacity: 0.8
+      image-color: #9c9c9c
+
+  UIButton
+    id: checkButton
+    size: 16 16
+    !tooltip: 'Verificar Humor'
+    anchors.top: parent.top
+    anchors.right: parent.right
+    margin-top: 10
+    margin-right: 42
+    image-source: images/check
+    change-cursor-image: true
+    cursor: pointer
+    image-color: #cbcbcb
+    opacity: 1.0
+    @onClick: g_game.talk('!check')
+    $hover:
+      opacity: 1.0
+      image-color: #ffffff
+    $pressed:
+      opacity: 0.8
+      image-color: #9c9c9c
+
+  MiniWindowContents
+    id: contentsPanel
+    anchors.right: parent.right
+
+    UIWidget
+      id: pokeStatus
+      size: 67 65
+      visible: false
+      image-source: images/pokebase
+      phantom: true
+      anchors.bottom: pokeBase.bottom
+      anchors.horizontalCenter: pokeBase.horizontalCenter
+      margin-bottom: 10
+
+    UIWidget
+      id: pokeBase
+      size: 67 20
+      image-source: images/pokebase
+      phantom: true
+      anchors.top: parent.top
+      anchors.left: parent.left
+      margin-top: 58
+      margin-left: 10
+
+    UICreature
+      id: outfitCreatureBox
+      size: 80 80
+      phantom: true
+      autoScale: true
+      autoScaleAlignBottom: true
+      autoScaleMin: 0.5
+      autoScaleMax: 1.55
+      autoScaleComfort: 0.9
+      autoScaleExtraSize: 8
+      safeAutoScale: true
+      anchors.bottom: pokeBase.bottom
+      anchors.horizontalCenter: pokeBase.horizontalCenter
+      margin-bottom: -4
+
+    UIEffect
+      id: effect
+      size: 32 32
+      phantom: true
+      anchors.verticalCenter: outfitCreatureBox.verticalCenter
+      anchors.horizontalCenter: outfitCreatureBox.horizontalCenter
+
+    UIWidget
+      id: nilpokemon
+      size: 30 30
+      image-source: images/nil_pokemon
+      phantom: true
+      anchors.bottom: pokeBase.top
+      anchors.horizontalCenter: pokeBase.horizontalCenter
+      margin-bottom: 5
+
+    HealthBar
+    PokeHealthBar
+
+    Label
+      id: pokeLevelLabel
+      text:
+      visible: false
+      font: verdana-9px-bold
+      color: #ffdf6b
+      text-auto-resize: true
+      text-stroke: 1 black
+      anchors.top: pokeHealthBar.bottom
+      anchors.right: pokeHealthBar.right
+      margin-top: 1
+
+    UIButton
+      id: movesButton
+      size: 23 23
+      !tooltip: tr('Movesets')
+      image-source: /images/game/pokemon/skillicon
+      anchors.top: pokeHealthBar.bottom
+      anchors.left: pokeHealthBar.left
+      margin-top: 20
+      margin-left: 52
+      change-cursor-image: true
+      cursor: pointer
+      image-color: #cbcbcb
+      opacity: 1.0
+      @onClick: modules.game_pokemon.toggleMovesPanel()
+      $hover:
+        opacity: 1.0
+        image-color: #ffffff
+      $pressed:
+        opacity: 0.8
+        image-color: #9c9c9c
+
+    UIButton
+      id: tmButton
+      size: 23 23
+      !tooltip: tr('TMs')
+      image-source: /images/topbuttons/skills
+      anchors.top: pokeHealthBar.bottom
+      anchors.left: pokeHealthBar.left
+      margin-top: 20
+      margin-left: 84
+      change-cursor-image: true
+      cursor: pointer
+      image-color: #cbcbcb
+      opacity: 1.0
+      @onClick: modules.game_pokemon.openTmsPanel()
+      $hover:
+        opacity: 1.0
+        image-color: #ffffff
+      $pressed:
+        opacity: 0.8
+        image-color: #9c9c9c
+
+    UIButton
+      id: addonButton
+      size: 27 24
+      !tooltip: tr('Pokemon Addon')
+      image-source: images/addon_button
+      anchors.top: pokeHealthBar.bottom
+      anchors.left: pokeHealthBar.left
+      margin-top: 19
+      margin-left: 17
+      change-cursor-image: true
+      cursor: pointer
+      image-color: #cbcbcb
+      opacity: 1.0
+      @onClick: g_game.talk("!getaddons")
+      $hover:
+        opacity: 1.0
+        image-color: #ffffff
+      $pressed:
+        opacity: 0.8
+        image-color: #9c9c9c
+
+    UIWidget
+      id: fightBase
+      size: 88 32
+      image-source: images/background_fight
+      phantom: true
+      anchors.top: activeBallSlot.top
+      anchors.right: pokeHealthBar.right
+
+    BodySlot
+      anchors.bottom: parent.bottom
+      anchors.right: parent.right
+      margin-bottom: 0
+      margin-right: 3
+
+    LegSlot
+      visible: false
+      anchors.top: parent.top
+      anchors.left: parent.left
+      margin-top: 82
+      margin-left: 121
+      virtual: true
+
+    UIWidget
+      id: activeBallSlotBackground
+      size: 32 32
+      image-source: /images/ui/container_filter
+      image-border: 8
+      phantom: true
+      anchors.bottom: parent.bottom
+      anchors.left: parent.left
+      margin-bottom: 42
+      margin-left: 8
+
+    UIItem
+      id: activeBallSlot
+      size: 32 32
+      hide-count: true
+      &position: {x=65535, y=10, z=0}
+      anchors.fill: activeBallSlotBackground
+      change-cursor-image: true
+      cursor: pointer
+      @onClick: modules.game_pokemon.openActiveBall()
+      $hover:
+        opacity: 1.0
+      $pressed:
+        opacity: 0.8
+
+    UIWidget
+      id: secondarySlot
+      size: 32 32
+      image-source: /images/ui/container_filter
+      image-border: 8
+      anchors.top: activeBallSlotBackground.top
+      anchors.left: activeBallSlotBackground.right
+      margin-left: 4
+
+    Panel
+      id: conditionPanel
+      layout:
+        type: horizontalBox
+      size: 32 32
+      anchors.top: slot7.top
+      anchors.left: slot7.left
+      margin-top: 1
+      margin-left: 1
+
+    FightOffensiveBox
+      id: fightOffensiveBox
+      anchors.verticalCenter: fightBase.verticalCenter
+      anchors.left: fightBase.left
+      margin-left: 10
+      margin-top: 1
+    FightBalancedBox
+      id: fightBalancedBox
+      anchors.verticalCenter: fightBase.verticalCenter
+      anchors.left: fightOffensiveBox.right
+      margin-left: 10
+      margin-top: 1
+    FightDefensiveBox
+      id: fightDefensiveBox
+      anchors.verticalCenter: fightBase.verticalCenter
+      anchors.left: fightBalancedBox.right
+      margin-left: 10

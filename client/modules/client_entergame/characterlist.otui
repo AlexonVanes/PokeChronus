@@ -1,0 +1,259 @@
+Character < Personagem
+  id: personagem
+  fixed-creature-size: true
+  margin-left: 10
+  width: 140
+  anchors.left: parent.left
+  anchors.top: parent.top
+  anchors.bottom: parent.bottom
+  rotation: 0
+  image-source: ~
+
+CharacterWidget < UIWidget
+  image-source: /images/UI_REWORK/CHARACTER_MOCKUP
+  size: 390 195
+  &updateOnStates: |
+    function(self)
+      local children = self:getChildren()
+      for i=1,#children do
+        children[i]:setOn(self:isFocused())
+      end
+    end
+  @onFocusChange: self:updateOnStates()
+  @onSetup: self:updateOnStates()
+  opacity: 0.7
+
+  $focus:
+    opacity: 1.0
+
+  Label
+    id: name
+    anchors.top: ClaICON.top
+    anchors.right: ClaICON.left
+    anchors.left: personagem.right
+    font: window
+    color: white
+    text-offset: 10 0
+    text-auto-resize: true
+    text-align: left
+
+  Label
+    id: LVL
+    color: white
+    !text: tr('Level:')
+    font: window
+    anchors.top: name.bottom
+    anchors.left: parent.left
+    anchors.left: personagem.right
+    margin-top: 3
+    text-auto-resize: true
+    text-offset: 10 0
+    text-align: left
+
+  Label
+    id: level
+    color: white
+    font: window
+    anchors.top: name.bottom
+    anchors.left: LVL.right
+    margin-top: 3
+    text-auto-resize: true
+    text-align: left
+    text-offset: 5 0
+
+  Label
+    visible: true
+    id: worldName
+    color: white
+    font: window
+    anchors.top: level.bottom
+    anchors.right: ClaICON.left
+    anchors.left: personagem.right
+    margin-top: 4
+    text-auto-resize: true
+    text-align: left
+    text-offset: 10 0
+    &baseText: '%s'
+
+  UIWidget
+    //ICONE DO CLA
+    id: ClaICON
+    size: 50 50
+    anchors.top: parent.top
+    anchors.right: parent.right
+    margin-top: 10
+    margin-right: 35
+    border: 2 blue
+
+  UICreature
+    id: pokemon1
+    color: #5C5C5C
+    anchors.top: worldName.bottom
+    anchors.left: personagem.right
+    margin-top: 5
+    margin-left: 50
+    size: 55 55
+
+
+  UICreature
+    id: pokemon2
+    color: #5C5C5C
+    anchors.top: pokemon1.top
+    anchors.left: pokemon1.right
+    margin-left: 11
+    image-source: ~
+    size: 55 55
+
+
+  UICreature
+    id: pokemon3
+    color: #5C5C5C
+    anchors.top: pokemon1.top
+    anchors.left: pokemon2.right
+    margin-left: 11
+    image-source: ~
+    size: 55 55
+
+
+  UICreature
+    id: pokemon4
+    color: #5C5C5C
+    anchors.top: pokemon1.bottom
+    anchors.left: pokemon1.left
+    margin-top: 14
+    image-source: ~
+    size: 55 55
+
+
+  UICreature
+    id: pokemon5
+    color: #5C5C5C
+    anchors.top: pokemon4.top
+    anchors.left: pokemon2.left
+    image-source: ~
+    size: 55 55
+
+
+  UICreature
+    id: pokemon6
+    color: #5C5C5C
+    anchors.top: pokemon4.top
+    anchors.left: pokemon3.left
+    image-source: ~
+    size: 55 55
+
+
+
+EnterGameWindow
+  id: charactersWindow
+  !text: tr('Lista de personagem')
+  text-offset: 0 25
+  image-source: /images/UI_REWORK/window_entergame
+  color: white
+  width: 470
+  draggable: false
+  visible: false
+  @onEnter: CharacterList.doLogin()
+  @onEscape: CharacterList.hide(true)
+  @onSetup: |
+    g_keyboard.bindKeyPress('Up',   function() for i = 1, 4 do self.characters:focusPreviousChild(KeyboardFocusReason) end end, self)
+    g_keyboard.bindKeyPress('Down', function() for i = 1, 4 do self.characters:focusNextChild(KeyboardFocusReason)     end end, self)
+    g_keyboard.bindKeyPress('Left',  function() self.characters:focusPreviousChild(KeyboardFocusReason) end, self)
+    g_keyboard.bindKeyPress('Right', function() self.characters:focusNextChild(KeyboardFocusReason)     end, self)
+
+  ScrollableFlatPanel
+    id: characters
+    width: 470
+    anchors.top: characterListScrollBar.top
+    anchors.bottom: characterListScrollBar.bottom
+    anchors.right: characterListScrollBar.left
+    anchors.left: parent.left
+    margin-right: 10
+    image-source:
+    layout:
+      type: verticalBox
+      spacing: 15
+    vertical-scrollbar: characterListScrollBar
+    auto-focus: first
+    focusable: false
+  
+  VerticalScrollBar
+    id: characterListScrollBar
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.right: parent.right
+    anchors.bottom: createCharButton.top
+    anchors.top: parent.top
+    margin-bottom: 30
+    margin-top: 70
+    margin-right: 10
+    step: 190
+    pixels-scroll: true
+
+  ButtonWhite
+    id: createCharButton
+    !text: tr('Novo personagem')
+    height: 80
+    color: black
+    anchors.right: parent.right
+    anchors.left: parent.left
+    anchors.bottom: line.top
+    margin-left: 10
+    margin-right: 10
+    margin-bottom: 20
+    @onClick: CreateCharacter.show()
+    $on:
+      color: #0B1C38
+
+
+
+  Label
+    id: accountStatusCaption
+    !text: tr('Account Status') .. ':'
+    margin-left: 5
+    anchors.left: parent.left
+    anchors.bottom: characterListScrollBar.top
+    margin-bottom: 10
+    font: window
+    color: #ffffff
+
+  Label
+    id: accountStatusLabel
+    !text: tr('Free Account')
+    anchors.left: accountStatusCaption.right
+    anchors.right: parent.right
+    font: window
+    color: orange
+    anchors.bottom: accountStatusCaption.bottom
+    margin-bottom: -1
+    margin-left: 5
+    text-auto-resize: true
+
+  HorizontalSeparator
+    id: line
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: buttonOk.top
+    margin-bottom: 20
+
+  ButtonBlue
+    id: buttonOk
+    !text: tr('Jogar')
+    size:  300 80
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    margin-bottom: 30
+    margin-right: 10
+    @onClick: CharacterList.doLogin()
+
+
+  ButtonRed
+    id: buttonCancel
+    !text: tr('Back')
+    size:  300 80
+    anchors.right: buttonOk.left
+    anchors.left: parent.left
+    anchors.bottom: parent.bottom
+    margin-bottom: 30
+    margin-right: 10
+    margin-left: 10
+    @onClick: CharacterList.hide(true)

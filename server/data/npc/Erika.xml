@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<npc name="Erika" script="Erika.lua" walkinterval="0" floorchange="0">
+	<health now="100" max="100" />
+	<look type="2830" addons="0" />
+	<parameters>
+		<parameter key="message_greet" value="Ola |PLAYERNAME|! Eu sou a treinadora do ginasio de planta, voce acha que pode me vencer em um duelo?" />
+		<parameter key="message_decline" value="Continue sua jornada!" />
+	</parameters>
+</npc>
+

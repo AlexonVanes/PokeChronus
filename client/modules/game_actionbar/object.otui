@@ -1,0 +1,101 @@
+RoundCheckBox < CheckBox
+  image-source: /images/ui/checkbox_round
+  
+  $first:
+    margin-top: 2
+
+  $!first:
+    margin-top: 5
+
+MainWindow
+  id: assignItemWindow
+  size: 350 195
+
+  UIItem
+    id: item
+    anchors.top: parent.top
+    anchors.left: parent.left
+    size: 86 86
+    padding: 5
+    &selectable: true
+    &editable: false
+    image-source: /images/ui/panel_flat
+    image-border: 10
+
+  Panel
+    id: checks
+    anchors.left: prev.right
+    anchors.top: parent.top
+    anchors.right: parent.right
+    margin-left: 10
+    layout: 
+      type: verticalBox
+      fit-children: true
+
+    RoundCheckBox
+      id: useSelf
+      text: Use em você mesmo
+      enabled: false
+
+    RoundCheckBox
+      id: usePokemon
+      text: Use em seu Pokemon
+      enabled: false
+    
+    RoundCheckBox
+      id: useTarget
+      text: Use no alvo
+      enabled: false
+
+    RoundCheckBox
+      id: useCross
+      text: Com mira
+      enabled: false
+
+    RoundCheckBox
+      id: use
+      text: Usar
+      enabled: false
+
+  Button
+    id: select
+    visible: false
+    anchors.left: item.left
+    anchors.right: item.right
+    anchors.top: item.bottom
+    margin-top: 5
+    font: verdana-11px-rounded
+    height: 20
+    text: Selecionar item
+
+  HorizontalSeparator
+    anchors.top: prev.bottom
+    margin-top: 10
+    anchors.left: parent.left
+    anchors.right: parent.right
+
+  Button
+    id: buttonClose
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    size: 55 21
+    font: verdana-11px-rounded
+    text: Fechar
+
+  Button
+    id: buttonApply
+    anchors.right: prev.left
+    margin-right: 5
+    anchors.bottom: parent.bottom
+    size: 60 21
+    font: verdana-11px-rounded
+    text: Aplicar
+
+  Button
+    id: buttonOk
+    anchors.right: prev.left
+    margin-right: 5
+    anchors.bottom: parent.bottom
+    size: 45 21
+    font: verdana-11px-rounded
+    text: Ok

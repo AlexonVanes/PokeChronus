@@ -1,0 +1,80 @@
+ChannelListLabel < Label
+  font: verdana-11px-monochrome
+  background-color: alpha
+  text-offset: 2 0
+  focusable: true
+
+  $focus:
+    background-color: #ffffff22
+    color: white
+
+  $!focus:
+    color: white
+
+MainWindow
+  id: channelsWindow
+  size: 302 323
+  @onEscape: self:destroy()
+
+  Label
+    id: name
+    text-auto-resize: true
+    text: teste
+    color: white
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: -22
+    margin-left: 110
+
+  TextList
+    id: channelList
+    size: 275 154
+    vertical-scrollbar: channelsScrollBar
+    anchors.bottom: next.top
+    margin-bottom: 10
+    padding: 1
+    focusable: false
+
+  Label
+    id: openPrivateChannelWithLabel
+    color: white
+    !text: tr('Abrir um canal privado') .. ':'
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: next.top
+    text-align: center
+    margin-bottom: 9
+
+  TextEdit
+    id: openPrivateChannelWith
+    image-source: /images/ui/textedit
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.bottom: next.top
+    margin-bottom: 10
+
+  Button
+    id: buttonOpen
+    !text: tr('Abrir')
+    size: 100 26
+    anchors.right: next.left
+    anchors.bottom: parent.bottom
+    margin-right: 9
+    @onClick: self:getParent():onEnter()
+
+  Button
+    id: buttonCancel
+    !text: tr('Cancelar')
+    size: 100 26
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    margin-right: 34
+    @onClick: self:getParent():destroy()
+
+  VerticalScrollBar
+    id: channelsScrollBar
+    anchors.top: channelList.top
+    anchors.bottom: channelList.bottom
+    anchors.right: channelList.right
+    step: 14
+    pixels-scroll: true

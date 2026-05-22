@@ -1,0 +1,8 @@
+Module
+  name: game_donate
+  author: samueldev45
+  description: Donate system
+  scripts: [ game_donate ]
+  sandboxed: true
+  @onLoad: init()
+  @onUnload: terminate()

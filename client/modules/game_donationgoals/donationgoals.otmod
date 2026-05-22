@@ -1,0 +1,12 @@
+Module
+  name: game_donationgoals
+  description: donate goal multiplo
+  author: Icaro
+  website: 
+  autoload: true
+  autoload-priority: 1000
+  scripts: [ donationgoals ]
+  sandboxed: true
+  dependencies: [ client_topmenu, game_interface ]
+  @onLoad: init()
+  @onUnload: terminate()

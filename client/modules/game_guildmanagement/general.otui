@@ -1,0 +1,506 @@
+Panel
+
+  Panel
+    id: noGuild
+    anchors.fill: parent
+
+    MiniPanel
+      id: general
+      anchors.top: parent.top
+      anchors.left: parent.left
+      size: 230 114
+      text: Geral
+      layout: verticalBox
+
+      Panel
+        height: 23
+        margin-top: 5
+        layout: horizontalBox
+
+        Label
+          margin-top: 9
+          width: 128
+          color: #FFAA00
+          text: Entrada
+
+        ComboBoxGuild
+          id: status
+
+      Panel
+        height: 23
+        margin-top: 5
+        layout: horizontalBox
+
+        Label
+          margin-top: 9
+          width: 128
+          color: #FFAA00
+          text: Nivel necessario
+
+        TextEdit
+          id: reqLevel
+          width: 91
+          text: 50
+          @onSetup: self:setValidCharacters('0123456789')
+
+      Panel
+        height: 23
+        margin-top: 5
+        layout: horizontalBox
+
+        Label
+          margin-top: 9
+          width: 128
+          color: #FFAA00
+          text: Idioma
+
+        ComboBoxGuild
+          id: language
+
+    MiniPanel
+      id: emblem
+      anchors.top: prev.bottom
+      anchors.left: parent.left
+      anchors.bottom: parent.bottom
+      width: 230
+      margin-top: 10
+      text: Emblema
+
+      Panel
+        id: emblem
+        anchors.top: parent.top
+        anchors.horizontalCenter: parent.horizontalCenter
+        size: 128 128
+        image-source: images/guild_management/emblems
+        image-clip: 0 0 128 128
+        size: 128 128
+
+      ButtonGuild
+        anchors.verticalCenter: emblem.verticalCenter
+        anchors.right: emblem.left
+        width: 24
+        text: <
+        @onClick: modules.game_guildmanagement.createPrevEmblem()
+
+      ButtonGuild
+        anchors.verticalCenter: emblem.verticalCenter
+        anchors.left: emblem.right
+        width: 24
+        text: >
+        @onClick: modules.game_guildmanagement.createNextEmblem()
+
+    MiniPanel
+      id: info
+      anchors.top: parent.top
+      anchors.bottom: parent.bottom
+      anchors.right: parent.right
+      anchors.left: prev.right
+      margin-left: 5
+      text: Informacoes
+      layout: verticalBox
+
+      Label
+        text: Uma guild pode ser criada por qualquer jogador de nivel 40 ou maior. No nivel 1, ate 10 jogadores podem entrar. Aumentar o nivel da guild e liberar bonus custa gold, que pode ser depositado por todos os membros. Configuracoes gerais e emblema podem ser alterados a qualquer momento, mas o nome da guild nao pode ser alterado.
+        text-align: center
+        text-auto-resize: true
+        text-wrap: true
+
+      Label
+        margin-top: 10
+        color: #FFAA00
+        text: Nome da Guild
+        text-align: center
+
+      TextEdit
+        id: name
+        margin: 0 40
+        margin-top: 5
+        @onSetup: self:setValidCharacters('AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789 -\'')
+
+      Label
+        color: #AAAAAA
+        font: terminus-10px
+        text: Caracteres permitidos: a-z, A-Z, 0-9, espaco, -, '. Maximo 16.
+        text-align: center
+        text-auto-resize: true
+        text-wrap: true
+
+      ButtonGuild
+        margin: 0 60
+        margin-top: 12
+        text: Criar Guild
+        @onClick: modules.game_guildmanagement.createGuild()
+
+  Panel
+    id: general
+    anchors.fill: parent
+    visible: false
+
+    Panel
+      anchors.top: parent.top
+      anchors.left: parent.left
+      anchors.bottom: parent.bottom
+      width: 205
+
+      Panel
+        id: emblem
+        anchors.top: parent.top
+        anchors.horizontalCenter: parent.horizontalCenter
+        size: 128 128
+        image-source: images/guild_management/emblems
+        image-clip: 0 0 128 128
+
+      MiniPanel
+        anchors.top: prev.bottom
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        margin-top: 23
+        text: Informacoes
+        layout: verticalBox
+
+        Panel
+          height: 14
+          layout: horizontalBox
+
+          Label
+            width: 110
+            color: #FFAA00
+            text: Lider da Guild
+
+          Label
+            id: leader
+            text-auto-resize: true
+            color: #FFDC96
+
+        Panel
+          height: 14
+          margin-top: 5
+          layout: horizontalBox
+
+          Label
+            width: 110
+            color: #FFAA00
+            text: Membros da Guild
+
+          Label
+            id: members
+            text-auto-resize: true
+            color: #FFDC96
+
+        Panel
+          height: 14
+          margin-top: 5
+          layout: horizontalBox
+
+          Label
+            width: 110
+            color: #FFAA00
+            text: Entrada
+
+          Label
+            id: joinStatus
+            text-auto-resize: true
+            color: #FFDC96
+
+        Panel
+          height: 14
+          margin-top: 5
+          layout: horizontalBox
+
+          Label
+            width: 110
+            color: #FFAA00
+            text: Idioma
+
+          Label
+            id: language
+            text-auto-resize: true
+            color: #FFDC96
+
+        Panel
+          height: 14
+          margin-top: 5
+          layout: horizontalBox
+
+          Label
+            width: 110
+            color: #FFAA00
+            text: Nivel necessario
+
+          Label
+            id: reqLevel
+            text-auto-resize: true
+            color: #FFDC96
+
+        Panel
+          height: 14
+          margin-top: 5
+          layout: horizontalBox
+
+          Label
+            width: 110
+            color: #FFAA00
+            text: Cargo
+
+          Label
+            id: rank
+            text-auto-resize: true
+            color: #FFDC96
+
+        Panel
+          height: 14
+          margin-top: 5
+          visible: false
+          layout: horizontalBox
+
+          Label
+            width: 110
+            color: #FFAA00
+            text: Guerras vencidas
+
+          Label
+            id: won
+            text-auto-resize: true
+            color: #FFDC96
+
+        Panel
+          height: 14
+          margin-top: 5
+          visible: false
+          layout: horizontalBox
+
+          Label
+            width: 110
+            color: #FFAA00
+            text: Guerras perdidas
+
+          Label
+            id: lost
+            text-auto-resize: true
+            color: #FFDC96
+
+        Panel
+          height: 14
+          margin-top: 5
+          layout: horizontalBox
+
+          Label
+            width: 110
+            color: #FFAA00
+            text: Niveis totais
+
+          Label
+            id: total
+            text-auto-resize: true
+            color: #FFDC96
+            text: 3456
+
+    MiniPanel
+      id: stats
+      anchors.top: parent.top
+      anchors.left: prev.right
+      anchors.right: parent.right
+      height: 146
+      margin-left: 5
+      text: Melhorias
+
+      Panel
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+        height: 14
+        layout: horizontalBox
+
+        Label
+          width: 130
+          color: #FFAA00
+          text: Nivel da Guild
+
+        Label
+          id: level
+          text-align: left
+          text-auto-resize: true
+          color: #FFDC96
+          text: 0
+
+      ProgressBar
+        id: guildExp
+        anchors.top: prev.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        margin-top: 5
+        height: 10
+        image-source: images/ui/progressbar
+        image-border: 3
+        background-color: #FFAA00
+        phantom: false
+        @onSetup: self:setPercent(35) self:setTooltip("Deposit at least 123456 gold to level up.")
+
+      Panel
+        anchors.top: prev.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        margin-top: 5
+        height: 14
+        layout: horizontalBox
+
+        Label
+          width: 130
+          color: #FFAA00
+          text: Gold para proximo nivel
+
+        Label
+          id: nextLevel
+          text-align: left
+          text-auto-resize: true
+          color: #FFDC96
+          text: 0
+
+      Panel
+        anchors.top: prev.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        margin-top: 5
+        height: 14
+        layout: horizontalBox
+
+        Label
+          width: 130
+          color: #FFAA00
+          text: Gold atual
+
+        Label
+          id: gold
+          text-align: left
+          text-auto-resize: true
+          color: #FFDC96
+          text: 0
+
+      Panel
+        anchors.top: prev.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        margin-top: 5
+        height: 14
+        layout: horizontalBox
+
+        Label
+          width: 130
+          color: #FFAA00
+          text: Sua contribuicao
+
+        Label
+          id: contribution
+          text-align: left
+          text-auto-resize: true
+          color: #FFDC96
+          text: 0
+
+      ButtonGuild
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        margin-top: 5
+        text: Doar Gold
+        @onClick: modules.game_guildmanagement.showDeposit()
+
+      ButtonGuild
+        id: levelUp
+        anchors.bottom: parent.bottom
+        anchors.right: parent.right
+        text: Subir Nivel
+        enabled: false
+        @onClick: modules.game_guildmanagement.levelUp()
+
+    MiniPanel
+      anchors.top: prev.bottom
+      anchors.bottom: parent.bottom
+      anchors.left: prev.left
+      anchors.right: parent.right
+      margin-top: 5
+      text: Mensagem do Dia
+
+      Label
+        id: motd
+        anchors.fill: parent
+        text-wrap: true
+
+    MiniPanel
+      id: deposit
+      anchors.centerIn: parent
+      text: Depositar Gold
+      size: 225 100
+      phantom: false
+      visible: false
+
+      UIItem
+        anchors.top: parent.top
+        anchors.left: parent.left
+        size: 32 32
+        item-id: 3043
+        virtual: true
+
+      SpinBox
+        id: crystal
+        anchors.verticalCenter: prev.verticalCenter
+        anchors.left: prev.right
+        width: 40
+        minimum: 0
+        maximum: 999
+        value: 0
+        mouse-scroll: false
+        focusable: true
+
+      UIItem
+        anchors.top: parent.top
+        anchors.left: prev.right
+        size: 32 32
+        item-id: 3035
+        virtual: true
+
+      SpinBox
+        id: plat
+        anchors.verticalCenter: prev.verticalCenter
+        anchors.left: prev.right
+        width: 40
+        minimum: 0
+        maximum: 999
+        value: 0
+        mouse-scroll: false
+        focusable: true
+
+      UIItem
+        anchors.top: parent.top
+        anchors.left: prev.right
+        size: 32 32
+        item-id: 3031
+        virtual: true
+
+      SpinBox
+        id: gold
+        anchors.verticalCenter: prev.verticalCenter
+        anchors.left: prev.right
+        width: 40
+        minimum: 0
+        maximum: 999
+        value: 0
+        mouse-scroll: false
+        focusable: true
+
+      ButtonGuild
+        anchors.left: parent.left
+        anchors.bottom: parent.bottom
+        width: 60
+        margin-left: 5
+        margin-bottom: 5
+        text: Fechar
+        @onClick: self:getParent():hide()
+
+      ButtonGuild
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        width: 60
+        margin-right: 5
+        margin-bottom: 5
+        text: Depositar
+        @onClick: modules.game_guildmanagement.deposit()

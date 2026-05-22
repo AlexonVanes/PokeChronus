@@ -1,0 +1,268 @@
+MemorySlotButton < UIButton
+  size: 36 38
+  image-source: images/slot
+  phantom: false
+  focusable: false
+  UIItem
+    id: Itemicon
+    size: 32 32
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.horizontalCenter: parent.horizontalCenter
+    phantom: true
+    focusable: false
+    visible: false
+    virtual: true
+  UIWidget
+    id: icon
+    size: 40 30
+    image-source: /pokemon/regular/gyarados
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.horizontalCenter: parent.horizontalCenter
+    focusable: false
+    virtual: true
+    image-color: #cdcdcd
+    change-cursor-image: true
+    cursor: pointer
+    $hover:
+      image-color: #ffffff
+    $pressed:
+      image-color: #9b9b9b
+  UIWidget
+    id: buttonLocked
+    size: 18 20
+    visible: false
+    image-source: images/locked
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.verticalCenter: parent.verticalCenter
+    focusable: false
+    image-color: #cdcdcd
+    change-cursor-image: true
+    cursor: pointer
+    $hover:
+      image-color: #ffffff
+    $pressed:
+      image-color: #9b9b9b
+  UIWidget
+    id: buttonAdd
+    size: 19 19
+    visible: false
+    image-source: images/add
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.verticalCenter: parent.verticalCenter
+    focusable: false
+    image-color: #cdcdcd
+    change-cursor-image: true
+    cursor: pointer
+    margin-top: 1
+    margin-left: 1
+    $hover:
+      image-color: #ffffff
+    $pressed:
+      image-color: #9b9b9b
+  UIWidget
+    id: buttonBuy
+    size: 20 19
+    visible: false
+    image-source: images/buy
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.verticalCenter: parent.verticalCenter
+    focusable: false
+    image-color: #cdcdcd
+    change-cursor-image: true
+    cursor: pointer
+    margin-top: 1
+    margin-left: -1
+    $hover:
+      image-color: #ffffff
+    $pressed:
+      image-color: #9b9b9b
+  UIWidget
+    id: uncopy
+    size: 8 8
+    image-source: images/close
+    anchors.top: parent.top
+    anchors.right: parent.right
+    focusable: false
+    visible: false
+    image-color: #cdcdcd
+    change-cursor-image: true
+    cursor: pointer
+    $hover:
+      image-color: #ffffff
+    $pressed:
+      image-color: #9b9b9b
+
+
+UIWindow
+  id: dittoMemoryWindow
+  focusable: false
+  size: 247 293
+  anchors.verticalCenter: parent.verticalCenter
+  anchors.horizontalCenter: parent.horizontalCenter
+  image-source: images/background
+
+  Panel
+    id: transformationPanel
+    visible: true
+    size: 247 254
+    anchors.top: parent.top
+    anchors.left: parent.left
+    focusable: false
+    margin-top: 40
+
+    UIWidget
+      id: transformationName
+      !text: tr("None")
+      font: sono_bold_12
+      text-auto-resize: true
+      text-align: center
+      anchors.horizontalCenter: parent.horizontalCenter
+      anchors.top: parent.top
+      margin-top: 115
+      phantom: true
+      focusable: false
+      text-align: center
+
+    UIWidget
+      id: transformationTimeLeft
+      !text: tr("Time: 12:00:00")
+      font: sono_bold_12
+      text-auto-resize: true
+      text-align: center
+      anchors.horizontalCenter: parent.horizontalCenter
+      anchors.bottom: parent.bottom
+      margin-bottom: 10
+      phantom: true
+      focusable: false
+
+    UIButton
+      id: detransformButton
+      size: 25 25
+      image-source: images/revert
+      anchors.top: parent.top
+      anchors.right: parent.right
+      margin-top: 61
+      margin-right: 70
+      @onClick: g_game.talk('!revert')
+      image-color: #cdcdcd
+      change-cursor-image: true
+      cursor: pointer
+      $hover:
+        image-color: #ffffff
+      $pressed:
+        image-color: #9b9b9b
+
+  UIWidget
+    id: windowIcon
+    size: 27 27
+    image-source: images/icon
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 7
+    margin-left: 15
+    phantom: true
+    focusable: false
+
+  UIWidget
+    id: windowName
+    !text: tr("Ditto")
+    font: sono_bold_12
+    text-auto-resize: true
+    anchors.left: prev.right
+    anchors.verticalCenter: windowIcon.verticalCenter
+    margin-top: -1
+    margin-left: 5
+    phantom: true
+    focusable: false
+    text-align: left
+
+  UIWidget
+    id: tip
+    size: 15 15
+    image-source: images/help
+    anchors.left: windowName.right
+    anchors.verticalCenter: windowName.verticalCenter
+    margin-top: 1
+    margin-left: 6
+    phantom: false
+    focusable: false
+    text-align: left
+    opacity: 0.8
+    $hover:
+      opacity: 1.0
+
+  UIWidget
+    id: transformationIconShape
+    size: 81 102
+    image-source: images/pokeball
+    anchors.top: parent.top
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-top: 49
+    phantom: true
+    focusable: false
+
+  UICreature
+    id: transformationIcon
+    size: 50 50
+    phantom: true
+    anchors.left: parent.left
+    anchors.top: windowIcon.bottom
+    margin-left: 85
+    margin-top: 40
+
+  Panel
+    id: memoriesPanel
+    visible: true
+    size: 120 96
+    anchors.top: transformationIconShape.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-top: 20
+    focusable: false
+    MemorySlotButton
+      id: 1
+      anchors.top: parent.top
+      anchors.left: parent.left
+      margin-left: 0
+      margin-top: 8
+    MemorySlotButton
+      id: 2
+      anchors.top: 1.top
+      anchors.left: 1.right
+      margin-left: 7
+    MemorySlotButton
+      id: 3
+      anchors.top: 1.top
+      anchors.left: 2.right
+      margin-left: 7
+    MemorySlotButton
+      id: 4
+      anchors.top: 1.bottom
+      anchors.left: 1.left
+      margin-top: 4
+    MemorySlotButton
+      id: 5
+      anchors.top: 4.top
+      anchors.left: 4.right
+      margin-left: 7
+    MemorySlotButton
+      id: 6
+      anchors.top: 4.top
+      anchors.left: 5.right
+      margin-left: 7
+
+  UIButton
+    id: closeButton
+    size: 14 14
+    image-source: images/close
+    anchors.right: parent.right
+    anchors.top: parent.top
+    margin-right: 15
+    margin-top: 13
+    @onClick: modules.game_dittoMemory.hide()
+    image-color: #cdcdcd
+    change-cursor-image: true
+    cursor: pointer
+    $hover:
+      image-color: #ffffff
+    $pressed:
+      image-color: #9b9b9b

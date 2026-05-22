@@ -1,0 +1,130 @@
+CreateAccountWindow
+  id: createAccountWindow
+  LogoPanel
+    id: logo
+
+  Label
+    id: topText
+    !text: tr('CRIAR CONTA')
+    font: window
+    anchors.left: parent.left
+    anchors.top: logo.bottom
+    color: #ffffff
+    draggable: false
+    phantom: true
+    margin-top: 20
+    margin-left: 160
+
+  Label
+    id: nomeconta
+    font: window
+    !text: tr('Nome da Conta')
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.top: prev.bottom
+    margin-left: 25
+    margin-right: 25
+    margin-top: 50
+    draggable: false
+
+  CreateAccountTextEdit
+    id: accountNameTextEdit
+    padding-right: 35
+    anchors.left: nomeconta.left
+    anchors.right: parent.right
+    anchors.top: nomeconta.bottom
+    margin-right: 25
+    margin-top: 5
+    draggable: false
+
+  Label
+    id: email
+    !text: tr('E-mail')
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.top: prev.bottom
+    margin-left: 25
+    margin-right: 25
+    margin-top: 25
+    draggable: false
+
+  CreateAccountTextEdit
+    id: emailTextEdit
+    margin-top: 5
+    anchors.top: prev.bottom
+    anchors.left: email.left
+    anchors.right: parent.right
+    margin-right: 25
+
+  Label
+    id: senha
+    !text: tr('Crie sua senha')
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.top: prev.bottom
+    margin-left: 25
+    margin-right: 25
+    margin-top: 25
+    draggable: false
+
+  CreateAccountTextEdit
+    id: passwordTextEdit
+    margin-top: 5
+    anchors.top: prev.bottom
+    anchors.left: senha.left
+    anchors.right: parent.right
+    margin-right: 25
+
+  Label
+    id: confirmarsenha
+    !text: tr('Confirme sua senha')
+    anchors.left: parent.left
+    anchors.right: parent.right
+    anchors.top: prev.bottom
+    margin-left: 25
+    margin-right: 25
+    margin-top: 25
+    draggable: false
+
+  CreateAccountTextEdit
+    id: passwordConfirmationTextEdit
+    margin-top: 5
+    anchors.top: prev.bottom
+    anchors.left: senha.left
+    anchors.right: parent.right
+    margin-right: 25
+
+
+  ButtonGreen
+    id: botaoconfirmar
+    !text: tr('Confirmar')
+    font: window
+    color: #0B1C38
+    anchors.right: parent.right
+    anchors.left: parent.left
+    anchors.bottom: parent.bottom
+    margin-right: 25
+    margin-left: 25
+    margin-bottom: 200
+    @onClick: CreateAccount.doCreateAccount()
+
+    $hover:
+      change-cursor-image: true
+      cursor: pointer
+
+  ButtonRed
+    !text: tr('Voltar')
+    font: window
+    color: #0B1C38
+    anchors.right: parent.right
+    anchors.left: parent.left
+    anchors.top: botaoconfirmar.bottom
+    margin-right: 25
+    margin-left: 25
+    margin-top: 15
+    @onClick: CreateAccount.doOpenEnterGameWindow()
+
+    $hover:
+      change-cursor-image: true
+      cursor: pointer
+

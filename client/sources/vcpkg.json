@@ -1,0 +1,27 @@
+﻿{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+  "name": "otclient-pkm",
+  "version-string": "1.0.0",
+  "dependencies": [
+    "boost-asio",
+    "boost-beast",
+    "boost-date-time",
+    "boost-filesystem",
+    "boost-iostreams",
+    "boost-lexical-cast",
+    "boost-process",
+    "boost-system",
+    "boost-thread",
+    "boost-uuid",
+    "bzip2",
+    "glew",
+    "libogg",
+    "libvorbis",
+    "libzip",
+    "luajit",
+    "openal-soft",
+    "openssl",
+    "physfs",
+    "zlib"
+  ]
+}

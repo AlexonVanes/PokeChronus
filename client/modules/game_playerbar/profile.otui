@@ -1,0 +1,1709 @@
+blessButton < UIWidget
+  change-cursor-image: true
+  cursor: pointer
+buttonIn < UIWidget
+  size: 211 28
+  image-source: images/profile/background_descbutton
+  image-border-left: 85
+  image-border-right: 85
+  image-border-top: 12
+  image-border-bottom: 12
+  image-color: #b9b9b9
+  change-cursor-image: true
+  cursor: pointer
+  $hover:
+    image-color: #ffffff
+  $pressed:
+    image-color: #8f8f8f
+  UIWidget
+    id: slot
+    size: 16 16
+    phantom: true
+    image-source: images/profile/icon_edit
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.horizontalCenter: parent.horizontalCenter
+
+ButtonEditProfile < UIWidget
+  image-color: #b9b9b9
+  change-cursor-image: true
+  cursor: pointer
+  @onClick: modules.game_playerbar.toggleEditProfileInfos()
+  $hover:
+    image-color: #ffffff
+  $pressed:
+    image-color: #8f8f8f
+  UIWidget
+    id: slot
+    size: 16 16
+    phantom: true
+    image-source: images/profile/icon_edit
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.horizontalCenter: parent.horizontalCenter
+
+panelProfile < UIWidget
+  size: 123 111
+  image-source: images/profile/background_panels
+  image-border: 40
+
+skillItemPreview < UIItem
+  size: 32 32
+  virtual: true
+  hide-count: true
+  UIWidget
+    id: slot
+    size: 32 32
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.horizontalCenter: parent.horizontalCenter
+
+skillItemPreview2 < UIItem
+  size: 32 32
+  virtual: true
+  UIWidget
+    id: slot
+    size: 32 32
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.horizontalCenter: parent.horizontalCenter
+
+uploadImageButton < UIWidget
+  size: 100 100
+  image-source: images/profile/editprofile/widget
+  image-border: 20
+  change-cursor-image: true
+  cursor: pointer
+  focusable: false
+  @onClick: modules.game_playerbar.togglePanelLoadImage(true)
+  $hover:
+    image-color: #ffffff
+  $pressed:
+    image-color: #8f8f8f
+  UIWidget
+    id: icon
+    size: 34 44
+    phantom: true
+    image-source: images/profile/upload_icon
+    anchors.top: parent.top
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-top: 16
+  UIWidget
+    id: title
+    !text: 'UPLOAD'
+    font: verdana-11px-rounded
+    color: #bbbbbb
+    text-auto-resize: true
+    text-align: center
+    phantom: true
+    anchors.top: parent.top
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-top: 70
+
+widgetLoadImage < UIWidget
+  size: 100 100
+  image-source: images/profile/editprofile/widget
+  image-border: 20
+  &updateOnStates: |
+    function(self)
+      local children = self:getChildren()
+      for i=1,#children do
+        children[i]:setOn(self:isFocused())
+        if self:isFocused() then
+          self.slot:setOpacity(1)
+        else
+          self.slot:setOpacity(0.5)
+        end
+      end
+    end
+  @onFocusChange: self:updateOnStates()
+  @onSetup: self:updateOnStates()
+  change-cursor-image: true
+  cursor: pointer
+  $focus:
+    image-source: images/profile/editprofile/widget_selected
+  UIWidget
+    id: slot
+    size: 80 80
+    image-source: /perfil/square/male/1
+    clipping: true
+    phantom: true
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.horizontalCenter: parent.horizontalCenter
+
+widgetProfileBorder < UIWidget
+  size: 516 100
+  image-source: images/profile/editprofile/widget
+  image-border: 20
+  &updateOnStates: |
+    function(self)
+      local children = self:getChildren()
+      for i=1,#children do
+        children[i]:setOn(self:isFocused())
+      end
+    end
+  @onFocusChange: self:updateOnStates()
+  @onSetup: self:updateOnStates()
+  change-cursor-image: true
+  cursor: pointer
+  $focus:
+    image-source: images/profile/editprofile/widget_selected
+  UIWidget
+    id: image
+    size: 90 90
+    image-source: /perfil/border/none
+    phantom: true
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.left: parent.left
+    margin-left: 15
+  UIWidget
+    id: titleNone
+    font: verdana-11px-rounded
+    color: #9c9c9c
+    text-auto-resize: true
+    text-align: center
+    phantom: true
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.horizontalCenter: parent.horizontalCenter
+  UIWidget
+    id: title
+    font: verdana-11px-rounded
+    color: white
+    text-auto-resize: true
+    text-align: center
+    phantom: true
+    anchors.top: parent.top
+    anchors.horizontalCenter: progressbar.horizontalCenter
+    margin-top: 8
+  UIWidget
+    id: require
+    font: verdana-11px-rounded
+    color: white
+    text-auto-resize: true
+    text-align: leftTop
+    phantom: true
+    anchors.top: parent.top
+    anchors.left: image.right
+    margin-top: 35
+    margin-left: 8
+  UIWidget
+    id: desc
+    font: verdana-11px-rounded
+    color: #8a8a8a
+    text-align: left
+    text-wrap: true
+    text-vertical-auto-resize: true
+    phantom: true
+    anchors.top: require.bottom
+    anchors.left: require.left
+    anchors.right: parent.right
+    margin-top: -5
+    margin-right: 5
+  UIWidget
+    id: progressbar
+    size: 393 6
+    image-source: images/profile/editprofile/progress_base
+    phantom: true
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    margin-right: 12
+    margin-bottom: 5
+    UIWidget
+      id: progress
+      size: 393 6
+      image-source: images/profile/editprofile/progress
+      phantom: true
+      anchors.left: parent.left
+      anchors.top: parent.top
+  UIWidget
+    id: progressTitle
+    !text: tr('Progress')
+    font: verdana-11px-rounded
+    color: white
+    text-auto-resize: true
+    text-align: leftTop
+    phantom: true
+    anchors.bottom: progressbar.top
+    anchors.left: progressbar.left
+    margin-bottom: 3
+  UIWidget
+    id: progressStatus
+    !text: '50/100'
+    font: verdana-11px-rounded
+    color: white
+    text-auto-resize: true
+    text-align: leftTop
+    phantom: true
+    anchors.bottom: progressbar.top
+    anchors.right: progressbar.right
+    margin-bottom: 3
+
+widgetProfileImage < UIWidget
+  size: 100 100
+  image-source: images/profile/editprofile/widget
+  image-border: 20
+  &updateOnStates: |
+    function(self)
+      local children = self:getChildren()
+      for i=1,#children do
+        children[i]:setOn(self:isFocused())
+        if self:isFocused() then
+          self.slot:setOpacity(1)
+        else
+          self.slot:setOpacity(0.5)
+        end
+      end
+    end
+  @onFocusChange: self:updateOnStates()
+  @onSetup: self:updateOnStates()
+  change-cursor-image: true
+  cursor: pointer
+  $focus:
+    image-source: images/profile/editprofile/widget_selected
+  UIWidget
+    id: slot
+    size: 192 96
+    image-source: /perfil/square/male/1
+    clipping: true
+    phantom: true
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.horizontalCenter: parent.horizontalCenter
+
+  UIWidget
+    id: level2
+    !text: '250+'
+    font: verdana-11px-rounded
+    color: black
+    text-auto-resize: true
+    text-align: left
+    phantom: true
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 6
+    margin-left: 6
+  UIWidget
+    id: level
+    !text: '250+'
+    font: verdana-11px-rounded
+    color: white
+    text-auto-resize: true
+    text-align: left
+    phantom: true
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 5
+    margin-left: 5
+
+buttonEditSelection < UIWidget
+  size: 167 30
+  image-source: images/profile/editprofile/button
+  &updateOnStates: |
+    function(self)
+      local children = self:getChildren()
+      for i=1,#children do
+        children[i]:setOn(self:isFocused())
+      end
+    end
+  @onFocusChange: self:updateOnStates()
+  @onSetup: self:updateOnStates()
+  change-cursor-image: true
+  cursor: pointer
+  $focus:
+    image-source: images/profile/editprofile/button_selected
+
+  UIWidget
+    id: icon
+    size: 25 25
+    phantom: true
+    image-source: images/profile/editprofile/1
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 4
+    margin-left: 11
+
+  UIWidget
+    id: arrow
+    size: 7 11
+    phantom: true
+    image-source: images/profile/editprofile/right_arrow
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.right: parent.right
+    margin-top: 1
+    margin-right: 6
+
+  UIWidget
+    id: name
+    !text: tr('title')
+    font: verdana-11px-rounded
+    color: white
+    text-auto-resize: true
+    text-align: left
+    phantom: true
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.left: icon.right
+    margin-left: 8
+    margin-top: 1
+
+buttonSkillSelection < UIWidget
+  size: 105 25
+  image-color: #b9b9b9
+  change-cursor-image: true
+  cursor: pointer
+  image-source: images/profile/skills/button_selection
+  &updateOnStates: |
+    function(self)
+      local children = self:getChildren()
+      for i=1,#children do
+        children[i]:setOn(self:isFocused())
+      end
+    end
+  @onFocusChange: self:updateOnStates()
+  @onSetup: self:updateOnStates()
+  $focus:
+    image-source: images/profile/skills/button_selection_selected
+  $hover:
+    image-color: #ffffff
+  $pressed:
+    image-color: #8f8f8f
+
+  UIWidget
+    id: slotImage
+    size: 20 20
+    phantom: true
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.left: parent.left
+    margin-left: 5
+  UIItem
+    id: slotItem
+    size: 20 20
+    virtual: true
+    hide-count: true
+    phantom: true
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.left: parent.left
+    margin-left: 5
+  UIWidget
+    id: name
+    !text: tr('POKEMONS')
+    font: verdana-11px-rounded
+    color: white
+    text-auto-resize: true
+    text-align: left
+    phantom: true
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-left: 34
+
+panelUPLOADImage < UIWidget
+  id: panelUPLOADImage
+  size: 734 526
+  visible: false
+  image-source: images/profile/background
+  anchors.horizontalCenter: parent.horizontalCenter
+  anchors.verticalCenter: parent.verticalCenter
+
+  UIWidget
+    id: title
+    !text: tr('CONFIRMAÇÃO DE UPLOAD DE IMAGEM')
+    font: verdana-11px-rounded
+    color: white
+    opacity: 0.7
+    text-auto-resize: true
+    phantom: true
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.top: parent.top
+    margin-top: 65
+
+  widgetLoadImage
+    id: image
+    size: 100 100
+    phantom: true
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.top: parent.top
+    margin-top: 138
+  UIWidget
+    id: imageGlow
+    size: 100 100
+    phantom: true
+    image-source: images/profile/editprofile/widget_glow
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.top: parent.top
+    margin-top: 138
+  UIWidget
+    id: iconProgress
+    size: 80 80
+    opacity: 0.5
+    phantom: true
+    image-source: images/profile/upload_icon
+    anchors.horizontalCenter: image.horizontalCenter
+    anchors.verticalCenter: image.verticalCenter
+
+  UIWidget
+    id: progressbase
+    size: 417 16
+    image-source: images/profile/big_progress_base
+    phantom: true
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.top: parent.top
+    margin-top: 277
+  UIWidget
+    id: progress
+    size: 417 16
+    image-source: images/profile/big_progress
+    phantom: true
+    anchors.top: progressbase.top
+    anchors.left: progressbase.left
+
+  UIWidget
+    id: titleProgress
+    !text: 'Estabelecendo Conexão com o Servidor…'
+    font: verdana-11px-rounded
+    color: white
+    text-align: left
+    text-wrap: true
+    text-auto-resize: true
+    phantom: true
+    anchors.top: progress.bottom
+    anchors.left: progress.left
+    margin-top: 1
+    margin-left: 5
+  UIWidget
+    id: progressPercent
+    !text: '25%'
+    font: verdana-11px-rounded
+    color: white
+    text-align: left
+    text-wrap: true
+    text-auto-resize: true
+    phantom: true
+    anchors.top: progress.bottom
+    anchors.right: progress.right
+    margin-top: 1
+
+  UIWidget
+    id: desc
+    !text: tr('We are processing your image upload\nThis may take a few seconds.\nThank you for your patience!')
+    font: verdana-11px-rounded
+    color: #7f8fa4
+    text-align: top
+    text-wrap: true
+    text-auto-resize: true
+    phantom: true
+    anchors.top: progress.bottom
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 35
+    margin-bottom: 6
+    margin-left: 20
+    margin-right: 20
+
+  UIWidget
+    id: applyButton
+    size: 167 28
+    image-source: images/profile/apply_button
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.bottom: parent.bottom
+    margin-bottom: 40
+    image-color: #b9b9b9
+    change-cursor-image: true
+    cursor: pointer
+    $hover:
+      image-color: #ffffff
+    $pressed:
+      image-color: #8f8f8f
+    UIWidget
+      id: label
+      !text: tr('CLOSE')
+      font: verdana-11px-rounded
+      text-align: center
+      color: #ffffff
+      phantom: true
+      anchors.horizontalCenter: parent.horizontalCenter
+      anchors.verticalCenter: parent.verticalCenter
+      margin-top: 1
+
+panelConfirmLoadImage < UIWidget
+  id: panelConfirmLoadImage
+  size: 734 526
+  visible: false
+  image-source: images/profile/background
+  anchors.horizontalCenter: parent.horizontalCenter
+  anchors.verticalCenter: parent.verticalCenter
+
+  UIWidget
+    id: title
+    !text: tr('IMAGE UPLOAD CONFIRMATION')
+    font: verdana-11px-rounded
+    color: white
+    opacity: 0.7
+    text-auto-resize: true
+    phantom: true
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.top: parent.top
+    margin-top: 65
+
+  widgetLoadImage
+    id: image
+    size: 100 100
+    phantom: true
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.top: parent.top
+    margin-top: 138
+  UIWidget
+    id: desc
+    !text: tr("By uploading this image, you confirm that the image follows all of our appropriate content rules.\nThis includes, but is not limited to, prohibiting offensive, inappropriate or illegal content.\nPlease be aware that ' Violation of these rules may result in an immediate ban without prior notice'.\nAlso, please note that 'after uploading, you will only be able to change the image again after 24 hours'\nWe appreciate your understanding and cooperation in maintaining our community safe and welcoming.\n\n\nClick Confirm if you agree to these terms and wish to continue uploading the image.")
+    font: verdana-11px-rounded
+    color: #8a8a8a
+    text-align: top
+    text-wrap: true
+    text-vertical-auto-resize: true
+    phantom: true
+    anchors.top: image.bottom
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 35
+    margin-bottom: 6
+    margin-left: 20
+    margin-right: 20
+
+  UIWidget
+    id: applyButton
+    size: 120 28
+    image-source: images/profile/apply_button_green
+    anchors.left: parent.left
+    anchors.bottom: parent.bottom
+    margin-left: 242
+    margin-bottom: 59
+    image-color: #b9b9b9
+    change-cursor-image: true
+    cursor: pointer
+    $hover:
+      image-color: #ffffff
+    $pressed:
+      image-color: #8f8f8f
+    UIWidget
+      id: label
+      !text: tr('CONFIRM')
+      font: verdana-11px-rounded
+      text-align: center
+      color: #ffffff
+      phantom: true
+      anchors.horizontalCenter: parent.horizontalCenter
+      anchors.verticalCenter: parent.verticalCenter
+      margin-top: 1
+
+  UIWidget
+    id: cancelButton
+    size: 120 28
+    image-source: images/profile/apply_button_red
+    anchors.top: applyButton.top
+    anchors.left: applyButton.right
+    margin-left: 10
+    image-color: #b9b9b9
+    change-cursor-image: true
+    cursor: pointer
+    $hover:
+      image-color: #ffffff
+    $pressed:
+      image-color: #8f8f8f
+    UIWidget
+      id: label
+      !text: tr('CANCEL')
+      font: verdana-11px-rounded
+      text-align: center
+      color: #ffffff
+      phantom: true
+      anchors.horizontalCenter: parent.horizontalCenter
+      anchors.verticalCenter: parent.verticalCenter
+      margin-top: 1
+
+panelLoadImage < UIWidget
+  id: panelLoadImage
+  size: 734 526
+  visible: false
+  image-source: images/profile/background
+  anchors.horizontalCenter: parent.horizontalCenter
+  anchors.verticalCenter: parent.verticalCenter
+  @onSetup: modules.game_playerbar.doSetupImageDiretory(self)
+
+  UIWidget
+    id: div
+    size: 167 2
+    image-source: images/profile/div
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.top: scrollBar.bottom
+    anchors.left: scrollBar.left
+    anchors.right: scrollBar.right
+    margin-top: 10
+
+  UIWidget
+    id: descEdit
+    !text: tr('Formato do Arquivo')
+    font: verdana-11px-rounded
+    color: white
+    text-auto-resize: true
+    phantom: true
+    anchors.top: div.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-top: 10
+  UIWidget
+    id: descEdit2
+    !text: tr('The image must be in a system-accepted .png format')
+    font: verdana-11px-rounded
+    color: #a1a1a1
+    text-auto-resize: true
+    phantom: true
+    anchors.top: prev.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+
+  UIWidget
+    id: descEdit3
+    !text: tr('File size')
+    font: verdana-11px-rounded
+    color: white
+    text-auto-resize: true
+    phantom: true
+    anchors.top: descEdit2.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+  UIWidget
+    id: descEdit4
+    !text: tr('The image must have a maximum size of 5MB.')
+    font: verdana-11px-rounded
+    color: #a1a1a1
+    text-auto-resize: true
+    phantom: true
+    anchors.top: prev.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+
+  UIWidget
+    id: descEdit5
+    !text: tr('Image Dimensions')
+    font: verdana-11px-rounded
+    color: white
+    text-auto-resize: true
+    phantom: true
+    anchors.top: descEdit4.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+  UIWidget
+    id: descEdit6
+    !text: tr('The image must have dimensions, minimum 100x100 pixels, maximum 2000x2000 pixels.')
+    font: verdana-11px-rounded
+    color: #a1a1a1
+    text-auto-resize: true
+    phantom: true
+    anchors.top: prev.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+
+  UIWidget
+    id: descEdit7
+    !text: tr('Suitable Content')
+    font: verdana-11px-rounded
+    color: white
+    text-auto-resize: true
+    phantom: true
+    anchors.top: descEdit6.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+  UIWidget
+    id: descEdit8
+    !text: tr('The image must not contain offensive, inappropriate or illegal content.')
+    font: verdana-11px-rounded
+    color: #a1a1a1
+    text-auto-resize: true
+    phantom: true
+    anchors.top: prev.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+
+  UIWidget
+    id: applyButton
+    size: 167 28
+    image-source: images/profile/apply_button
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.bottom: parent.bottom
+    margin-bottom: 40
+    image-color: #b9b9b9
+    change-cursor-image: true
+    cursor: pointer
+    $hover:
+      image-color: #ffffff
+    $pressed:
+      image-color: #8f8f8f
+    UIWidget
+      id: label
+      !text: tr('APPLY')
+      font: verdana-11px-rounded
+      text-align: center
+      color: #ffffff
+      phantom: true
+      anchors.horizontalCenter: parent.horizontalCenter
+      anchors.verticalCenter: parent.verticalCenter
+      margin-top: 1
+
+  UIScrollArea
+    id: panelList
+    size: 633 100
+    anchors.top: parent.top
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-top: 191
+    auto-focus: first
+    horizontal-scrollbar: scrollBar
+    layout:
+      type: horizontalBox
+      spacing: 5
+  HorizontalScrollBar
+    id: scrollBar
+    pixels-scroll: true
+    anchors.top: panelList.bottom
+    anchors.left: panelList.left
+    anchors.right: panelList.right
+    margin-top: 5
+    step: 250
+
+  UIWidget
+    id: openDir
+    size: 69 28
+    image-source: images/profile/apply_button
+    image-border: 10
+    anchors.verticalCenter: baseDiretory.verticalCenter
+    anchors.left: baseDiretory.right
+    margin-left: 5
+    image-color: #b9b9b9
+    change-cursor-image: true
+    cursor: pointer
+    @onClick: g_platform.openDir(g_resources.getWriteDir() .. "customImage")
+    $hover:
+      image-color: #ffffff
+    $pressed:
+      image-color: #8f8f8f
+    UIWidget
+      id: label
+      !text: tr('OPEN')
+      font: verdana-11px-rounded
+      text-align: center
+      color: #ffffff
+      phantom: true
+      anchors.horizontalCenter: parent.horizontalCenter
+      anchors.verticalCenter: parent.verticalCenter
+      margin-top: 1
+
+  UIWidget
+    id: title
+    !text: tr('UPLOAD AN IMAGE')
+    font: verdana-11px-rounded
+    color: white
+    opacity: 0.7
+    text-auto-resize: true
+    phantom: true
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.top: parent.top
+    margin-top: 65
+  UIWidget
+    id: baseDiretory
+    size: 372 32
+    phantom: true
+    image-source: images/profile/editprofile/textedit_load
+    anchors.left: parent.left
+    anchors.top: prev.bottom
+    margin-left: 144
+    margin-top: 44
+    TextEdit
+      font: verdana-11px-rounded
+      size: 372 32
+      image-source: 
+      anchors.horizontalCenter: parent.horizontalCenter
+      anchors.verticalCenter: parent.verticalCenter
+      editable: false
+      !text: g_resources.getWriteDir() .. "customImage"
+      text-align: center
+  UIWidget
+    id: labelPanel
+    !text: tr('Image directory')
+    font: verdana-11px-rounded
+    text-auto-resize: true
+    text-align: center
+    color: #7f8fa4
+    phantom: true
+    anchors.bottom: baseDiretory.top
+    anchors.left: baseDiretory.left
+
+panelEditProfile < UIWidget
+  id: panelEditProfile
+  size: 734 526
+  visible: false
+  image-source: images/profile/background
+  anchors.horizontalCenter: parent.horizontalCenter
+  anchors.verticalCenter: parent.verticalCenter
+
+  UIWidget
+    id: perfilBase
+    size: 100 100
+    image-source: /perfil/circle/base
+    phantom: true
+    anchors.horizontalCenter: panelSelection.horizontalCenter
+    anchors.bottom: panelSelection.top
+    margin-bottom: 27
+  UIWidget
+    id: perfilImage
+    size: 100 100
+    image-source: /perfil/circle/male/1
+    phantom: true
+    anchors.horizontalCenter: perfilBase.horizontalCenter
+    anchors.verticalCenter: perfilBase.verticalCenter
+  UIWidget
+    id: perfilStatus
+    size: 100 100
+    anchors.horizontalCenter: perfilBase.horizontalCenter
+    anchors.verticalCenter: perfilBase.verticalCenter
+  UIWidget
+    id: perfilBorder
+    size: 135 135
+    image-source: /perfil/border/none
+    phantom: true
+    anchors.horizontalCenter: perfilBase.horizontalCenter
+    anchors.verticalCenter: perfilBase.verticalCenter
+
+  UIWidget
+    id: panelSelection
+    size: 167 138
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 198
+    margin-left: 13
+    layout:
+      type: verticalBox
+      spacing: 5
+
+  UIWidget
+    id: div
+    size: 167 2
+    image-source: images/profile/div
+    anchors.horizontalCenter: panelSelection.horizontalCenter
+    anchors.top: panelSelection.bottom
+    margin-top: 10
+  UIWidget
+    id: applyButton
+    size: 167 28
+    image-source: images/profile/apply_button
+    anchors.horizontalCenter: panelSelection.horizontalCenter
+    anchors.top: div.bottom
+    margin-top: 10
+    image-color: #b9b9b9
+    change-cursor-image: true
+    cursor: pointer
+    @onClick: modules.game_playerbar.doApplyProfileUpdate()
+    $hover:
+      image-color: #ffffff
+    $pressed:
+      image-color: #8f8f8f
+    UIWidget
+      id: label
+      !text: tr('APPLY')
+      font: verdana-11px-rounded
+      text-align: center
+      color: #ffffff
+      phantom: true
+      anchors.horizontalCenter: parent.horizontalCenter
+      anchors.verticalCenter: parent.verticalCenter
+      margin-top: 1
+
+
+  UIWidget
+    id: backgroundPanel
+    size: 517 422
+    image-source: images/profile/panel_editprofile
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 94
+    margin-left: 190
+  UIWidget
+    id: editPanelOverlay
+    size: 545 397
+    image-source: images/profile/background
+    image-color: #071018
+    opacity: 0.92
+    anchors.top: backgroundPanel.top
+    anchors.left: backgroundPanel.left
+    margin-top: 25
+    phantom: true
+  UIScrollArea
+    id: panelListBorder
+    size: 517 404
+    visible: true
+    anchors.top: backgroundPanel.top
+    anchors.left: backgroundPanel.left
+    margin-top: 25
+    auto-focus: first
+    vertical-scrollbar: scrollBar2
+    layout:
+      type: verticalBox
+      spacing: 5
+  UIScrollArea
+    id: panelList
+    size: 517 404
+    visible: false
+    anchors.top: backgroundPanel.top
+    anchors.left: backgroundPanel.left
+    margin-top: 25
+    auto-focus: first
+    vertical-scrollbar: scrollBar
+    layout:
+      type: grid
+      cell-size: 100 100
+      flow: true
+      auto-spacing: true
+  VerticalScrollBar
+    id: scrollBar
+    pixels-scroll: true
+    anchors.top: backgroundPanel.top
+    anchors.left: backgroundPanel.right
+    anchors.bottom: backgroundPanel.bottom
+    margin-left: 5
+    step: 250
+    width: 10
+  VerticalScrollBar
+    id: scrollBar2
+    pixels-scroll: true
+    anchors.top: backgroundPanel.top
+    anchors.left: backgroundPanel.right
+    anchors.bottom: backgroundPanel.bottom
+    margin-left: 5
+    step: 250
+    width: 10
+  UIWidget
+    id: titlePanel
+    !text: tr('Images')
+    font: verdana-11px-rounded
+    text-auto-resize: true
+    text-align: center
+    color: #ffff99
+    phantom: true
+    anchors.top: backgroundPanel.top
+    anchors.horizontalCenter: backgroundPanel.horizontalCenter
+    margin-top: 0
+  UIWidget
+    id: iconPanel
+    size: 28 23
+    image-source: images/profile/edit_icon
+    anchors.bottom: backgroundPanel.top
+    anchors.left: backgroundPanel.left
+    margin-bottom: 5
+  UIWidget
+    id: labelPanel
+    !text: tr('Edit Avatar decoration')
+    font: verdana-11px-rounded
+    text-auto-resize: true
+    text-align: center
+    color: #ffffff
+    phantom: true
+    anchors.bottom: iconPanel.bottom
+    anchors.left: iconPanel.right
+    margin-bottom: 2
+    margin-left: 5
+
+panelDescriptionEdit < UIWidget
+  id: panelDescriptionEdit
+  size: 734 526
+  visible: false
+  image-source: images/profile/background
+  anchors.horizontalCenter: parent.horizontalCenter
+  anchors.verticalCenter: parent.verticalCenter
+
+  UIWidget
+    id: title
+    !text: tr('EDIT DESCRIPTION')
+    font: verdana-11px-rounded
+    color: white
+    opacity: 0.7
+    text-auto-resize: true
+    phantom: true
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.top: parent.top
+    margin-top: 65
+
+  UIWidget
+    id: tittleEdit
+    !text: tr('Description update')
+    font: verdana-11px-rounded
+    color: #7f8fa4
+    text-auto-resize: true
+    phantom: true
+    anchors.bottom: textEdit.top
+    anchors.left: textEdit.left
+
+  MultilineTextEdit
+    id: textEdit
+    size: 372 132
+    image-source: images/profile/description_edit
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.top: parent.top
+    margin-top: 126
+
+  UIWidget
+    id: descTime
+    !text: '5 minutos e 35 segundos'
+    font: verdana-11px-rounded
+    color: #a1a1a1
+    text-auto-resize: true
+    phantom: true
+    anchors.horizontalCenter: applyButton.horizontalCenter
+    anchors.bottom: applyButton.top
+    margin-bottom: 5
+  UIWidget
+    id: applyButton
+    size: 167 28
+    image-source: images/profile/apply_button
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.top: parent.top
+    margin-top: 470
+    image-color: #b9b9b9
+    change-cursor-image: true
+    cursor: pointer
+    @onClick: modules.game_playerbar.doApplyANewDescription()
+    $hover:
+      image-color: #ffffff
+    $pressed:
+      image-color: #8f8f8f
+    UIWidget
+      id: label
+      !text: tr('APPLY')
+      font: verdana-11px-rounded
+      text-align: center
+      color: #ffffff
+      phantom: true
+      anchors.horizontalCenter: parent.horizontalCenter
+      anchors.verticalCenter: parent.verticalCenter
+      margin-top: 1
+
+  UIWidget
+    id: descEdit
+    !text: tr('Description Length')..':'
+    font: verdana-11px-rounded
+    color: white
+    text-auto-resize: true
+    phantom: true
+    anchors.top: textEdit.bottom
+    anchors.left: textEdit.left
+    margin-top: 5
+  UIWidget
+    id: descEdit2
+    !text: tr('minimum of 10 characters and maximum of 500 characters.')
+    font: verdana-11px-rounded
+    color: #a1a1a1
+    text-auto-resize: true
+    phantom: true
+    anchors.top: prev.bottom
+    anchors.left: prev.left
+    margin-left: 6
+
+  UIWidget
+    id: descEdit3
+    !text: tr('Suitable Content')..':'
+    font: verdana-11px-rounded
+    color: white
+    text-auto-resize: true
+    phantom: true
+    anchors.top: descEdit2.bottom
+    anchors.left: descEdit.left
+    margin-top: 5
+  UIWidget
+    id: descEdit4
+    !text: tr('The description must not contain offensive language.')
+    font: verdana-11px-rounded
+    color: #a1a1a1
+    text-auto-resize: true
+    phantom: true
+    anchors.top: prev.bottom
+    anchors.left: prev.left
+    margin-left: 6
+
+  UIWidget
+    id: descEdit5
+    !text: tr('No Personal Information')..':'
+    font: verdana-11px-rounded
+    color: white
+    text-auto-resize: true
+    phantom: true
+    anchors.top: descEdit4.bottom
+    anchors.left: descEdit.left
+    margin-top: 5
+  UIWidget
+    id: descEdit6
+    !text: tr('The description must not include personal information.')
+    font: verdana-11px-rounded
+    color: #a1a1a1
+    text-auto-resize: true
+    phantom: true
+    anchors.top: prev.bottom
+    anchors.left: prev.left
+    margin-left: 6
+
+blessHoverInfos < UIWidget
+  id: blessHoverInfos
+  size: 190 108
+  visible: false
+  image-source: images/tooltip_infos_background
+  image-border-top: 15
+  image-border-left: 13
+  image-border-right: 20
+  image-border-bottom: 30
+  UIWidget
+    id: Icon
+    size: 25 25
+    image-source: images/icons/bless_icon
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 10
+    margin-left: 15
+  UIWidget
+    id: title
+    !text: tr('BLESS')
+    font: verdana-11px-rounded
+    color: white
+    text-auto-resize: true
+    text-align: left
+    phantom: true
+    anchors.verticalCenter: Icon.verticalCenter
+    anchors.left: Icon.right
+    margin-top: -2
+    margin-left: 8
+  UIWidget
+    id: descDays
+    font: verdana-11px-rounded
+    color: white
+    text-auto-resize: true
+    text-align: left
+    phantom: true
+    anchors.top: Icon.bottom
+    anchors.left: Icon.left
+    margin-top: 5
+    margin-left: 0
+  UIWidget
+    id: desc
+    !text: tr('You are blessed by the grace of Arceus!')
+    font: verdana-11px-rounded
+    color: #8a8a8a
+    text-align: left
+    text-wrap: true
+    text-vertical-auto-resize: true
+    phantom: true
+    anchors.top: descDays.bottom
+    anchors.left: Icon.left
+    anchors.right: parent.right
+    margin-top: 6
+    margin-right: 4
+vipHoverInfosProfile < UIWidget
+  id: vipHoverInfosProfile
+  size: 190 108
+  visible: false
+  image-source: images/tooltip_infos_background
+  image-border-top: 15
+  image-border-left: 13
+  image-border-right: 20
+  image-border-bottom: 30
+  UIWidget
+    id: vipIcon
+    size: 25 25
+    image-source: images/icons/vip_icon
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 10
+    margin-left: 15
+  UIWidget
+    id: title
+    !text: tr('CONTA VIP')
+    font: verdana-11px-rounded
+    color: white
+    text-auto-resize: true
+    text-align: left
+    phantom: true
+    anchors.verticalCenter: vipIcon.verticalCenter
+    anchors.left: vipIcon.right
+    margin-top: -2
+    margin-left: 8
+  UIWidget
+    id: descDays
+    !text: tr('Dias restantes')
+    font: verdana-11px-rounded
+    color: white
+    text-auto-resize: true
+    text-align: left
+    phantom: true
+    anchors.top: vipIcon.bottom
+    anchors.left: vipIcon.left
+    margin-top: 5
+    margin-left: 0
+  UIWidget
+    id: desc
+    !text: tr('Todos os beneficios VIP ativos para seu personagem!')
+    font: verdana-11px-rounded
+    color: #8a8a8a
+    text-align: left
+    text-wrap: true
+    text-vertical-auto-resize: true
+    phantom: true
+    anchors.top: descDays.bottom
+    anchors.left: vipIcon.left
+    anchors.right: parent.right
+    margin-top: 6
+    margin-right: 4
+
+panelMedias < UIWidget
+  id: socialPanel
+  size: 99 32
+  anchors.top: prev.bottom
+  anchors.horizontalCenter: parent.horizontalCenter
+
+socialProfileButton < UIWidget
+  size: 29 32
+  image-color: #b9b9b9
+  change-cursor-image: true
+  cursor: pointer 
+  $hover:
+    image-color: #ffffff
+  $pressed:
+    image-color: #8f8f8f
+
+itemSlotBadge < UIItem
+  size: 32 32
+  virtual: true
+  hide-count: true
+  image-color: #b9b9b9
+  change-cursor-image: true
+  cursor: pointer
+  $hover:
+    image-color: #ffffff
+  $pressed:
+    image-color: #8f8f8f
+
+titlePanel < UIWidget
+  id: title
+  !text: 'CAUGHTS'
+  font: verdana-11px-rounded
+  color: white
+  text-auto-resize: true
+  text-align: left
+  phantom: true
+  anchors.top: parent.top
+  anchors.left: parent.left
+  margin-top: 15
+  margin-left: 15
+
+cautchtWidget < UIWidget
+  size: 196 14
+  anchors.top: prev.bottom
+  anchors.horizontalCenter: parent.horizontalCenter
+  @onSetup: modules.game_playerbar.doSetupRegionCaughtWidget(self, self:getId())
+  UIWidget
+    id: icon
+    size: 15 14
+    image-source: images/profile/kanto
+    anchors.top: parent.top
+    anchors.left: parent.left
+  UIWidget
+    id: title
+    !text: 'Title'
+    font: verdana-11px-rounded
+    color: #97abc6
+    text-auto-resize: true
+    text-align: left
+    phantom: true
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.left: prev.right
+    margin-left: 4
+  UIWidget
+    id: info
+    !text: '0'
+    font: verdana-11px-rounded
+    color: #ffffff
+    text-auto-resize: true
+    text-align: left
+    phantom: true
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.right: parent.right
+    margin-right: 1
+
+progressXpBar < UIWidget
+  size: 195 6
+  anchors.top: prev.bottom
+  anchors.horizontalCenter: parent.horizontalCenter
+  UIWidget
+    id: base
+    size: 195 6
+    image-source: images/profile/base
+    anchors.top: parent.top
+    anchors.left: parent.left
+  UIWidget
+    id: progress
+    size: 195 6
+    phantom: true
+    image-source: images/profile/progress
+    anchors.top: parent.top
+    anchors.left: parent.left
+
+labelWidget < UIWidget
+  size: 199 11
+  anchors.top: prev.bottom
+  anchors.horizontalCenter: parent.horizontalCenter
+  UIWidget
+    id: title
+    !text: 'Title'
+    font: verdana-11px-rounded
+    color: #97abc6
+    size: 116 11
+    text-auto-resize: false
+    text-align: left
+    phantom: true
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.left: parent.left
+    margin-left: 1
+  UIWidget
+    id: info
+    !text: '0'
+    font: verdana-11px-rounded
+    color: #ffffff
+    size: 78 11
+    text-auto-resize: false
+    text-align: right
+    phantom: true
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.right: parent.right
+    margin-right: 1
+
+UIWindow
+  id: profileWindow
+  size: 500 526
+  image-source: images/profile/background
+  anchors.horizontalCenter: parent.horizontalCenter
+  anchors.verticalCenter: parent.verticalCenter
+
+  panelProfile
+    id: clanPanel
+    size: 223 92
+    anchors.top: parent.top
+    anchors.left: mainPanel.right
+    margin-top: 55
+    margin-left: 10
+    @onSetup: modules.game_playerbar.doSetupClanWidget(self, self:getId())
+
+    UIWidget
+      id: icon
+      size: 40 40
+      image-source: images/profile/background_panels
+      anchors.top: parent.top
+      anchors.left: parent.left
+      margin-top: 5
+      margin-left: 4
+
+    UIWidget
+      id: title
+      !text: 'VOLCANIC'
+      font: verdana-11px-rounded
+      color: #ff7268
+      text-auto-resize: true
+      text-align: left
+      phantom: true
+      anchors.left: icon.right
+      anchors.verticalCenter: icon.verticalCenter
+      margin-top: 1
+
+    labelWidget
+      id: levelLabel
+      size: 199 11
+      margin-top: 10
+    labelWidget
+      id: experienceLabel
+      size: 199 11
+      margin-top: 2
+
+    progressXpBar
+      id: progressbar
+      margin-top: 5
+
+  panelProfile
+    id: caughtPanel
+    size: 223 111
+    anchors.top: clanPanel.bottom
+    anchors.left: mainPanel.right
+    margin-top: 10
+    margin-left: 10
+
+    titlePanel
+      !text: tr('CAPTURAS')
+
+    cautchtWidget
+      id: kanto
+      margin-top: 6
+    cautchtWidget
+      id: johto
+      margin-top: 3
+    cautchtWidget
+      id: hoenn
+      margin-top: 3
+    cautchtWidget
+      id: distortion
+      margin-top: 3
+
+  panelProfile
+    id: mainPanel
+    size: 223 380
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 129
+    margin-left: 20
+    @onSetup: modules.game_playerbar.doSetupMainWidget(self)
+
+    UIWidget
+      id: vipIcon
+      size: 16 16
+      image-source: images/profile/vip_emblem
+      anchors.top: parent.top
+      anchors.right: parent.right
+      margin-top: 13
+      margin-right: 15
+
+    blessButton
+      id: blessIcon
+      size: 15 16
+      image-source: images/icons/bless_off
+      anchors.top: parent.top
+      anchors.right: parent.right
+      margin-top: 35
+      margin-right: 15
+
+    UIWidget
+      id: playerName
+      !text: 'Stone'
+      font: verdana-11px-rounded
+      color: white
+      text-auto-resize: true
+      text-align: left
+      phantom: true
+      anchors.top: parent.top
+      anchors.horizontalCenter: parent.horizontalCenter
+      margin-top: 60
+
+    panelMedias
+      margin-top: 2
+
+      socialProfileButton
+        id: youtube
+        phantom: true
+        opacity: 0.4
+        image-source: images/profile/youtube
+        anchors.top: parent.top
+        anchors.left: parent.left
+
+      socialProfileButton
+        id: twitch
+        phantom: true
+        opacity: 0.4
+        image-source: images/profile/twitch
+        anchors.top: parent.top
+        anchors.left: prev.right
+        margin-left: 7
+
+      socialProfileButton
+        id: record
+        phantom: true
+        opacity: 0.4
+        image-source: images/profile/record
+        anchors.top: parent.top
+        anchors.left: prev.right
+        margin-left: 7
+
+    labelWidget
+      id: levelLabel
+      margin-top: 10
+    labelWidget
+      id: experienceLabel
+      margin-top: 3
+    labelWidget
+      id: xpGainRateLabel
+      margin-top: 3
+    labelWidget
+      id: vipDaysLabel
+      margin-top: 3
+    progressXpBar
+      id: progressExp
+      margin-top: 3
+
+    labelWidget
+      id: vigorLabel
+      margin-top: 6
+    progressXpBar
+      id: progressVigor
+      margin-top: 3
+    labelWidget
+      id: createDate
+      margin-top: 6
+    labelWidget
+      id: genderLabel
+      margin-top: 3
+    labelWidget
+      id: cityLabel
+      margin-top: 3
+    labelWidget
+      id: speedLabel
+      margin-top: 3
+    labelWidget
+      id: totalCatchesLabel
+      margin-top: 3
+
+    UIWidget
+      id: separator
+      size: 199 2
+      image-source: images/profile/div
+      anchors.top: prev.bottom
+      anchors.horizontalCenter: parent.horizontalCenter
+      margin-top: 10
+
+    UIWidget
+      id: titleDescription
+      !text: tr('DESCRICAO')
+      font: verdana-11px-rounded
+      color: white
+      text-auto-resize: true
+      text-align: left
+      phantom: true
+      anchors.top: prev.bottom
+      anchors.horizontalCenter: parent.horizontalCenter
+      margin-top: 5
+
+    UIWidget
+      id: desc
+      !text: tr('Sem descricao')
+      font: verdana-11px-rounded
+      color: #8a8a8a
+      text-align: center
+      text-wrap: true
+      text-vertical-auto-resize: true
+      phantom: true
+      anchors.top: titleDescription.bottom
+      anchors.bottom: parent.bottom
+      anchors.left: parent.left
+      anchors.right: parent.right
+      margin-top: 0
+      margin-bottom: 6
+      margin-left: 20
+      margin-right: 20
+
+    buttonIn
+      id: buttonEditDesc
+      anchors.top: desc.top
+      anchors.bottom: desc.bottom
+      anchors.left: desc.left
+      anchors.right: desc.right
+      @onClick: modules.game_playerbar.toggleEditDescWindow()
+
+  UIWidget
+    id: perfilBase
+    size: 100 100
+    image-source: /perfil/circle/base
+    phantom: true
+    anchors.horizontalCenter: mainPanel.horizontalCenter
+    anchors.bottom: mainPanel.top
+    margin-bottom: -40
+  UIWidget
+    id: perfilImage
+    size: 100 100
+    image-source: /perfil/circle/male/1
+    phantom: true
+    anchors.horizontalCenter: perfilBase.horizontalCenter
+    anchors.verticalCenter: perfilBase.verticalCenter
+  UIWidget
+    id: perfilStatus
+    size: 100 100
+    anchors.horizontalCenter: perfilBase.horizontalCenter
+    anchors.verticalCenter: perfilBase.verticalCenter
+  ButtonEditProfile
+    id: buttonEditProfile
+    size: 100 100
+    image-source: /perfil/circle/perfil_button_edit
+    anchors.horizontalCenter: perfilBase.horizontalCenter
+    anchors.verticalCenter: perfilBase.verticalCenter
+  UIWidget
+    id: perfilBorder
+    size: 135 135
+    image-source: /perfil/border/none
+    phantom: true
+    anchors.horizontalCenter: perfilBase.horizontalCenter
+    anchors.verticalCenter: perfilBase.verticalCenter
+
+  panelDescriptionEdit
+  panelEditProfile
+  panelLoadImage
+  panelConfirmLoadImage
+  panelUPLOADImage
+
+  UIWidget
+    id: topbar
+    size: 500 39
+    phantom: true
+    image-source: images/profile/topbar
+    anchors.top: parent.top
+    anchors.left: parent.left
+  Label
+    id: text
+    !text: tr('Profile')
+    font: verdana-11px-rounded
+    color: #ffffff
+    text-auto-resize: true
+    anchors.left: icon.right
+    anchors.verticalCenter: icon.verticalCenter
+    margin-top: 4
+    margin-left: 9
+  UIWidget
+    id: icon
+    size: 27 27
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 5
+    margin-left: 10
+    UIWidget
+      id: image
+      size: 32 30
+      image-source: images/profile/logo
+      anchors.horizontalCenter: parent.horizontalCenter
+      anchors.verticalCenter: parent.verticalCenter
+  UIWidget
+    id: closeWindow
+    size: 14 14
+    image-source: /images/ui/container/close_button
+    anchors.top: parent.top
+    anchors.right: parent.right
+    @onClick: modules.game_playerbar.toggleProfile()
+    margin-right: 17
+    margin-top: 14
+    image-color: #ffffff
+    change-cursor-image: true
+    cursor: pointer
+    $hover:
+      image-color: #cdcdcd
+    $pressed:
+      image-color: #9b9b9b
+  UIWidget
+    id: returnWindow
+    size: 15 14
+    visible: false
+    image-source: /images/ui/container/return
+    anchors.top: parent.top
+    anchors.right: parent.right
+    margin-right: 40
+    margin-top: 14
+    image-color: #ffffff
+    change-cursor-image: true
+    cursor: pointer
+    $hover:
+      image-color: #cdcdcd
+    $pressed:
+      image-color: #9b9b9b
+
+  vipHoverInfosProfile
+    anchors.bottom: mainPanel.top
+    anchors.left: mainPanel.left
+    margin-left: 176
+    margin-bottom: -10
+
+  blessHoverInfos
+    anchors.bottom: mainPanel.top
+    anchors.left: mainPanel.left
+    margin-left: 176
+    margin-bottom: -35

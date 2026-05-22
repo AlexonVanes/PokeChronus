@@ -1,0 +1,173 @@
+BattleIcon < UICheckBox
+  size: 28 28
+  image-color: white
+  image-rect: 0 0 28 28
+  change-cursor-image: true
+  cursor: pointer
+
+  $hover !disabled:
+    image-color: #ffffff
+
+  $!checked:
+    image-clip: 0 0 28 28
+
+  $hover !checked:
+    image-clip: 0 56 28 28
+
+  $checked:
+    image-clip: 0 28 28 28
+
+  $hover checked:
+    image-clip: 0 84 28 28
+
+  $disabled:
+    image-color: #ffffff88
+
+BattlePlayers < BattleIcon
+  image-source: /images/game/battle/poketibia_players
+
+BattleNPCs < BattleIcon
+  image-source: /images/game/battle/poketibia_npcs
+
+BattleMonsters < BattleIcon
+  image-source: /images/game/battle/poketibia_wild
+
+BattleParty < BattleIcon
+  image-source: /images/game/battle/poketibia_party
+
+BattleOwnPokemon < BattleIcon
+  image-source: /images/game/battle/poketibia_pokemon
+
+BattleToggleIcon < UIButton
+  size: 21 12
+  image-source: /images/game/battle/poketibia_toggle
+  image-clip: 21 0 21 12
+  change-cursor-image: true
+  cursor: pointer
+
+  $hover:
+    image-color: #ffffff
+
+MiniWindow
+  id: battleWindow
+  icon: /images/TOPBUTTONS_REWORK/ICON_BATTLE
+  text: Battle
+  height: 250
+  &minimizedHeight: 70
+  @onClose: modules.game_battle.onMiniWindowClose()
+  &save: true
+  &autoOpen: false
+
+  Panel
+    id: filterPanel
+    margin-top: 34
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.right: miniwindowScrollBar.left
+    height: 76
+    padding: 5
+    image-source: /images/game/battle/poketibia_filter_bg
+    image-border: 6
+
+    Panel
+      id: buttons
+      anchors.top: parent.top
+      anchors.left: parent.left
+      anchors.right: parent.right
+      height: 28
+      padding-left: 7
+      padding-right: 7
+      layout:
+        type: horizontalBox
+        spacing: 6
+
+      BattlePlayers
+        id: hidePlayers
+        tooltip: Ocultar treinadores
+        @onSetup: if g_app.isMobile() then self:setChecked(true) end
+        @onCheckChange: modules.game_battle.checkCreatures()
+
+      BattleNPCs
+        id: hideNPCs
+        tooltip: Ocultar NPCs
+        @onSetup: if g_app.isMobile() then self:setChecked(true) end
+        @onCheckChange: modules.game_battle.checkCreatures()
+
+      BattleMonsters
+        id: hideMonsters
+        tooltip: Ocultar selvagens
+        @onCheckChange: modules.game_battle.checkCreatures()
+
+      BattleParty
+        id: hideParty
+        tooltip: Ocultar party
+        @onSetup: if g_app.isMobile() then self:setChecked(true) end
+        @onCheckChange: modules.game_battle.checkCreatures()
+
+      BattleOwnPokemon
+        id: hideOwnPokemon
+        tooltip: Ocultar meu Pokemon
+        @onCheckChange: modules.game_battle.checkCreatures()
+
+    Panel
+      id: sortPanel
+      anchors.top: prev.bottom
+      anchors.left: parent.left
+      anchors.right: parent.right
+      margin-top: 4
+      height: 34
+      padding-left: 6
+      padding-right: 6
+
+      ComboBox
+        id: sortTypeBox
+        size: 94 28
+        anchors.top: parent.top
+        anchors.left: parent.left
+
+      ComboBox
+        id: sortOrderBox
+        size: 72 28
+        anchors.top: parent.top
+        anchors.right: parent.right
+
+  Panel
+    id: toggleFilterPanelButton
+    height: 14
+    margin-top: 4
+    anchors.top: prev.bottom
+    anchors.left: parent.left
+    anchors.right: miniwindowScrollBar.left
+
+    BattleToggleIcon
+      id: toggleFilterButton
+      anchors.horizontalCenter: parent.horizontalCenter
+      anchors.verticalCenter: parent.verticalCenter
+      @onClick: modules.game_battle.toggleFilterPanel()
+
+  MiniWindowContents
+    anchors.top: prev.bottom
+    margin-top: 8
+
+    Panel
+      id: battlePanel
+      anchors.left: parent.left
+      anchors.right: parent.right
+      anchors.top: parent.top
+      margin-top: 2
+      padding-right: 5
+      layout:
+        type: verticalBox
+        fit-children: true
+
+  ResizeBorder
+    id: bottomResizeBorder
+    anchors.bottom: parent.bottom
+    anchors.left: parent.left
+    anchors.right: parent.right
+    height: 3
+    minimum: 250
+    maximum: 450
+    margin-left: 3
+    margin-right: 3
+    background: #ffffff88

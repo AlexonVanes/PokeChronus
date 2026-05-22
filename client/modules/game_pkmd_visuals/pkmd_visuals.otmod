@@ -1,0 +1,11 @@
+Module
+  name: game_pkmd_visuals
+  description: Registers PKMD visual shader names and visual helpers without changing things/dat/spr.
+  author: Codex
+  autoload: true
+  autoload-priority: 1001
+  dependencies: [ game_shaders ]
+  sandboxed: true
+  scripts: [ pkmd_visuals ]
+  @onLoad: init()
+  @onUnload: terminate()

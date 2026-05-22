@@ -1,0 +1,192 @@
+SlotBarAbilitiesIcon < UIWidget
+  size: 12 12
+  image-source: /images/game/pokebar/icons
+  change-cursor-image: true
+  cursor: pointer
+  phantom: false
+
+SlotBarTimerBall < UIWidget
+  id: timer
+  size: 14 14
+  image-source: /images/game/pokebar/timer_ball
+  image-clip: 18 0 18 18
+
+  $on:
+    image-clip: 0 0 18 18
+
+SlotBar < UIWidget
+  size: 150 52
+  anchors.top: parent.top
+  anchors.left: parent.left
+  image-source: /images/game/pokebar/slotbar
+  image-clip: 0 80 170 60
+  draggable: true
+  phantom: false
+  margin-left: 8
+  &dragLeave: 0
+  &moveSlot: true
+
+  $!first:
+    anchors.top: prev.bottom
+    margin-top: 2
+
+  $checked:
+    size: 164 68
+    image-clip: 0 0 190 80
+
+  $on:
+    image-clip: 0 140 175 60
+
+  UIWidget
+    id: image
+    size: 46 46
+    anchors.left: parent.left
+    anchors.verticalCenter: parent.verticalCenter
+    phantom: true
+    opacity: 1
+    margin-left: 2
+    image-fixed-ratio: true
+    image-smooth: true
+
+    $disabled:
+      opacity: 0.3
+
+    $checked:
+      size: 60 60
+
+  -- ADIÇÃO: Moldura sobrepondo a imagem do pokémon
+  UIWidget
+    id: framePokemon
+    size: 46 46
+    anchors.left: parent.left
+    anchors.verticalCenter: parent.verticalCenter
+    image-source: /images/game/pokebar/slotbar_moldura
+    image-clip: 0 80 54 60
+    phantom: true
+    margin-left: 2
+    z: 5
+
+    $disabled:
+      opacity: 1
+
+    $checked:
+      size: 60 60
+      image-clip: 0 0 74 80
+
+  Label
+    id: pokemonName
+    text: ''
+    font: sono_medium_10
+    color: white
+    anchors.left: image.right
+    anchors.right: parent.right
+    anchors.top: parent.top
+    margin-left: 8
+    margin-right: 8
+    margin-top: 8
+    text-align: left
+    text-auto-resize: true
+    phantom: true
+
+  ProgressBar
+    id: progress
+    size: 140 11
+    anchors.top: parent.top
+    anchors.left: image.right
+    anchors.right: parent.right
+    margin: 24 6 0 6
+    font: sono_bold_12
+    phantom: true
+
+    $disabled:
+      background-color: #3A3A3A
+
+    $checked:
+      size: 156 13
+      margin: 30 10 0 6
+
+  UIButton
+    id: keyCombo
+    size: 36 12
+    anchors.left: prev.left
+    anchors.bottom: parent.bottom
+    anchors.top: prev.bottom
+    margin: 2 1 11 1
+    image-color: #D2D2D2
+    color: #727272
+    font: sono_medium_10
+
+    $on:
+      image-color: #242424
+      color: #727272
+
+    $checked:
+      size: 40 16
+      margin: 4 0 16 1
+
+  HorizontalList
+    id: abilities
+    height: 11
+    anchors.right: progress.right
+    anchors.verticalCenter: prev.verticalCenter
+    margin: 5 2 2 6
+    z: 8
+
+    $checked:
+      height: 11
+      margin: 2 2 2 4
+
+  SlotBarTimerBall
+    anchors.right: progress.right
+    anchors.bottom: keyCombo.bottom
+    margin-right: 2
+    visible: false
+    z: 8
+
+    $checked:
+      size: 18 18
+
+  -- ADIÇÃO: Moldura sobrepondo todo o background do SlotBar
+  UIWidget
+    id: frameBackground
+    size: 150 52
+    anchors.top: parent.top
+    anchors.left: parent.left
+    image-source: /images/game/pokebar/slotbar_moldura
+    image-clip: 0 80 170 60
+    phantom: true
+    margin-left: 0
+    z: 5
+
+    $checked:
+      size: 164 68
+      image-clip: 0 0 190 80
+
+    $on:
+      image-clip: 0 140 175 60
+
+  Panel
+    id: elements
+    width: 20
+    anchors.left: parent.left
+    anchors.verticalCenter: parent.verticalCenter
+    layout: verticalBox
+    &px: 20
+    margin: 0 0 0 -8
+    z: 100
+
+    $checked:
+      width: 24
+      &px: 24
+      margin: 0 0 0 -10
+
+
+
+Panel
+  id: panelBar
+  size: 176 72
+  pos: 10 150
+  focusable: false
+  &currentMode: 2
+  &orientation: 2
+  &isEditingMode: false

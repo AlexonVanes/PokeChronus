@@ -1,0 +1,14 @@
+Module
+  name: game_dittoMemory
+  description: Ditto Memory
+  author: Dzru
+  website: www.PokeStone.com
+  autoload: true
+  autoload-priority: 1000
+  sandboxed: true
+  depends:
+    - game_interface
+    - game_map
+  scripts: [ dittoMemory ]
+  @onLoad: init()
+  @onUnload: terminate()

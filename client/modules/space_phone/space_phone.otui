@@ -1,0 +1,17 @@
+MiniWindow
+  focusable: false
+  size: 192 116
+  image-source: images/background
+  &save: true
+  &autoOpen: false
+
+  UIButton
+    id: closeButton
+    anchors.bottom: parent.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-bottom: 20
+    size: 31 31
+    image-source: images/exit_button
+    @onClick: toggle()
+    change-cursor-image: true
+    cursor: pointer

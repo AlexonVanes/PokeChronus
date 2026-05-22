@@ -1,0 +1,69 @@
+# Sistema / editor
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.tmp
+*.temp
+*.bak
+*.orig
+*.swp
+*.swo
+~$*
+
+# Visual Studio / IDE
+.vs/
+*.suo
+*.user
+*.filters.user
+*.VC.db
+*.VC.VC.opendb
+*.opendb
+
+# Builds e intermediarios
+Debug/
+Release/
+x64/
+x86/
+build/
+out/
+obj/
+bin/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
+*.obj
+*.iobj
+*.ipdb
+*.pdb
+*.ilk
+*.idb
+*.tlog
+*.lastbuildstate
+*.log
+
+# Dependencias/cache gerados por gerenciadores locais
+vcpkg_installed/
+client/sources/vcpkg_dynamic/
+
+# Logs, cache e crash reports
+logs/
+log/
+cache/
+crashlogs/
+crash/
+crashes/
+*.stackdump
+
+# Arquivos compactados de trabalho
+*.zip
+*.rar
+*.7z
+*.tar
+*.gz
+
+# Dados locais sensiveis comuns
+.env
+.env.*
+!.env.example

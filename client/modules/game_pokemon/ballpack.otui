@@ -1,0 +1,50 @@
+BallpackSlot < UIItem
+  size: 32 32
+  hide-count: true
+  image-source: /images/ui/container_filter
+  image-border: 8
+  change-cursor-image: true
+  cursor: pointer
+
+MiniWindow
+  id: ballpackWindow
+  height: 83
+  &save: true
+
+  MiniWindowContents
+    id: contentsPanel
+    anchors.right: parent.right
+
+    UIWidget
+      id: ballpackPanel
+      anchors.top: parent.top
+      anchors.left: parent.left
+      anchors.right: parent.right
+      height: 32
+      margin-top: 4
+      margin-left: 6
+      margin-right: 6
+      layout:
+        type: grid
+        cell-size: 32 32
+        cell-spacing: 4
+        flow: true
+        num-columns: 6
+
+      BallpackSlot
+        id: ballpackSlot1
+
+      BallpackSlot
+        id: ballpackSlot2
+
+      BallpackSlot
+        id: ballpackSlot3
+
+      BallpackSlot
+        id: ballpackSlot4
+
+      BallpackSlot
+        id: ballpackSlot5
+
+      BallpackSlot
+        id: ballpackSlot6
