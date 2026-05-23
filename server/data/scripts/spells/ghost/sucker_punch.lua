@@ -1,5 +1,5 @@
 local combat = createCombatObject()
-combat:setParameter(COMBAT_PARAM_TYPE, COMBAT_GHOSTDAMAGE)
+combat:setParameter(COMBAT_PARAM_TYPE, COMBAT_DARKDAMAGE)
 combat:setParameter(COMBAT_PARAM_DISTANCEEFFECT, 40)
 combat:setParameter(COMBAT_PARAM_EFFECT, 238)
 combat:setStringParameter(COMBAT_PARAM_STRING_SPELLNAME, "Sucker Punch")

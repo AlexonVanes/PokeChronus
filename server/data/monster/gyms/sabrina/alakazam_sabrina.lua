@@ -72,11 +72,10 @@ pokemon.voices = {
 }
 
 pokemon.loot = {
-{id = "seed", chance = 5000000, maxCount = 235,
-{id = "enchanted gem", chance = 8000000, maxCount = 13},
-{id = "future orb", chance = 3250000, maxCount = 1},
-{id = "enigma stone", chance = 8000000, maxCount = 1},
-},
+    {id = "seed", chance = 5000000, maxCount = 235},
+    {id = "enchanted gem", chance = 8000000, maxCount = 13},
+    {id = "future orb", chance = 3250000, maxCount = 1},
+    {id = "enigma stone", chance = 8000000, maxCount = 1},
     {id = "leaves", chance = 2000000, maxCount = 7},
     {id = "leaf stone", chance = 10000},
 }

@@ -49,8 +49,6 @@ else ()
     find_package(MySQL REQUIRED)
 endif ()
 
-# Find packages.
-find_package(GMP REQUIRED)
 find_package(PugiXML REQUIRED)
 find_package(ZLIB REQUIRED)
 find_package(LuaJIT)
@@ -87,8 +85,7 @@ include_directories(
     ${Crypto++_INCLUDE_DIR} 
     ${LUA_INCLUDE_DIR} 
     ${Boost_INCLUDE_DIRS} 
-    ${PUGIXML_INCLUDE_DIR} 
-    ${GMP_INCLUDE_DIR})
+    ${PUGIXML_INCLUDE_DIR})
 target_link_libraries(tfs 
     ${MYSQL_CLIENT_LIBS} 
     ${Crypto++_LIBRARIES}
@@ -97,7 +94,6 @@ target_link_libraries(tfs
     ${Boost_FILESYSTEM_LIBRARY} 
     ${PUGIXML_LIBRARIES} 
     ${ZLIB_LIBRARY} 
-    ${GMP_LIBRARIES} 
     ${CMAKE_THREAD_LIBS_INIT} 
     fmt::fmt)
 

@@ -1,9 +1,9 @@
 ﻿
-local mType = Game.createMonsterType("Latias")
+local mType = Game.createMonsterType("Shiny Latias")
 local pokemon = {}
 pokemon.eventFile = false -- will try to load the file example.lua in data/scripts/pokemons/events
 pokemon.eventFile = "default" -- will try to load the file test.lua in data/scripts/pokemons/events
-pokemon.description = "a Latias"
+pokemon.description = "a Shiny Latias"
 pokemon.experience = 1
 pokemon.outfit = {
     lookType = 1628

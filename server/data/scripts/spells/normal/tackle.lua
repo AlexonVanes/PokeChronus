@@ -1,6 +1,6 @@
 local combat = Combat()
 
-combat:setParameter(COMBAT_PARAM_TYPE, COMBAT_ROCKDAMAGE)
+combat:setParameter(COMBAT_PARAM_TYPE, COMBAT_NORMALDAMAGE)
 combat:setStringParameter(COMBAT_PARAM_STRING_SPELLNAME, "Tackle")
 combat:setParameter(COMBAT_PARAM_EFFECT, 104)
 combat:setParameter(COMBAT_PARAM_DISTANCEEFFECT, 40)

@@ -1,5 +1,5 @@
 local combat = createCombatObject()
-combat:setParameter(COMBAT_PARAM_TYPE, COMBAT_NORMALDAMAGE)
+combat:setParameter(COMBAT_PARAM_TYPE, COMBAT_GHOSTDAMAGE)
 combat:setParameter(COMBAT_PARAM_EFFECT, 146)
 combat:setStringParameter(COMBAT_PARAM_STRING_SPELLNAME, "Lick")
 

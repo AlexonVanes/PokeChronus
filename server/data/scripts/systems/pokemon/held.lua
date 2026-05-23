@@ -419,8 +419,12 @@ function action_held.onUse(player, item, fromPosition, target, toPosition)
 	return true
 end
 
+local hasHeldItems = false
 for id in pairs(heldTable) do
     action_held:id(id)
+    hasHeldItems = true
 end
 
-action_held:register()
+if hasHeldItems then
+    action_held:register()
+end

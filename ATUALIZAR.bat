@@ -71,6 +71,15 @@ if errorlevel 1 (
   exit /b 1
 )
 
+echo Validando pacote Release recebido...
+call VERIFICAR_AMBIENTE.bat /nopause
+if errorlevel 1 (
+  echo ERRO: A atualizacao terminou, mas o pacote recebido esta incompleto.
+  echo Chame o Alexon antes de iniciar o jogo.
+  pause
+  exit /b 1
+)
+
 echo.
 echo OK: Projeto atualizado com sucesso.
 pause

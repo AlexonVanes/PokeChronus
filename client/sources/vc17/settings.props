@@ -18,15 +18,15 @@
     </PREPROCESSOR_DEFS>
     
     <OTCLIENT_LIBDEPS>
-        z.lib;
+        zs.lib;
         libssl.lib;
         libcrypto.lib;
-        physfs.lib;
+        physfs-static.lib;
         zip.lib;
         bz2.lib;
         lzma.lib;
         zstd.lib;
-        $(SolutionDir)..\vcpkg_dynamic\x64-windows\lib\OpenAL32.lib;
+        $(SolutionDir)..\vcpkg_static\x64-windows-static\lib\OpenAL32.lib;
         fmt.lib;
         avrt.lib;
         vorbisfile.lib;
@@ -55,7 +55,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <OutDir>$(ProjectDir)..\..\</OutDir>
-    <LibraryPath>$(SolutionDir)..\vcpkg_dynamic\x64-windows\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)..\vcpkg_static\x64-windows-static\lib;$(LibraryPath)</LibraryPath>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Label="Globals">
@@ -76,7 +76,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>$(OTCLIENT_LIBDEPS)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\vcpkg_dynamic\x64-windows\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\vcpkg_static\x64-windows-static\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <LargeAddressAware>true</LargeAddressAware>
       <SubSystem>Windows</SubSystem>

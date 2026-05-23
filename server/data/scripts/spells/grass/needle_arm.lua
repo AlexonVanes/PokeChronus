@@ -14,10 +14,7 @@ combat:addCondition(condition)
 local spell = Spell(SPELL_INSTANT)
 
 function spell.onCastSpell(creature, variant)
-
-    combat:execute(creature, Variant(targetPos))
-
-    return true
+    return combat:execute(creature, variant)
 end
 
 spell:name("Needle Arm")

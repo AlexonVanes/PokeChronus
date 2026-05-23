@@ -50,13 +50,34 @@ O `.gitignore` ignora lixo de build, cache e arquivos locais:
 - intermediarios como `.obj`, `.iobj`, `.ipdb`, `.pdb`, `.ilk`, `.idb`, `.tlog`, `.lastbuildstate`, `.VC.db`;
 - logs, cache e crashlogs;
 - compactados de trabalho `.zip`, `.rar`, `.7z`;
-- `vcpkg_installed/` e `client/sources/vcpkg_dynamic/`.
+- `vcpkg_installed/`, `client/sources/vcpkg_dynamic/` e `client/sources/vcpkg_static/`.
+
+## Compilacao Release
+
+As dependencias locais nao sao enviadas ao Git. Para restaurar as versoes fixadas,
+compilar os dois executaveis e copiar as DLLs distribuiveis do servidor, rode:
+
+```bat
+COMPILAR_RELEASE.bat
+```
+
+Requisitos da maquina que compila:
+
+- Visual Studio 2022 Build Tools com Desktop development with C++ e toolset `v143`;
+- `vcpkg` em `C:\vcpkg`, ou a variavel `VCPKG_ROOT` apontando para sua instalacao;
+- unidade `P:` livre durante a compilacao.
+
+O script usa temporariamente `P:` para impedir falhas em ferramentas que nao lidam
+corretamente com caminhos acentuados. O servidor e compilado em `Release|x64` com
+DLLs e runtime VC143 locais. O cliente `OpenGL|x64` liga suas dependencias
+estaticamente, usando Boost 1.91 e LuaJIT legado fixados no manifesto para manter a
+inicializacao estavel. Executaveis e DLLs finais seguem no Git LFS.
 
 ## Teste de clone funcional
 
 1. Clone em outra pasta ou maquina.
 2. Rode `git lfs pull`.
-3. Abra `VERIFICAR_AMBIENTE.bat`.
+3. Rode `VERIFICAR_AMBIENTE.bat`.
 4. Abra `INICIAR_SERVIDOR.bat`.
 5. Abra `INICIAR_CLIENT.bat`.
 
@@ -83,13 +104,13 @@ git lfs checkout -- server
 VERIFICAR_AMBIENTE.bat
 ```
 
-O executavel e todas as DLLs distribuidas devem ser `Release|x64` e depender de `VCRUNTIME140.dll`/`MSVCP140.dll`, sem a letra `D`. Na maquina que hospeda o servidor, instale tambem o Microsoft Visual C++ Redistributable x64 atual.
+O executavel do servidor e suas DLLs distribuidas devem ser `Release|x64` e depender de `VCRUNTIME140.dll`/`MSVCP140.dll`, sem a letra `D`. O pacote inclui localmente o runtime Release `Microsoft.VC143.CRT` necessario para iniciar o servidor em uma maquina limpa. O executavel principal do cliente e estatico e nao exige essas DLLs.
 
 ## Trabalho em dupla
 
 Fluxo recomendado:
 
-1. `ATUALIZAR.bat`
+1. `ATUALIZAR.bat` (baixa via Git LFS e valida o pacote Release recebido)
 2. editar
 3. testar
 4. `ENVIAR.bat`

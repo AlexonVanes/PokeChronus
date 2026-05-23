@@ -91,103 +91,103 @@ registerMonsterType.corpse = function(mtype, mask)
 end
 registerMonsterType.flags = function(mtype, mask)
 	if mask.flags then
-		if mask.flags.minimumLevel then
+		if mask.flags.minimumLevel ~= nil then
 			mtype:minimumLevel(mask.flags.minimumLevel)
 		end
-		if mask.flags.funcao then
+		if mask.flags.funcao ~= nil then
 			mtype:funcao(mask.flags.funcao)
 		end
-		if mask.flags.attackable then
+		if mask.flags.attackable ~= nil then
 			mtype:isAttackable(mask.flags.attackable)
 		end
-		if mask.flags.passive then
+		if mask.flags.passive ~= nil then
 			mtype:isPassive(mask.flags.passive)
 		end
-		if mask.flags.summonable then
+		if mask.flags.summonable ~= nil then
 			mtype:isSummonable(mask.flags.summonable)
 		else
 			print("Error: summonable flag is missing on monster type: " .. mtype:getName())
 		end
-		if mask.flags.healthHidden then
+		if mask.flags.healthHidden ~= nil then
 			mtype:isHealthHidden(mask.flags.healthHidden)
 		end
-		if mask.flags.convinceable then
+		if mask.flags.convinceable ~= nil then
 			mtype:isConvinceable(mask.flags.convinceable)
 		else
 			print("Error: convinceable flag is missing on monster type: " .. mtype:getName())
 		end
-		if mask.flags.illusionable then
+		if mask.flags.illusionable ~= nil then
 			mtype:isIllusionable(mask.flags.illusionable)
 		else
 			print("Error: illusionable flag is missing on monster type: " .. mtype:getName())
 		end
-		if mask.flags.hostile then
+		if mask.flags.hostile ~= nil then
 			mtype:isHostile(mask.flags.hostile)
 		end
-		if mask.flags.pushable then
+		if mask.flags.pushable ~= nil then
 			mtype:isPushable(mask.flags.pushable)
 		end
-		if mask.flags.canPushItems then
+		if mask.flags.canPushItems ~= nil then
 			mtype:canPushItems(mask.flags.canPushItems)
 		end
-		if mask.flags.canPushCreatures then
+		if mask.flags.canPushCreatures ~= nil then
 			mtype:canPushCreatures(mask.flags.canPushCreatures)
 		end
-		if mask.flags.targetDistance then
+		if mask.flags.targetDistance ~= nil then
 			mtype:targetDistance(mask.flags.targetDistance)
 		end
-		if mask.flags.staticAttackChance then
+		if mask.flags.staticAttackChance ~= nil then
 			mtype:staticAttackChance(mask.flags.staticAttackChance)
 		end
-		if mask.flags.pokemonRank then
+		if mask.flags.pokemonRank ~= nil then
 			mtype:pokemonRank(mask.flags.pokemonRank)
 		end
-		if mask.flags.hasShiny then
+		if mask.flags.hasShiny ~= nil then
 			mtype:hasShiny(mask.flags.hasShiny)
 		end
-		if mask.flags.hasMega then
+		if mask.flags.hasMega ~= nil then
 			mtype:hasMega(mask.flags.hasMega)
 		end
-		if mask.flags.moveMagicAttackBase then
+		if mask.flags.moveMagicAttackBase ~= nil then
 			mtype:moveMagicAttackBase(mask.flags.moveMagicAttackBase)
 		end
-		if mask.flags.moveMagicDefenseBase then
+		if mask.flags.moveMagicDefenseBase ~= nil then
 			mtype:moveMagicDefenseBase(mask.flags.moveMagicDefenseBase)
 		end
-		if mask.flags.catchChance then
+		if mask.flags.catchChance ~= nil then
 			mtype:catchChance(mask.flags.catchChance)
 		end
-		if mask.flags.canControlMind then
+		if mask.flags.canControlMind ~= nil then
 			mtype:canControlMind(mask.flags.canControlMind)
 		end
-		if mask.flags.canLevitate then
+		if mask.flags.canLevitate ~= nil then
 			mtype:canLevitate(mask.flags.canLevitate)
 		end
-		if mask.flags.canLight then
+		if mask.flags.canLight ~= nil then
 			mtype:canLight(mask.flags.canLight)
 		end
-		if mask.flags.canCut then
+		if mask.flags.canCut ~= nil then
 			mtype:canCut(mask.flags.canCut)
 		end
-		if mask.flags.canSmash then
+		if mask.flags.canSmash ~= nil then
 			mtype:canSmash(mask.flags.canSmash)
 		end
-		if mask.flags.canDig then
+		if mask.flags.canDig ~= nil then
 			mtype:canDig(mask.flags.canDig)
 		end
-		if mask.flags.canTeleport then
+		if mask.flags.canTeleport ~= nil then
 			mtype:canTeleport(mask.flags.canTeleport)
 		end
-		if mask.flags.canBlink then
+		if mask.flags.canBlink ~= nil then
 			mtype:canBlink(mask.flags.canBlink)
 		end
-		if mask.flags.isSurfable then
+		if mask.flags.isSurfable ~= nil then
 			mtype:isSurfable(mask.flags.isSurfable)
 		end
-		if mask.flags.isRideable then
+		if mask.flags.isRideable ~= nil then
 			mtype:isRideable(mask.flags.isRideable)
 		end
-		if mask.flags.isFlyable then
+		if mask.flags.isFlyable ~= nil then
 			mtype:isFlyable(mask.flags.isFlyable)
 		end
 	end

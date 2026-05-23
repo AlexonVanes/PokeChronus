@@ -38,6 +38,7 @@ compile_commands.json
 *.ipdb
 *.pdb
 *.ilk
+*.exp
 *.idb
 *.tlog
 *.lastbuildstate
@@ -46,6 +47,9 @@ compile_commands.json
 # Dependencias/cache gerados por gerenciadores locais
 vcpkg_installed/
 client/sources/vcpkg_dynamic/
+client/sources/vcpkg_static/
+client/sources/vcpkg_static_legacy/
+client/-=otclient_gl.lib
 
 # Logs, cache e crash reports
 logs/

@@ -100,8 +100,9 @@ function onUse(player, item, fromPosition, target, toPosition, isHotkey)
     if guild and guild:hasBuff(COLUMN_4, CRITICAL_CATCH_BUFF) then
         if math.random(0, 100) <= GUILD_BUFF_LUCKY then
             chanceBase = chanceBase * 2
-            (toPosition + Position(1, 1, 0)):sendMagicEffect(2511)
-            (toPosition + Position(1, 1, 0)):sendMagicEffect(2512)
+            local criticalEffectPosition = toPosition + Position(1, 1, 0)
+            criticalEffectPosition:sendMagicEffect(2511)
+            criticalEffectPosition:sendMagicEffect(2512)
         end
     end
 

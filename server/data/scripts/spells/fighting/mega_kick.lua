@@ -1,5 +1,5 @@
 local combat = createCombatObject()
-combat:setParameter(COMBAT_PARAM_TYPE, COMBAT_FIGHTINGDAMAGE)
+combat:setParameter(COMBAT_PARAM_TYPE, COMBAT_NORMALDAMAGE)
 combat:setParameter(COMBAT_PARAM_DISTANCEEFFECT, 40)
 combat:setParameter(COMBAT_PARAM_EFFECT, 114)
 combat:setStringParameter(COMBAT_PARAM_STRING_SPELLNAME, "Mega Kick")

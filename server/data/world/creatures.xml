@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <creatures>
-    <creature name=" Shiny Elekid" type="monster" looktype="1053"/>
+    <creature name="Shiny Elekid" type="monster" looktype="1053"/>
     <creature name="Abomasnow" type="monster" looktype="841"/>
     <creature name="Abra" type="monster" looktype="63"/>
     <creature name="Absol" type="monster" looktype="1607"/>
@@ -373,8 +373,10 @@
     <creature name="Mega Banette" type="monster" looktype="841"/>
     <creature name="Mega Beedrill" type="monster" looktype="841"/>
     <creature name="Mega Blaziken" type="monster" looktype="1700"/>
+    <creature name="Mega Blastoise" type="monster" looktype="217"/>
     <creature name="Mega Camerupt" type="monster" looktype="841"/>
     <creature name="Mega Charizard X" type="monster" looktype="214"/>
+    <creature name="Mega Charizard Y" type="monster" looktype="214"/>
     <creature name="Mega Garchomp" type="monster" looktype="841"/>
     <creature name="Mega Gardevoir" type="monster" looktype="111"/>
     <creature name="Mega Gengar" type="monster" looktype="312"/>
@@ -383,6 +385,7 @@
     <creature name="Mega Houndoom" type="monster" looktype="1043"/>
     <creature name="Mega Kangaskhan" type="monster" looktype="333"/>
     <creature name="Mega Lopunny" type="monster" looktype="841"/>
+    <creature name="Mega Mawile" type="monster" looktype="1746"/>
     <creature name="Mega Lucario" type="monster" looktype="841"/>
     <creature name="Mega Manectric" type="monster" looktype="1753"/>
     <creature name="Mega Medicham" type="monster" looktype="841"/>
@@ -759,8 +762,8 @@
     <creature name="Shiny Muk" type="monster" looktype="307"/>
     <creature name="Shiny Munchlax" type="monster" looktype="841"/>
     <creature name="Shiny Murkrow" type="monster" looktype="1014"/>
-    <creature name="Shiny Nidoranfe" type="monster" looktype="237"/>
-    <creature name="Shiny Nidoranma" type="monster" looktype="240"/>
+    <creature name="Shiny Nidoran Female" type="monster" looktype="237"/>
+    <creature name="Shiny Nidoran Male" type="monster" looktype="240"/>
     <creature name="Shiny Nidorino" type="monster" looktype="241"/>
     <creature name="Shiny Nincada" type="monster" looktype="1733"/>
     <creature name="Shiny Ninetales" type="monster" looktype="246"/>
