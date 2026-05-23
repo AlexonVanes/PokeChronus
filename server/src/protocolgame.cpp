@@ -2067,6 +2067,15 @@ void ProtocolGame::sendFYIBox(const std::string& message)
 }
 
 //tile
+void ProtocolGame::sendMapAwareRange()
+{
+	NetworkMessage msg;
+	msg.addByte(0x42);
+	msg.addByte(Map::maxClientViewportX * 2);
+	msg.addByte(Map::maxClientViewportY * 2);
+	writeToOutputBuffer(msg);
+}
+
 void ProtocolGame::sendMapDescription(const Position& pos)
 {
 	NetworkMessage msg;
@@ -2275,6 +2284,7 @@ void ProtocolGame::sendAddCreature(const Creature* creature, const Position& pos
 
 	sendPendingStateEntered();
 	sendEnterWorld();
+	sendMapAwareRange();
 	sendMapDescription(pos);
 
 	if (isLogin) {

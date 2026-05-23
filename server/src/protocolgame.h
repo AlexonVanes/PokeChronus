@@ -224,6 +224,7 @@ class ProtocolGame final : public Protocol
 		void sendSpellGroupCooldown(SpellGroup_t groupId, uint32_t time);
 
 		//tiles
+		void sendMapAwareRange();
 		void sendMapDescription(const Position& pos);
 
 		void sendAddTileItem(const Position& pos, uint32_t stackpos, const Item* item);

@@ -407,7 +407,8 @@ end
 
 function online()
   setLightOptionsVisibility(not g_game.getFeature(GameForceLight))
-  g_app.setSmooth(g_settings.getBoolean("antialiasing"))
+  -- The 4K map shader sharpens after scaling; reset the old pixel-sharp workaround.
+  setOption("antialiasing", true, true)
 end
 
 function offline()

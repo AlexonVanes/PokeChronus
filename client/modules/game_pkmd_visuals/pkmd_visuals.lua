@@ -91,12 +91,6 @@ local visualEnhanceEvent = nil
 local visualEnhanceLogged = false
 
 local function applyVisualEnhance()
-  pcall(function()
-    if g_app and g_app.setSmooth then
-      g_app.setSmooth(true)
-    end
-  end)
-
   local panel = modules.game_interface and modules.game_interface.gameMapPanel
   if not panel or not panel.setShader then return end
 

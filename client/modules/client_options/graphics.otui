@@ -29,7 +29,8 @@ OptionPanel
 
   OptionCheckBox
     id: antialiasing
-    !text: tr('Antisserrilhamento')
+    !text: tr('Suavizacao de escala')
+    !tooltip: tr('Desative para pixels rigidos; ative para escala suave com nitidez visual')
   Label
     id: backgroundFrameRateLabel
     !text: tr('Limite de taxa de quadros do jogo: %s', 'max')

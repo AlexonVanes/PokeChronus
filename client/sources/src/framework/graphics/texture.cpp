@@ -184,14 +184,8 @@ void Texture::setupWrap()
 
 void Texture::setupFilters()
 {
-    int minFilter;
-    int magFilter;
-
-    // Nordemon 4K profile: force linear sampling for every texture path.
-    // The content is still the original art, but scaling no longer falls back
-    // to blocky nearest-neighbor sampling when a widget/atlas forgets smooth.
-    minFilter = m_hasMipmaps ? GL_LINEAR_MIPMAP_LINEAR : GL_LINEAR;
-    magFilter = GL_LINEAR;
+    const int minFilter = m_smooth ? (m_hasMipmaps ? GL_LINEAR_MIPMAP_LINEAR : GL_LINEAR) : GL_NEAREST;
+    const int magFilter = m_smooth ? GL_LINEAR : GL_NEAREST;
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, minFilter);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, magFilter);

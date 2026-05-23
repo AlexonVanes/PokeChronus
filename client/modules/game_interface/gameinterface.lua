@@ -15,6 +15,7 @@ logoutWindow = nil
 exitWindow = nil
 bottomSplitter = nil
 limitedZoom = false
+local maximumMapZoomOut = 22
 hookedMenuOptions = {}
 lastDirTime = g_clock.millis()
 
@@ -155,11 +156,11 @@ function show()
   addEvent(function()
 	if not limitedZoom or g_game.isGM() then
 	  gameMapPanel:zoomOut(14)
-      gameMapPanel:setMaxZoomOut(14)
+      gameMapPanel:setMaxZoomOut(maximumMapZoomOut)
 	  gameMapPanel:setMaxZoomIn(10)
       gameMapPanel:setLimitVisibleRange(false)
     else
-      gameMapPanel:setMaxZoomOut(14)
+      gameMapPanel:setMaxZoomOut(maximumMapZoomOut)
 	  gameMapPanel:setMaxZoomIn(10)
       gameMapPanel:setLimitVisibleRange(true)
     end
