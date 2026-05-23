@@ -47,7 +47,17 @@ if exist "client\OpenAL32.dll" (echo OK    - DLL principal do client: OpenAL32.d
 if exist "client\lua51.dll" (echo OK    - DLL principal do client: lua51.dll) else (echo ERRO  - DLL principal do client: lua51.dll & set /a ERROS+=1)
 
 if exist "server" (echo OK    - Pasta do servidor) else (echo ERRO  - Pasta do servidor & set /a ERROS+=1)
-if exist "server\- theforgottenserver-x64.exe" (echo OK    - Executavel principal do servidor) else (echo ERRO  - Executavel principal do servidor & set /a ERROS+=1)
+if exist "server\- theforgottenserver-x64.exe" (
+  echo OK    - Executavel principal do servidor
+  findstr /m /i /c:"VCRUNTIME140D.dll" /c:"MSVCP140D.dll" /c:"ucrtbased.dll" "server\*.exe" "server\*.dll" >nul 2>nul
+  if not errorlevel 1 (
+    echo ERRO  - Servidor contem EXE ou DLL Debug e exige runtimes nao redistribuiveis
+    echo         Use uma compilacao Release x64 completa e atualize os binarios pelo Git LFS.
+    set /a ERROS+=1
+  ) else (
+    echo OK    - Binarios do servidor nao referenciam runtime Debug
+  )
+) else (echo ERRO  - Executavel principal do servidor & set /a ERROS+=1)
 if exist "server\data" (echo OK    - Data do servidor) else (echo ERRO  - Data do servidor & set /a ERROS+=1)
 if exist "server\config.lua" (echo OK    - Config do servidor) else (echo ERRO  - Config do servidor & set /a ERROS+=1)
 if exist "server\data\world\map2.otbm" (echo OK    - Mapa do servidor) else (echo ERRO  - Mapa do servidor & set /a ERROS+=1)

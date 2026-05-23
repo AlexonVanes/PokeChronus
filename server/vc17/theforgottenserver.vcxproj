@@ -71,7 +71,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <VcpkgRoot>$(ProjectDir)..\vcpkg_installed\x64-windows\x64-windows\</VcpkgRoot>
+    <VcpkgRoot>$(ProjectDir)..\vcpkg_installed\x64-windows\</VcpkgRoot>
     <LibraryPath>$(VcpkgRoot)lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

@@ -69,6 +69,22 @@ git lfs pull
 git lfs checkout
 ```
 
+## Erro de DLL do servidor no Windows
+
+Se o servidor pedir `VCRUNTIME140D.dll`, `MSVCP140D.dll` ou `ucrtbased.dll`, algum binario recebido (`.exe` ou `.dll`) foi compilado em modo `Debug`. Essas DLLs sao de desenvolvimento e nao devem ser distribuidas com o servidor. Um executavel Release tambem falhara se carregar, por exemplo, `libmariadb.dll`, `lua.dll` ou `pugixml.dll` em versao Debug.
+
+Para corrigir uma copia que recebeu o executavel errado:
+
+```bat
+git pull
+git lfs pull
+git restore --source=HEAD -- server
+git lfs checkout -- server
+VERIFICAR_AMBIENTE.bat
+```
+
+O executavel e todas as DLLs distribuidas devem ser `Release|x64` e depender de `VCRUNTIME140.dll`/`MSVCP140.dll`, sem a letra `D`. Na maquina que hospeda o servidor, instale tambem o Microsoft Visual C++ Redistributable x64 atual.
+
 ## Trabalho em dupla
 
 Fluxo recomendado:
